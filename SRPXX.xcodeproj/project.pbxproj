@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050961382CDD50B4008F4C59 /* String.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961312CDD50B4008F4C59 /* String.hpp */; };
+		050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961332CDD50B4008F4C59 /* SRPXX.hpp */; };
+		0509613A2CDD50B4008F4C59 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961352CDD50B4008F4C59 /* String.cpp */; };
+		0509613D2CDD50C1008F4C59 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0509613B2CDD50C1008F4C59 /* String.cpp */; };
 		051F72C42CDD12600031F7FA /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72B82CDD12480031F7FA /* libSRPXX.a */; };
 		051F72DE2CDD13790031F7FA /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72CF2CDD12AB0031F7FA /* XSTest.framework */; };
 /* End PBXBuildFile section */
@@ -29,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050961312CDD50B4008F4C59 /* String.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = String.hpp; sourceTree = "<group>"; };
+		050961332CDD50B4008F4C59 /* SRPXX.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SRPXX.hpp; sourceTree = "<group>"; };
+		050961352CDD50B4008F4C59 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
+		0509613B2CDD50C1008F4C59 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
 		051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
 		051F72632CDD11CE0031F7FA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		051F72642CDD11CE0031F7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -103,12 +111,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050961322CDD50B4008F4C59 /* SRPXX */ = {
+			isa = PBXGroup;
+			children = (
+				050961312CDD50B4008F4C59 /* String.hpp */,
+			);
+			path = SRPXX;
+			sourceTree = "<group>";
+		};
+		050961342CDD50B4008F4C59 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				050961322CDD50B4008F4C59 /* SRPXX */,
+				050961332CDD50B4008F4C59 /* SRPXX.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		050961362CDD50B4008F4C59 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				050961352CDD50B4008F4C59 /* String.cpp */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		050961372CDD50B4008F4C59 /* SRPXX */ = {
+			isa = PBXGroup;
+			children = (
+				050961342CDD50B4008F4C59 /* include */,
+				050961362CDD50B4008F4C59 /* source */,
+			);
+			path = SRPXX;
+			sourceTree = "<group>";
+		};
+		0509613C2CDD50C1008F4C59 /* SRPXX-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0509613B2CDD50C1008F4C59 /* String.cpp */,
+			);
+			path = "SRPXX-Tests";
+			sourceTree = "<group>";
+		};
 		051F72422CDD11920031F7FA = {
 			isa = PBXGroup;
 			children = (
 				051F72642CDD11CE0031F7FA /* README.md */,
 				051F72632CDD11CE0031F7FA /* LICENSE */,
 				051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */,
+				050961372CDD50B4008F4C59 /* SRPXX */,
+				0509613C2CDD50C1008F4C59 /* SRPXX-Tests */,
 				051F72A22CDD11DC0031F7FA /* xcconfig */,
 				051F72652CDD11D50031F7FA /* XSTest.xcodeproj */,
 				051F72DD2CDD13790031F7FA /* Frameworks */,
@@ -273,6 +325,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050961382CDD50B4008F4C59 /* String.hpp in Headers */,
+				050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0509613A2CDD50B4008F4C59 /* String.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0509613D2CDD50C1008F4C59 /* String.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
