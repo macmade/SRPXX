@@ -11,6 +11,9 @@
 		050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961332CDD50B4008F4C59 /* SRPXX.hpp */; };
 		0509613A2CDD50B4008F4C59 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961352CDD50B4008F4C59 /* String.cpp */; };
 		0509613D2CDD50C1008F4C59 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0509613B2CDD50C1008F4C59 /* String.cpp */; };
+		050961432CDD56B3008F4C59 /* BigNum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961422CDD56B3008F4C59 /* BigNum.cpp */; };
+		050961452CDD56BB008F4C59 /* BigNum.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961442CDD56BB008F4C59 /* BigNum.hpp */; };
+		050961472CDD56C2008F4C59 /* BigNum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961462CDD56C2008F4C59 /* BigNum.cpp */; };
 		051F72C42CDD12600031F7FA /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72B82CDD12480031F7FA /* libSRPXX.a */; };
 		051F72DE2CDD13790031F7FA /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72CF2CDD12AB0031F7FA /* XSTest.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +40,9 @@
 		050961332CDD50B4008F4C59 /* SRPXX.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SRPXX.hpp; sourceTree = "<group>"; };
 		050961352CDD50B4008F4C59 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
 		0509613B2CDD50C1008F4C59 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
+		050961422CDD56B3008F4C59 /* BigNum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BigNum.cpp; sourceTree = "<group>"; };
+		050961442CDD56BB008F4C59 /* BigNum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BigNum.hpp; sourceTree = "<group>"; };
+		050961462CDD56C2008F4C59 /* BigNum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BigNum.cpp; sourceTree = "<group>"; };
 		051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
 		051F72632CDD11CE0031F7FA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		051F72642CDD11CE0031F7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 		050961322CDD50B4008F4C59 /* SRPXX */ = {
 			isa = PBXGroup;
 			children = (
+				050961442CDD56BB008F4C59 /* BigNum.hpp */,
 				050961312CDD50B4008F4C59 /* String.hpp */,
 			);
 			path = SRPXX;
@@ -131,6 +138,7 @@
 		050961362CDD50B4008F4C59 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				050961462CDD56C2008F4C59 /* BigNum.cpp */,
 				050961352CDD50B4008F4C59 /* String.cpp */,
 			);
 			path = source;
@@ -148,6 +156,7 @@
 		0509613C2CDD50C1008F4C59 /* SRPXX-Tests */ = {
 			isa = PBXGroup;
 			children = (
+				050961422CDD56B3008F4C59 /* BigNum.cpp */,
 				0509613B2CDD50C1008F4C59 /* String.cpp */,
 			);
 			path = "SRPXX-Tests";
@@ -325,6 +334,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050961452CDD56BB008F4C59 /* BigNum.hpp in Headers */,
 				050961382CDD50B4008F4C59 /* String.hpp in Headers */,
 				050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */,
 			);
@@ -442,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0509613A2CDD50B4008F4C59 /* String.cpp in Sources */,
+				050961472CDD56C2008F4C59 /* BigNum.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0509613D2CDD50C1008F4C59 /* String.cpp in Sources */,
+				050961432CDD56B3008F4C59 /* BigNum.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

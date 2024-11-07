@@ -26,5 +26,6 @@
 #define SRPXX_HPP
 
 #include <SRPXX/String.hpp>
+#include <SRPXX/BigNum.hpp>
 
 #endif /* SRPXX_HPP */
