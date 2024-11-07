@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -391,6 +391,7 @@
 				};
 			};
 			buildConfigurationList = 051F72462CDD11920031F7FA /* Build configuration list for PBXProject "SRPXX" */;
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -399,7 +400,6 @@
 			);
 			mainGroup = 051F72422CDD11920031F7FA;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 051F724C2CDD11920031F7FA /* Products */;
 			projectDirPath = "";
 			projectReferences = (
