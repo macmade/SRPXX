@@ -20,6 +20,8 @@
 		0509617E2CDE6A8A008F4C59 /* Platform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 0509617D2CDE6A86008F4C59 /* Platform.hpp */; };
 		050961802CDE6A97008F4C59 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0509617F2CDE6A92008F4C59 /* Platform.cpp */; };
 		050961822CDE6A9D008F4C59 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961812CDE6A9B008F4C59 /* Platform.cpp */; };
+		050961842CDE70A2008F4C59 /* Integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961832CDE709D008F4C59 /* Integer.hpp */; };
+		0509618A2CDE70BB008F4C59 /* Integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961892CDE70B8008F4C59 /* Integer.cpp */; };
 		051F72C42CDD12600031F7FA /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72B82CDD12480031F7FA /* libSRPXX.a */; };
 		051F72DE2CDD13790031F7FA /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72CF2CDD12AB0031F7FA /* XSTest.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		0509617D2CDE6A86008F4C59 /* Platform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Platform.hpp; sourceTree = "<group>"; };
 		0509617F2CDE6A92008F4C59 /* Platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
 		050961812CDE6A9B008F4C59 /* Platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
+		050961832CDE709D008F4C59 /* Integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Integer.hpp; sourceTree = "<group>"; };
+		050961892CDE70B8008F4C59 /* Integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Integer.cpp; sourceTree = "<group>"; };
 		051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
 		051F72632CDD11CE0031F7FA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		051F72642CDD11CE0031F7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				050961442CDD56BB008F4C59 /* BigNum.hpp */,
+				050961832CDE709D008F4C59 /* Integer.hpp */,
 				0509617D2CDE6A86008F4C59 /* Platform.hpp */,
 				050961772CDE52DA008F4C59 /* Random.hpp */,
 				050961312CDD50B4008F4C59 /* String.hpp */,
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				050961422CDD56B3008F4C59 /* BigNum.cpp */,
+				050961892CDE70B8008F4C59 /* Integer.cpp */,
 				050961812CDE6A9B008F4C59 /* Platform.cpp */,
 				0509617B2CDE52FB008F4C59 /* Random.cpp */,
 				0509613B2CDD50C1008F4C59 /* String.cpp */,
@@ -353,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				050961452CDD56BB008F4C59 /* BigNum.hpp in Headers */,
+				050961842CDE70A2008F4C59 /* Integer.hpp in Headers */,
 				050961382CDD50B4008F4C59 /* String.hpp in Headers */,
 				050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */,
 				050961782CDE52DE008F4C59 /* Random.hpp in Headers */,
@@ -484,6 +491,7 @@
 			files = (
 				0509617C2CDE52FF008F4C59 /* Random.cpp in Sources */,
 				0509613D2CDD50C1008F4C59 /* String.cpp in Sources */,
+				0509618A2CDE70BB008F4C59 /* Integer.cpp in Sources */,
 				050961822CDE6A9D008F4C59 /* Platform.cpp in Sources */,
 				050961432CDD56B3008F4C59 /* BigNum.cpp in Sources */,
 			);

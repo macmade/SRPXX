@@ -22,13 +22,26 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_INTEGER_HPP
+#define SRPXX_INTEGER_HPP
 
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
+#include <cstdint>
+#include <vector>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    namespace Integer
+    {
+        template< typename T >
+        std::vector< uint8_t > bytes( T value, std::enable_if_t< std::is_integral< T >::value > * = nullptr )
+        {
+            std::vector< uint8_t > bytes( sizeof( T ) );
+            
+            memcpy( bytes.data(), &value, sizeof( T ) );
+            
+            return bytes;
+        }
+    }
+}
+
+#endif /* SRPXX_INTEGER_HPP */

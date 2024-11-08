@@ -22,13 +22,29 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#include <SRPXX.hpp>
+#include <XSTest/XSTest.hpp>
 
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
-
-#endif /* SRPXX_HPP */
+XSTest( Integer, Bytes )
+{
+    std::vector< uint8_t > bytesU8  { 0x01 };
+    std::vector< uint8_t > bytesU16 { 0x01, 0x02 };
+    std::vector< uint8_t > bytesU32 { 0x01, 0x02, 0x03, 0x04 };
+    std::vector< uint8_t > bytesU64 { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
+    
+    if( SRP::Platform::isBigEndian() )
+    {
+        XSTestAssertEqual( SRP::Integer::bytes< uint8_t  >( 0x01               ), bytesU8 );
+        XSTestAssertEqual( SRP::Integer::bytes< uint16_t >( 0x0102             ), bytesU16 );
+        XSTestAssertEqual( SRP::Integer::bytes< uint32_t >( 0x01020304         ), bytesU32 );
+        XSTestAssertEqual( SRP::Integer::bytes< uint64_t >( 0x0102030405060708 ), bytesU64 );
+    }
+    else
+    {
+        
+        XSTestAssertEqual( SRP::Integer::bytes< uint8_t  >( 0x01               ), bytesU8 );
+        XSTestAssertEqual( SRP::Integer::bytes< uint16_t >( 0x0201             ), bytesU16 );
+        XSTestAssertEqual( SRP::Integer::bytes< uint32_t >( 0x04030201         ), bytesU32 );
+        XSTestAssertEqual( SRP::Integer::bytes< uint64_t >( 0x0807060504030201 ), bytesU64 );
+    }
+}
