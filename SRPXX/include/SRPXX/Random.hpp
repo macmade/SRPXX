@@ -22,11 +22,18 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_RANDOM_HPP
+#define SRPXX_RANDOM_HPP
 
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
+#include <vector>
+#include <cstdint>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    namespace Random
+    {
+        std::vector< uint8_t > bytes( size_t length );
+    }
+}
+
+#endif /* SRPXX_RANDOM_HPP */

@@ -22,11 +22,35 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#include <SRPXX.hpp>
+#include <XSTest/XSTest.hpp>
 
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
-
-#endif /* SRPXX_HPP */
+XSTest( Random, Bytes )
+{
+    std::vector< std::size_t > sizes = { 128, 256, 512, 1024, 2048, 4096 };
+    
+    for( const auto & size: sizes )
+    {
+        std::vector< std::vector< uint8_t > > data;
+        
+        for( int i = 0; i < 100; i++ )
+        {
+            data.push_back( SRP::Random::bytes( size ) );
+        }
+        
+        for( size_t i = 0; i < data.size(); i++ )
+        {
+            XSTestAssertEqual( data[ i ].size(), size );
+            
+            for( size_t j = 0; j < data.size(); j++ )
+            {
+                if( j == i )
+                {
+                    continue;
+                }
+                
+                XSTestAssertTrue( data[ i ] != data[ j ] );
+            }
+        }
+    }
+}
