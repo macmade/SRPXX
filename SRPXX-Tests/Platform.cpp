@@ -22,12 +22,27 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#include <SRPXX.hpp>
+#include <XSTest/XSTest.hpp>
 
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
+XSTest( Platform, IsBigEndian )
+{
+    #if defined( __x86_64__ )
+    XSTestAssertFalse( SRP::Platform::isBigEndian() );
+    #elif defined( __arm64__ )
+    XSTestAssertFalse( SRP::Platform::isBigEndian() );
+    #else
+    #error "Unsupported architecture"
+    #endif
+}
 
-#endif /* SRPXX_HPP */
+XSTest( Platform, IsLittleEndian )
+{
+    #if defined( __x86_64__ )
+    XSTestAssertTrue( SRP::Platform::isLittleEndian() );
+    #elif defined( __arm64__ )
+    XSTestAssertTrue( SRP::Platform::isLittleEndian() );
+    #else
+    #error "Unsupported architecture"
+    #endif
+}

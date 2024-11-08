@@ -22,12 +22,16 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_PLATFORM_HPP
+#define SRPXX_PLATFORM_HPP
 
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
+namespace SRP
+{
+    namespace Platform
+    {
+        bool isBigEndian();
+        bool isLittleEndian();
+    }
+}
 
-#endif /* SRPXX_HPP */
+#endif /* SRPXX_PLATFORM_HPP */

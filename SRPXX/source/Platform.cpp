@@ -22,12 +22,30 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
-
-#include <SRPXX/BigNum.hpp>
 #include <SRPXX/Platform.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/String.hpp>
+#include <cstdint>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    namespace Platform
+    {
+        typedef union
+        {
+            uint32_t i;
+            uint8_t  c[ 4 ];
+        }
+        EndianTest;
+        
+        bool isBigEndian()
+        {
+            EndianTest test = { 0x01020304 };
+            
+            return test.c[ 0 ] == 0x01;
+        }
+        
+        bool isLittleEndian()
+        {
+            return isBigEndian() == false;
+        }
+    }
+}
