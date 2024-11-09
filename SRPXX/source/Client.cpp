@@ -22,22 +22,28 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
-
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
 #include <SRPXX/Client.hpp>
-#include <SRPXX/Server.hpp>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    class Client::IMPL
+    {
+        public:
+            
+            IMPL();
+            ~IMPL();
+    };
+    
+    Client::Client():
+        impl( std::make_unique< IMPL >() )
+    {}
+    
+    Client::~Client()
+    {}
+    
+    Client::IMPL::IMPL()
+    {}
+    
+    Client::IMPL::~IMPL()
+    {}
+}

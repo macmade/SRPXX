@@ -22,22 +22,29 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_SERVER_HPP
+#define SRPXX_SERVER_HPP
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
-#include <SRPXX/Client.hpp>
-#include <SRPXX/Server.hpp>
+#include <memory>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    class Server
+    {
+        public:
+            
+            Server();
+            virtual ~Server();
+            
+            Server( const Server & o )              = delete;
+            Server & operator =( const Server & o ) = delete;
+            
+        private:
+            
+            class IMPL;
+            
+            std::unique_ptr< IMPL > impl;
+    };
+}
+
+#endif /* SRPXX_SERVER_HPP */

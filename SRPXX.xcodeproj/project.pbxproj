@@ -43,6 +43,10 @@
 		05818DE02CDFD40300001415 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD52CDFD40300001415 /* String.cpp */; };
 		05818DE12CDFD40300001415 /* PBKDF2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DCD2CDFD40300001415 /* PBKDF2.cpp */; };
 		05818DE52CDFD55500001415 /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05818DE42CDFD55500001415 /* XSTest.framework */; };
+		05818DE72CDFD62800001415 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DE62CDFD62400001415 /* Client.cpp */; };
+		05818DE92CDFD63300001415 /* Client.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05818DE82CDFD62E00001415 /* Client.hpp */; };
+		05818DF02CDFD65500001415 /* Server.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05818DEF2CDFD65200001415 /* Server.hpp */; };
+		05818DF22CDFD66000001415 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DF12CDFD65D00001415 /* Server.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 056C881118C8B85F006260B3;
 			remoteInfo = "CF++ Mac Static Library";
+		};
+		05818DED2CDFD63800001415 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0544CC6922749F32004A2499 /* XSTest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05D526E721A864BC0025CCEB;
+			remoteInfo = XSTest;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -144,6 +155,10 @@
 		05818DD52CDFD40300001415 /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
 		05818DE22CDFD4EE00001415 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05818DE42CDFD55500001415 /* XSTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XSTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05818DE62CDFD62400001415 /* Client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
+		05818DE82CDFD62E00001415 /* Client.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Client.hpp; sourceTree = "<group>"; };
+		05818DEF2CDFD65200001415 /* Server.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Server.hpp; sourceTree = "<group>"; };
+		05818DF12CDFD65D00001415 /* Server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,11 +335,13 @@
 			isa = PBXGroup;
 			children = (
 				05818D992CDFD3F900001415 /* BigNum.hpp */,
+				05818DE82CDFD62E00001415 /* Client.hpp */,
 				05818D9A2CDFD3F900001415 /* Hasher.hpp */,
 				05818D9B2CDFD3F900001415 /* Integer.hpp */,
 				05818D9C2CDFD3F900001415 /* PBKDF2.hpp */,
 				05818D9D2CDFD3F900001415 /* Platform.hpp */,
 				05818D9E2CDFD3F900001415 /* Random.hpp */,
+				05818DEF2CDFD65200001415 /* Server.hpp */,
 				05818D9F2CDFD3F900001415 /* SHA1.hpp */,
 				05818DA02CDFD3F900001415 /* SHA224.hpp */,
 				05818DA12CDFD3F900001415 /* SHA256.hpp */,
@@ -348,9 +365,11 @@
 			isa = PBXGroup;
 			children = (
 				05818DA82CDFD3F900001415 /* BigNum.cpp */,
+				05818DE62CDFD62400001415 /* Client.cpp */,
 				05818DA92CDFD3F900001415 /* PBKDF2.cpp */,
 				05818DAA2CDFD3F900001415 /* Platform.cpp */,
 				05818DAB2CDFD3F900001415 /* Random.cpp */,
+				05818DF12CDFD65D00001415 /* Server.cpp */,
 				05818DAC2CDFD3F900001415 /* SHA1.cpp */,
 				05818DAD2CDFD3F900001415 /* SHA224.cpp */,
 				05818DAE2CDFD3F900001415 /* SHA256.cpp */,
@@ -397,6 +416,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		05818DEA2CDFD63800001415 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05818DEE2CDFD63800001415 /* XSTest.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -406,6 +433,7 @@
 			files = (
 				05818DBE2CDFD3F900001415 /* Platform.hpp in Headers */,
 				05818DBF2CDFD3F900001415 /* SHA384.hpp in Headers */,
+				05818DF02CDFD65500001415 /* Server.hpp in Headers */,
 				05818DC02CDFD3F900001415 /* Integer.hpp in Headers */,
 				05818DC12CDFD3F900001415 /* SHA1.hpp in Headers */,
 				05818DC22CDFD3F900001415 /* SHA512.hpp in Headers */,
@@ -413,6 +441,7 @@
 				05818DC42CDFD3F900001415 /* SRPXX.hpp in Headers */,
 				05818DC52CDFD3F900001415 /* SHA256.hpp in Headers */,
 				05818DC62CDFD3F900001415 /* BigNum.hpp in Headers */,
+				05818DE92CDFD63300001415 /* Client.hpp in Headers */,
 				05818DC72CDFD3F900001415 /* SHA224.hpp in Headers */,
 				05818DC82CDFD3F900001415 /* PBKDF2.hpp in Headers */,
 				05818DC92CDFD3F900001415 /* Random.hpp in Headers */,
@@ -475,6 +504,7 @@
 					};
 					056C881118C8B85F006260B3 = {
 						DevelopmentTeam = 326Y53CJMD;
+						LastSwiftMigration = 1610;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -490,6 +520,12 @@
 			mainGroup = 056C87C518C8B0F8006260B3;
 			productRefGroup = 056C87CF18C8B0F8006260B3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 05818DEA2CDFD63800001415 /* Products */;
+					ProjectRef = 0544CC6922749F32004A2499 /* XSTest.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				056C881118C8B85F006260B3 /* SRPXX */,
@@ -497,6 +533,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		05818DEE2CDFD63800001415 /* XSTest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XSTest.framework;
+			remoteRef = 05818DED2CDFD63800001415 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		056C58BD1B1898FF00C6214A /* Resources */ = {
@@ -539,7 +585,9 @@
 				05818DB92CDFD3F900001415 /* SHA224.cpp in Sources */,
 				05818DBA2CDFD3F900001415 /* SHA256.cpp in Sources */,
 				05818DBB2CDFD3F900001415 /* SHA1.cpp in Sources */,
+				05818DE72CDFD62800001415 /* Client.cpp in Sources */,
 				05818DBC2CDFD3F900001415 /* String.cpp in Sources */,
+				05818DF22CDFD66000001415 /* Server.cpp in Sources */,
 				05818DBD2CDFD3F900001415 /* SHA384.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +694,7 @@
 		056C881418C8B85F006260B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,12 +702,15 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
 		056C881518C8B85F006260B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				EXECUTABLE_PREFIX = lib;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -666,6 +718,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
