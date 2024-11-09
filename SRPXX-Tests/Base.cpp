@@ -33,6 +33,76 @@ static std::string removeSpaces( std::string s )
     return s;
 }
 
+XSTest( Base, Hasher_SHA1 )
+{
+    std::unique_ptr< SRP::Base > base;
+    
+    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 ) );
+    
+    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    
+    hasher->update( "hello, world" );
+    hasher->finalize();
+    
+    XSTestAssertEqual( hasher->getString( SRP::String::HexFormat::Uppercase ), "B7E23EC29AF22B0B4E41DA31E868D57226121C84" );
+}
+
+XSTest( Base, Hasher_SHA224 )
+{
+    std::unique_ptr< SRP::Base > base;
+    
+    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA224, SRP::Base::GroupType::NG1024 ) );
+    
+    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    
+    hasher->update( "hello, world" );
+    hasher->finalize();
+    
+    XSTestAssertEqual( hasher->getString( SRP::String::HexFormat::Uppercase ), "6E1A93E32FB44081A401F3DB3EF2E6E108B7BBEEB5705AFDAF01FB27" );
+}
+
+XSTest( Base, Hasher_SHA256 )
+{
+    std::unique_ptr< SRP::Base > base;
+    
+    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG1024 ) );
+    
+    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    
+    hasher->update( "hello, world" );
+    hasher->finalize();
+    
+    XSTestAssertEqual( hasher->getString( SRP::String::HexFormat::Uppercase ), "09CA7E4EAA6E8AE9C7D261167129184883644D07DFBA7CBFBC4C8A2E08360D5B" );
+}
+
+XSTest( Base, Hasher_SHA384 )
+{
+    std::unique_ptr< SRP::Base > base;
+    
+    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA384, SRP::Base::GroupType::NG1024 ) );
+    
+    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    
+    hasher->update( "hello, world" );
+    hasher->finalize();
+    
+    XSTestAssertEqual( hasher->getString( SRP::String::HexFormat::Uppercase ), "1FCDB6059CE05172A26BBE2A3CCC88ED5A8CD5FC53EDFD9053304D429296A6DA23B1CD9E5C9ED3BB34F00418A70CDB7E" );
+}
+
+XSTest( Base, Hasher_SHA512 )
+{
+    std::unique_ptr< SRP::Base > base;
+    
+    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA512, SRP::Base::GroupType::NG1024 ) );
+    
+    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    
+    hasher->update( "hello, world" );
+    hasher->finalize();
+    
+    XSTestAssertEqual( hasher->getString( SRP::String::HexFormat::Uppercase ), "8710339DCB6814D0D9D2290EF422285C9322B7163951F9A0CA8F883D3305286F44139AA374848E4174F5AADA663027E4548637B6D19894AEC4FB6C46A139FBF9" );
+}
+
 XSTest( Base, NG1024 )
 {
     std::unique_ptr< SRP::Base > base;
