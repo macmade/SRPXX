@@ -53,6 +53,23 @@ namespace SRP
             BIGNUM * _bn;
     };
     
+    class BigNum::Context
+    {
+        public:
+            
+            Context();
+            ~Context();
+            
+            Context( const Context & o ) = delete;
+            Context & operator =( const Context & o ) = delete;
+            
+            operator BN_CTX * () const;
+            
+        private:
+            
+            BN_CTX * _ctx;
+    };
+    
     std::unique_ptr< BigNum > BigNum::fromString( const std::string & value, StringFormat format )
     {
         BigNum n;
@@ -180,6 +197,102 @@ namespace SRP
     bool BigNum::operator <( const BigNum & o ) const
     {
         return BN_cmp( this->impl->_bn, o.impl->_bn ) == -1;
+    }
+    
+    BigNum & BigNum::operator ++()
+    {
+        return *( this ) += 1;
+    }
+    
+    BigNum & BigNum::operator --()
+    {
+        return *( this ) -= 1;
+    }
+    
+    BigNum BigNum::operator ++( int )
+    {
+        BigNum n( *( this ) );
+        
+        *( this ) += 1;
+        
+        return n;
+    }
+    
+    BigNum BigNum::operator --( int )
+    {
+        BigNum n( *( this ) );
+        
+        *( this ) -= 1;
+        
+        return n;
+    }
+    
+    BigNum & BigNum::operator +=( const BigNum & value )
+    {
+        BN_add( this->impl->_bn, this->impl->_bn, value.impl->_bn );
+        
+        return *( this );
+    }
+    
+    BigNum & BigNum::operator -=( const BigNum & value )
+    {
+        BN_sub( this->impl->_bn, this->impl->_bn, value.impl->_bn );
+        
+        return *( this );
+    }
+    
+    BigNum & BigNum::operator *=( const BigNum & value )
+    {
+        Context ctx;
+        
+        BN_mul( this->impl->_bn, this->impl->_bn, value.impl->_bn, ctx );
+        
+        return *( this );
+    }
+    
+    BigNum & BigNum::operator /=( const BigNum & value )
+    {
+        Context ctx;
+        
+        BN_div( this->impl->_bn, nullptr, this->impl->_bn, value.impl->_bn, ctx );
+        
+        return *( this );
+    }
+    
+    BigNum BigNum::operator +( const BigNum & value ) const
+    {
+        BigNum n( *( this ) );
+        
+        n += value;
+        
+        return n;
+    }
+    
+    BigNum BigNum::operator -( const BigNum & value ) const
+    {
+        BigNum n( *( this ) );
+        
+        n -= value;
+        
+        return n;
+    }
+    
+    BigNum BigNum::operator *( const BigNum & value ) const
+    {
+        BigNum n( *( this ) );
+        
+        n *= value;
+        
+        return n;
+    }
+    
+    BigNum BigNum::operator /( const BigNum & value ) const
+    {
+        BigNum n( *( this ) );
+        
+        n /= value;
+        
+        return n;
     }
     
     std::string BigNum::toString( StringFormat format ) const
@@ -342,5 +455,19 @@ namespace SRP
     BigNum::IMPL::~IMPL()
     {
         BN_free( this->_bn );
+    }
+    
+    BigNum::Context::Context():
+        _ctx( BN_CTX_new() )
+    {}
+    
+    BigNum::Context::~Context()
+    {
+        BN_CTX_free( this->_ctx );
+    }
+    
+    BigNum::Context::operator BN_CTX * () const
+    {
+        return this->_ctx;
     }
 }

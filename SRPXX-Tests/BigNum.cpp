@@ -429,6 +429,234 @@ XSTest( BigNum, OperatorLess )
     XSTestAssertTrue( SRP::BigNum( -42 ) < SRP::BigNum( 41 ) );
 }
 
+XSTest( BigNum, OperatorPrefixIncrement )
+{
+    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
+    
+    for( auto i: test )
+    {
+        SRP::BigNum n( i );
+        
+        XSTestAssertTrue( ++n == i + 1 );
+        XSTestAssertTrue( n   == i + 1 );
+    }
+}
+
+XSTest( BigNum, OperatorPrefixDecrement )
+{
+    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
+    
+    for( auto i: test )
+    {
+        SRP::BigNum n( i );
+        
+        XSTestAssertTrue( --n == i - 1 );
+        XSTestAssertTrue( n   == i - 1 );
+    }
+}
+
+XSTest( BigNum, OperatorPostfixIncrement )
+{
+    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
+    
+    for( auto i: test )
+    {
+        SRP::BigNum n( i );
+        
+        XSTestAssertTrue( n++ == i );
+        XSTestAssertTrue( n   == i + 1 );
+    }
+}
+
+XSTest( BigNum, OperatorPostfixDecrement )
+{
+    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
+    
+    for( auto i: test )
+    {
+        SRP::BigNum n( i );
+        
+        XSTestAssertTrue( n-- == i );
+        XSTestAssertTrue( n   == i - 1 );
+    }
+}
+
+XSTest( BigNum, OperatorPlusEqual )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        
+        n1 += n2;
+        
+        XSTestAssertTrue( n1 == a + b );
+        XSTestAssertTrue( n2 == b );
+    }
+}
+
+XSTest( BigNum, OperatorMinusEqual )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        
+        n1 -= n2;
+        
+        XSTestAssertTrue( n1 == a - b );
+        XSTestAssertTrue( n2 == b );
+    }
+}
+
+XSTest( BigNum, OperatorMultiplyEqual )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        
+        n1 *= n2;
+        
+        XSTestAssertTrue( n1 == a * b );
+        XSTestAssertTrue( n2 == b );
+    }
+}
+
+XSTest( BigNum, OperatorDivideEqual )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        
+        n1 /= n2;
+        
+        if( b == 0 )
+        {
+            XSTestAssertTrue( n1 == a );
+        }
+        else
+        {
+            XSTestAssertTrue( n1 == a / b );
+        }
+        
+        XSTestAssertTrue( n2 == b );
+    }
+}
+
+XSTest( BigNum, OperatorPlus )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        SRP::BigNum n3( n1 + n2 );
+        
+        XSTestAssertTrue( n1 == a );
+        XSTestAssertTrue( n2 == b );
+        XSTestAssertTrue( n3 == a + b );
+    }
+}
+
+XSTest( BigNum, OperatorMinus )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        SRP::BigNum n3( n1 - n2 );
+        
+        XSTestAssertTrue( n1 == a );
+        XSTestAssertTrue( n2 == b );
+        XSTestAssertTrue( n3 == a - b );
+    }
+}
+
+XSTest( BigNum, OperatorMultiply )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        SRP::BigNum n3( n1 * n2 );
+        
+        XSTestAssertTrue( n1 == a );
+        XSTestAssertTrue( n2 == b );
+        XSTestAssertTrue( n3 == a * b );
+    }
+}
+
+XSTest( BigNum, OperatorDivide )
+{
+    std::vector< std::tuple< int64_t, int64_t > > test =
+    {
+        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
+        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
+    };
+    
+    for( auto [ a, b ]: test )
+    {
+        SRP::BigNum n1( a );
+        SRP::BigNum n2( b );
+        SRP::BigNum n3( n1 / n2 );
+        
+        XSTestAssertTrue( n1 == a );
+        XSTestAssertTrue( n2 == b );
+        
+        if( b == 0 )
+        {
+            XSTestAssertTrue( n3 == a );
+        }
+        else
+        {
+            XSTestAssertTrue( n3 == a / b );
+        }
+    }
+}
+
 XSTest( BigNum, ToString )
 {
     XSTestAssertTrue( SRP::BigNum( 42 ).toString()  == "42" );

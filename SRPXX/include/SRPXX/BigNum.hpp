@@ -75,6 +75,21 @@ namespace SRP
             bool operator >( const BigNum & o ) const;
             bool operator <( const BigNum & o ) const;
             
+            BigNum & operator ++();
+            BigNum & operator --();
+            BigNum   operator ++( int );
+            BigNum   operator --( int );
+            
+            BigNum & operator +=( const BigNum & value );
+            BigNum & operator -=( const BigNum & value );
+            BigNum & operator *=( const BigNum & value );
+            BigNum & operator /=( const BigNum & value );
+            
+            BigNum operator +( const BigNum & value ) const;
+            BigNum operator -( const BigNum & value ) const;
+            BigNum operator *( const BigNum & value ) const;
+            BigNum operator /( const BigNum & value ) const;
+            
             std::string            toString( StringFormat format = StringFormat::Auto ) const;
             std::vector< uint8_t > getBytes( Endianness endianness = Endianness::Auto ) const;
             
@@ -91,6 +106,7 @@ namespace SRP
         private:
             
             class IMPL;
+            class Context;
             
             std::unique_ptr< IMPL > impl;
     };
