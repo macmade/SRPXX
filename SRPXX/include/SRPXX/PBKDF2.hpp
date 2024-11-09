@@ -22,20 +22,28 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_PBKDF2_HPP
+#define SRPXX_PBKDF2_HPP
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
+#include <string>
+#include <vector>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    namespace PBKDF2
+    {
+        enum class HashAlgorithm
+        {
+            SHA1,
+            SHA224,
+            SHA256,
+            SHA384,
+            SHA512
+        };
+        
+        std::vector< uint8_t > HMAC( HashAlgorithm algorithm, const std::string & password,            const std::vector< uint8_t > & salt, uint32_t iterations, size_t keyLength );
+        std::vector< uint8_t > HMAC( HashAlgorithm algorithm, const std::vector< uint8_t > & password, const std::vector< uint8_t > & salt, uint32_t iterations, size_t keyLength );
+    }
+}
+
+#endif /* SRPXX_PBKDF2_HPP */

@@ -25,7 +25,7 @@
 #include <SRPXX.hpp>
 #include <XSTest/XSTest.hpp>
 
-struct Result
+struct SHA384Result
 {
     std::vector< uint8_t > bytes;
     std::string            string;
@@ -40,7 +40,7 @@ class SHA384: public XS::Test::Case
         
         void SetUp() override;
         
-        std::vector< Result > result;
+        std::vector< SHA384Result > result;
 };
 
 XSTestFixture( SHA384, Bytes_Vector )
