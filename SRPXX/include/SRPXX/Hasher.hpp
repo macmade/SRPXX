@@ -22,15 +22,30 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_HASHER_HPP
+#define SRPXX_HASHER_HPP
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
+#include <cstdint>
+#include <vector>
+#include <string>
 #include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA256.hpp>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    class Hasher
+    {
+        public:
+            
+            virtual ~Hasher() = default;
+            
+            virtual bool update( const std::vector< uint8_t > & data ) = 0;
+            virtual bool update( const uint8_t * data, size_t length ) = 0;
+            virtual bool update( const std::string & data )            = 0;
+            virtual bool finalize()                                    = 0;
+            
+            virtual std::vector< uint8_t > getBytes()                                                           = 0;
+            virtual std::string            getString( String::HexFormat format = String::HexFormat::Uppercase ) = 0;
+    };
+}
+
+#endif /* SRPXX_HASHER_HPP */

@@ -22,6 +22,10 @@
 		050961822CDE6A9D008F4C59 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961812CDE6A9B008F4C59 /* Platform.cpp */; };
 		050961842CDE70A2008F4C59 /* Integer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961832CDE709D008F4C59 /* Integer.hpp */; };
 		0509618A2CDE70BB008F4C59 /* Integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961892CDE70B8008F4C59 /* Integer.cpp */; };
+		050961922CDF6C85008F4C59 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961912CDF6C82008F4C59 /* SHA256.cpp */; };
+		050961992CDF70F9008F4C59 /* SHA256.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961982CDF70F9008F4C59 /* SHA256.hpp */; };
+		0509619A2CDF70F9008F4C59 /* Hasher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961972CDF70F9008F4C59 /* Hasher.hpp */; };
+		0509619C2CDF7104008F4C59 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0509619B2CDF7104008F4C59 /* SHA256.cpp */; };
 		051F72C42CDD12600031F7FA /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72B82CDD12480031F7FA /* libSRPXX.a */; };
 		051F72DE2CDD13790031F7FA /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72CF2CDD12AB0031F7FA /* XSTest.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +63,10 @@
 		050961812CDE6A9B008F4C59 /* Platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
 		050961832CDE709D008F4C59 /* Integer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Integer.hpp; sourceTree = "<group>"; };
 		050961892CDE70B8008F4C59 /* Integer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Integer.cpp; sourceTree = "<group>"; };
+		050961912CDF6C82008F4C59 /* SHA256.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA256.cpp; sourceTree = "<group>"; };
+		050961972CDF70F9008F4C59 /* Hasher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hasher.hpp; sourceTree = "<group>"; };
+		050961982CDF70F9008F4C59 /* SHA256.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SHA256.hpp; sourceTree = "<group>"; };
+		0509619B2CDF7104008F4C59 /* SHA256.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA256.cpp; sourceTree = "<group>"; };
 		051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
 		051F72632CDD11CE0031F7FA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		051F72642CDD11CE0031F7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -137,9 +145,11 @@
 			isa = PBXGroup;
 			children = (
 				050961442CDD56BB008F4C59 /* BigNum.hpp */,
+				050961972CDF70F9008F4C59 /* Hasher.hpp */,
 				050961832CDE709D008F4C59 /* Integer.hpp */,
 				0509617D2CDE6A86008F4C59 /* Platform.hpp */,
 				050961772CDE52DA008F4C59 /* Random.hpp */,
+				050961982CDF70F9008F4C59 /* SHA256.hpp */,
 				050961312CDD50B4008F4C59 /* String.hpp */,
 			);
 			path = SRPXX;
@@ -160,6 +170,7 @@
 				050961462CDD56C2008F4C59 /* BigNum.cpp */,
 				0509617F2CDE6A92008F4C59 /* Platform.cpp */,
 				050961792CDE52ED008F4C59 /* Random.cpp */,
+				0509619B2CDF7104008F4C59 /* SHA256.cpp */,
 				050961352CDD50B4008F4C59 /* String.cpp */,
 			);
 			path = source;
@@ -181,6 +192,7 @@
 				050961892CDE70B8008F4C59 /* Integer.cpp */,
 				050961812CDE6A9B008F4C59 /* Platform.cpp */,
 				0509617B2CDE52FB008F4C59 /* Random.cpp */,
+				050961912CDF6C82008F4C59 /* SHA256.cpp */,
 				0509613B2CDD50C1008F4C59 /* String.cpp */,
 			);
 			path = "SRPXX-Tests";
@@ -358,6 +370,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050961992CDF70F9008F4C59 /* SHA256.hpp in Headers */,
+				0509619A2CDF70F9008F4C59 /* Hasher.hpp in Headers */,
 				050961452CDD56BB008F4C59 /* BigNum.hpp in Headers */,
 				050961842CDE70A2008F4C59 /* Integer.hpp in Headers */,
 				050961382CDD50B4008F4C59 /* String.hpp in Headers */,
@@ -478,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0509619C2CDF7104008F4C59 /* SHA256.cpp in Sources */,
 				0509617A2CDE52F0008F4C59 /* Random.cpp in Sources */,
 				0509613A2CDD50B4008F4C59 /* String.cpp in Sources */,
 				050961802CDE6A97008F4C59 /* Platform.cpp in Sources */,
@@ -491,6 +506,7 @@
 			files = (
 				0509617C2CDE52FF008F4C59 /* Random.cpp in Sources */,
 				0509613D2CDD50C1008F4C59 /* String.cpp in Sources */,
+				050961922CDF6C85008F4C59 /* SHA256.cpp in Sources */,
 				0509618A2CDE70BB008F4C59 /* Integer.cpp in Sources */,
 				050961822CDE6A9D008F4C59 /* Platform.cpp in Sources */,
 				050961432CDD56B3008F4C59 /* BigNum.cpp in Sources */,
