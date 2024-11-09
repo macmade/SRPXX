@@ -31,6 +31,7 @@
 #include <SRPXX/Random.hpp>
 #include <SRPXX/BigNum.hpp>
 #include <SRPXX/Hasher.hpp>
+#include <SRPXX/SHA1.hpp>
 #include <SRPXX/SHA256.hpp>
 
 #endif /* SRPXX_HPP */
