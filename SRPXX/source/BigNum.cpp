@@ -77,7 +77,7 @@ namespace SRP
     {
         BigNum n;
         
-        BN_rand( n.impl->_bn, static_cast< int >( bits ), BN_RAND_TOP_ANY, BN_RAND_BOTTOM_ANY );
+        BN_rand( n.impl->_bn, static_cast< int >( bits ), BN_RAND_TOP_ONE, BN_RAND_BOTTOM_ANY );
         
         return n;
     }

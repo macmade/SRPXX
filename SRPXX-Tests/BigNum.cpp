@@ -133,7 +133,7 @@ XSTest( BigNum, FromString_Hexadecimal )
     XSTestAssertTrue( *( n5 ) == 0x42FF );
 }
 
-XSTest( BigNum, FromString_Random )
+XSTest( BigNum, Random )
 {
     for( unsigned int i = 1; i < 10; i++ )
     {
