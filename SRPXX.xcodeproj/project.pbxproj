@@ -588,6 +588,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 051F729C2CDD11DC0031F7FA /* Debug - Library.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -601,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 051F72A12CDD11DC0031F7FA /* Release - Library.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
