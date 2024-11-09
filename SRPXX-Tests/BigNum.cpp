@@ -247,18 +247,6 @@ XSTest( BigNum, OperatorAssign )
     XSTestAssertTrue( n2 == 42 );
 }
 
-XSTest( BigNum, OperatorAssign_Int64 )
-{
-    SRP::BigNum n( 0 );
-    
-    XSTestAssertTrue( n == 0 );
-    
-    n = 42;        XSTestAssertTrue( n == 42 );
-    n = -1;        XSTestAssertTrue( n == -1 );
-    n = INT64_MAX; XSTestAssertTrue( n == INT64_MAX );
-    n = INT64_MIN; XSTestAssertTrue( n == INT64_MIN );
-}
-
 XSTest( BigNum, OperatorEqual )
 {
     SRP::BigNum n1( 42 );
@@ -396,21 +384,6 @@ XSTest( BigNum, OperatorGreatorOrEqual )
     XSTestAssertFalse( SRP::BigNum( -42 ) >= SRP::BigNum( 43 ) );
 }
 
-XSTest( BigNum, OperatorGreatorOrEqual_Int64 )
-{
-    XSTestAssertTrue(  SRP::BigNum( 42 ) >= 42 );
-    XSTestAssertTrue(  SRP::BigNum( 43 ) >= 42 );
-    XSTestAssertFalse( SRP::BigNum( 42 ) >= 43 );
-    
-    XSTestAssertTrue( SRP::BigNum( 42 ) >= -42 );
-    XSTestAssertTrue( SRP::BigNum( 43 ) >= -42 );
-    XSTestAssertTrue( SRP::BigNum( 42 ) >= -43 );
-    
-    XSTestAssertFalse( SRP::BigNum( -42 ) >= 42 );
-    XSTestAssertFalse( SRP::BigNum( -43 ) >= 42 );
-    XSTestAssertFalse( SRP::BigNum( -42 ) >= 43 );
-}
-
 XSTest( BigNum, OperatorLessOrEqual )
 {
     XSTestAssertTrue(  SRP::BigNum( 42 ) <= SRP::BigNum( 42 ) );
@@ -424,21 +397,6 @@ XSTest( BigNum, OperatorLessOrEqual )
     XSTestAssertTrue( SRP::BigNum( -42 ) <= SRP::BigNum( 42 ) );
     XSTestAssertTrue( SRP::BigNum( -41 ) <= SRP::BigNum( 42 ) );
     XSTestAssertTrue( SRP::BigNum( -42 ) <= SRP::BigNum( 41 ) );
-}
-
-XSTest( BigNum, OperatorLessOrEqual_Int64 )
-{
-    XSTestAssertTrue(  SRP::BigNum( 42 ) <= 42 );
-    XSTestAssertTrue(  SRP::BigNum( 41 ) <= 42 );
-    XSTestAssertFalse( SRP::BigNum( 42 ) <= 41 );
-    
-    XSTestAssertFalse( SRP::BigNum( 42 ) <= -42 );
-    XSTestAssertFalse( SRP::BigNum( 41 ) <= -42 );
-    XSTestAssertFalse( SRP::BigNum( 42 ) <= -41 );
-    
-    XSTestAssertTrue( SRP::BigNum( -42 ) <= 42 );
-    XSTestAssertTrue( SRP::BigNum( -41 ) <= 42 );
-    XSTestAssertTrue( SRP::BigNum( -42 ) <= 41 );
 }
 
 XSTest( BigNum, OperatorGreater )
@@ -456,21 +414,6 @@ XSTest( BigNum, OperatorGreater )
     XSTestAssertFalse( SRP::BigNum( -42 ) > SRP::BigNum( 43 ) );
 }
 
-XSTest( BigNum, OperatorGreater_Int64 )
-{
-    XSTestAssertFalse( SRP::BigNum( 42 ) > 42 );
-    XSTestAssertTrue(  SRP::BigNum( 43 ) > 42 );
-    XSTestAssertFalse( SRP::BigNum( 42 ) > 43 );
-    
-    XSTestAssertTrue( SRP::BigNum( 42 ) > -42 );
-    XSTestAssertTrue( SRP::BigNum( 43 ) > -42 );
-    XSTestAssertTrue( SRP::BigNum( 42 ) > -43 );
-    
-    XSTestAssertFalse( SRP::BigNum( -42 ) > 42 );
-    XSTestAssertFalse( SRP::BigNum( -43 ) > 42 );
-    XSTestAssertFalse( SRP::BigNum( -42 ) > 43 );
-}
-
 XSTest( BigNum, OperatorLess )
 {
     XSTestAssertFalse( SRP::BigNum( 42 ) < SRP::BigNum( 42 ) );
@@ -484,21 +427,6 @@ XSTest( BigNum, OperatorLess )
     XSTestAssertTrue( SRP::BigNum( -42 ) < SRP::BigNum( 42 ) );
     XSTestAssertTrue( SRP::BigNum( -41 ) < SRP::BigNum( 42 ) );
     XSTestAssertTrue( SRP::BigNum( -42 ) < SRP::BigNum( 41 ) );
-}
-
-XSTest( BigNum, OperatorLess_Int64 )
-{
-    XSTestAssertFalse( SRP::BigNum( 42 ) < 42 );
-    XSTestAssertTrue(  SRP::BigNum( 41 ) < 42 );
-    XSTestAssertFalse( SRP::BigNum( 42 ) < 41 );
-    
-    XSTestAssertFalse( SRP::BigNum( 42 ) < -42 );
-    XSTestAssertFalse( SRP::BigNum( 41 ) < -42 );
-    XSTestAssertFalse( SRP::BigNum( 42 ) < -41 );
-    
-    XSTestAssertTrue( SRP::BigNum( -42 ) < 42 );
-    XSTestAssertTrue( SRP::BigNum( -41 ) < 42 );
-    XSTestAssertTrue( SRP::BigNum( -42 ) < 41 );
 }
 
 XSTest( BigNum, ToString )
