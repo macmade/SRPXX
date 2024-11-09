@@ -35,6 +35,9 @@
 		050961AC2CDF81D9008F4C59 /* SHA224.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961AB2CDF81D4008F4C59 /* SHA224.hpp */; };
 		050961AE2CDF81E3008F4C59 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961AD2CDF81E0008F4C59 /* SHA224.cpp */; };
 		050961B02CDF81EA008F4C59 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961AF2CDF81E6008F4C59 /* SHA224.cpp */; };
+		050961B22CDF82DB008F4C59 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961B12CDF82D6008F4C59 /* SHA384.cpp */; };
+		050961B42CDF82E5008F4C59 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961B32CDF82E3008F4C59 /* SHA384.cpp */; };
+		050961B62CDF82EB008F4C59 /* SHA384.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961B52CDF82E8008F4C59 /* SHA384.hpp */; };
 		051F72C42CDD12600031F7FA /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72B82CDD12480031F7FA /* libSRPXX.a */; };
 		051F72DE2CDD13790031F7FA /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72CF2CDD12AB0031F7FA /* XSTest.framework */; };
 /* End PBXBuildFile section */
@@ -85,6 +88,9 @@
 		050961AB2CDF81D4008F4C59 /* SHA224.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SHA224.hpp; sourceTree = "<group>"; };
 		050961AD2CDF81E0008F4C59 /* SHA224.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA224.cpp; sourceTree = "<group>"; };
 		050961AF2CDF81E6008F4C59 /* SHA224.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA224.cpp; sourceTree = "<group>"; };
+		050961B12CDF82D6008F4C59 /* SHA384.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA384.cpp; sourceTree = "<group>"; };
+		050961B32CDF82E3008F4C59 /* SHA384.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA384.cpp; sourceTree = "<group>"; };
+		050961B52CDF82E8008F4C59 /* SHA384.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SHA384.hpp; sourceTree = "<group>"; };
 		051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
 		051F72632CDD11CE0031F7FA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		051F72642CDD11CE0031F7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 				0509619D2CDF7E7C008F4C59 /* SHA1.hpp */,
 				050961AB2CDF81D4008F4C59 /* SHA224.hpp */,
 				050961982CDF70F9008F4C59 /* SHA256.hpp */,
+				050961B52CDF82E8008F4C59 /* SHA384.hpp */,
 				050961A32CDF8028008F4C59 /* SHA512.hpp */,
 				050961312CDD50B4008F4C59 /* String.hpp */,
 			);
@@ -194,6 +201,7 @@
 				0509619F2CDF7E87008F4C59 /* SHA1.cpp */,
 				050961AD2CDF81E0008F4C59 /* SHA224.cpp */,
 				0509619B2CDF7104008F4C59 /* SHA256.cpp */,
+				050961B32CDF82E3008F4C59 /* SHA384.cpp */,
 				050961A72CDF8038008F4C59 /* SHA512.cpp */,
 				050961352CDD50B4008F4C59 /* String.cpp */,
 			);
@@ -219,6 +227,7 @@
 				050961A12CDF7E92008F4C59 /* SHA1.cpp */,
 				050961AF2CDF81E6008F4C59 /* SHA224.cpp */,
 				050961912CDF6C82008F4C59 /* SHA256.cpp */,
+				050961B12CDF82D6008F4C59 /* SHA384.cpp */,
 				050961A92CDF8041008F4C59 /* SHA512.cpp */,
 				0509613B2CDD50C1008F4C59 /* String.cpp */,
 			);
@@ -408,6 +417,7 @@
 				050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */,
 				050961782CDE52DE008F4C59 /* Random.hpp in Headers */,
 				0509617E2CDE6A8A008F4C59 /* Platform.hpp in Headers */,
+				050961B62CDF82EB008F4C59 /* SHA384.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +539,7 @@
 				050961802CDE6A97008F4C59 /* Platform.cpp in Sources */,
 				050961A82CDF803D008F4C59 /* SHA512.cpp in Sources */,
 				050961472CDD56C2008F4C59 /* BigNum.cpp in Sources */,
+				050961B42CDF82E5008F4C59 /* SHA384.cpp in Sources */,
 				050961AE2CDF81E3008F4C59 /* SHA224.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,6 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050961B22CDF82DB008F4C59 /* SHA384.cpp in Sources */,
 				0509617C2CDE52FF008F4C59 /* Random.cpp in Sources */,
 				050961B02CDF81EA008F4C59 /* SHA224.cpp in Sources */,
 				0509613D2CDD50C1008F4C59 /* String.cpp in Sources */,
