@@ -101,26 +101,26 @@ namespace SRP
             
     BigNum Base::IMPL::getN( GroupType groupType )
     {
-        std::optional< BigNum > N = BigNum::fromString( IMPL::getNG( groupType ).first, BigNum::StringFormat::Hexadecimal );
+        std::unique_ptr< BigNum > N = BigNum::fromString( IMPL::getNG( groupType ).first, BigNum::StringFormat::Hexadecimal );
         
-        if( N.has_value() == false )
+        if( N == nullptr )
         {
             throw std::runtime_error( "Invalid N value" );
         }
         
-        return N.value();
+        return *( N );
     }
     
     BigNum Base::IMPL::getG( GroupType groupType )
     {
-        std::optional< BigNum > g = BigNum::fromString( IMPL::getNG( groupType ).second, BigNum::StringFormat::Decimal );
+        std::unique_ptr< BigNum > g = BigNum::fromString( IMPL::getNG( groupType ).second, BigNum::StringFormat::Decimal );
         
-        if( g.has_value() == false )
+        if( g == nullptr )
         {
             throw std::runtime_error( "Invalid g value" );
         }
         
-        return g.value();
+        return *( g );
     }
     
     std::pair< std::string, std::string > Base::IMPL::getNG( GroupType groupType )

@@ -30,15 +30,6 @@
       enableASanStackUseAfterReturn = "YES"
       disableMainThreadChecker = "YES"
       codeCoverageEnabled = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "056C881118C8B85F006260B3"
-            BuildableName = "libCF++.a"
-            BlueprintName = "CF++ Mac Static Library"
-            ReferencedContainer = "container:CoreFoundation++.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">

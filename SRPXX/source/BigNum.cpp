@@ -53,7 +53,7 @@ namespace SRP
             BIGNUM * _bn;
     };
     
-    std::optional< BigNum > BigNum::fromString( const std::string & value, StringFormat format )
+    std::unique_ptr< BigNum > BigNum::fromString( const std::string & value, StringFormat format )
     {
         BigNum n;
         int    r = 0;
@@ -67,10 +67,10 @@ namespace SRP
         
         if( r != 0 )
         {
-            return n;
+            return std::make_unique< BigNum >( n );
         }
         
-        return {};
+        return nullptr;
     }
     
     BigNum::BigNum():

@@ -35,17 +35,17 @@ XSTest( BigNum, FromString_Auto )
         auto n5 = SRP::BigNum::fromString( "42FFZZ", SRP::BigNum::StringFormat::Auto );
         auto n6 = SRP::BigNum::fromString( "ZZFF42", SRP::BigNum::StringFormat::Auto );
         
-        XSTestAssertTrue(  n1.has_value() );
-        XSTestAssertTrue(  n2.has_value() );
-        XSTestAssertTrue(  n3.has_value() );
-        XSTestAssertFalse( n4.has_value() );
-        XSTestAssertTrue(  n5.has_value() );
-        XSTestAssertFalse( n6.has_value() );
+        XSTestAssertTrue(  n1 != nullptr );
+        XSTestAssertTrue(  n2 != nullptr );
+        XSTestAssertTrue(  n3 != nullptr );
+        XSTestAssertFalse( n4 != nullptr );
+        XSTestAssertTrue(  n5 != nullptr );
+        XSTestAssertFalse( n6 != nullptr );
         
-        XSTestAssertTrue( n1 == 42 );
-        XSTestAssertTrue( n2 == -1 );
-        XSTestAssertTrue( n3 == 42 );
-        XSTestAssertTrue( n5 == 42 );
+        XSTestAssertTrue( *( n1 ) == 42 );
+        XSTestAssertTrue( *( n2 ) == -1 );
+        XSTestAssertTrue( *( n3 ) == 42 );
+        XSTestAssertTrue( *( n5 ) == 42 );
     }
     
     {
@@ -56,18 +56,18 @@ XSTest( BigNum, FromString_Auto )
         auto n5 = SRP::BigNum::fromString( "0x42FFZZ", SRP::BigNum::StringFormat::Auto );
         auto n6 = SRP::BigNum::fromString( "0xZZFF42", SRP::BigNum::StringFormat::Auto );
         
-        XSTestAssertTrue(  n1.has_value() );
-        XSTestAssertTrue(  n2.has_value() );
-        XSTestAssertTrue(  n3.has_value() );
-        XSTestAssertTrue(  n4.has_value() );
-        XSTestAssertTrue(  n5.has_value() );
-        XSTestAssertFalse( n6.has_value() );
+        XSTestAssertTrue(  n1 != nullptr );
+        XSTestAssertTrue(  n2 != nullptr );
+        XSTestAssertTrue(  n3 != nullptr );
+        XSTestAssertTrue(  n4 != nullptr );
+        XSTestAssertTrue(  n5 != nullptr );
+        XSTestAssertFalse( n6 != nullptr );
         
-        XSTestAssertTrue( n1 == 0x42 );
-        XSTestAssertTrue( n2 == -1 );
-        XSTestAssertTrue( n3 == 0x42FF );
-        XSTestAssertTrue( n4 == 0xFF42 );
-        XSTestAssertTrue( n5 == 0x42FF );
+        XSTestAssertTrue( *( n1 ) == 0x42 );
+        XSTestAssertTrue( *( n2 ) == -1 );
+        XSTestAssertTrue( *( n3 ) == 0x42FF );
+        XSTestAssertTrue( *( n4 ) == 0xFF42 );
+        XSTestAssertTrue( *( n5 ) == 0x42FF );
     }
     
     {
@@ -78,18 +78,18 @@ XSTest( BigNum, FromString_Auto )
         auto n5 = SRP::BigNum::fromString( "0X42FFZZ", SRP::BigNum::StringFormat::Auto );
         auto n6 = SRP::BigNum::fromString( "0XZZFF42", SRP::BigNum::StringFormat::Auto );
         
-        XSTestAssertTrue(  n1.has_value() );
-        XSTestAssertTrue(  n2.has_value() );
-        XSTestAssertTrue(  n3.has_value() );
-        XSTestAssertTrue(  n4.has_value() );
-        XSTestAssertTrue(  n5.has_value() );
-        XSTestAssertFalse( n6.has_value() );
+        XSTestAssertTrue(  n1 != nullptr );
+        XSTestAssertTrue(  n2 != nullptr );
+        XSTestAssertTrue(  n3 != nullptr );
+        XSTestAssertTrue(  n4 != nullptr );
+        XSTestAssertTrue(  n5 != nullptr );
+        XSTestAssertFalse( n6 != nullptr );
         
-        XSTestAssertTrue( n1 == 0x42 );
-        XSTestAssertTrue( n2 == -1 );
-        XSTestAssertTrue( n3 == 0x42FF );
-        XSTestAssertTrue( n4 == 0xFF42 );
-        XSTestAssertTrue( n5 == 0x42FF );
+        XSTestAssertTrue( *( n1 ) == 0x42 );
+        XSTestAssertTrue( *( n2 ) == -1 );
+        XSTestAssertTrue( *( n3 ) == 0x42FF );
+        XSTestAssertTrue( *( n4 ) == 0xFF42 );
+        XSTestAssertTrue( *( n5 ) == 0x42FF );
     }
 }
 
@@ -100,14 +100,14 @@ XSTest( BigNum, FromString_Decimal )
     auto n3 = SRP::BigNum::fromString( "42FF", SRP::BigNum::StringFormat::Decimal );
     auto n4 = SRP::BigNum::fromString( "FF42", SRP::BigNum::StringFormat::Decimal );
     
-    XSTestAssertTrue(  n1.has_value() );
-    XSTestAssertTrue(  n2.has_value() );
-    XSTestAssertTrue(  n3.has_value() );
-    XSTestAssertFalse( n4.has_value() );
+    XSTestAssertTrue(  n1 != nullptr );
+    XSTestAssertTrue(  n2 != nullptr );
+    XSTestAssertTrue(  n3 != nullptr );
+    XSTestAssertFalse( n4 != nullptr );
     
-    XSTestAssertTrue( n1 == 42 );
-    XSTestAssertTrue( n2 == -1 );
-    XSTestAssertTrue( n3 == 42 );
+    XSTestAssertTrue( *( n1 ) == 42 );
+    XSTestAssertTrue( *( n2 ) == -1 );
+    XSTestAssertTrue( *( n3 ) == 42 );
 }
 
 XSTest( BigNum, FromString_Hexadecimal )
@@ -119,18 +119,18 @@ XSTest( BigNum, FromString_Hexadecimal )
     auto n5 = SRP::BigNum::fromString( "42FFZZ", SRP::BigNum::StringFormat::Hexadecimal );
     auto n6 = SRP::BigNum::fromString( "ZZFF42", SRP::BigNum::StringFormat::Hexadecimal );
     
-    XSTestAssertTrue(  n1.has_value() );
-    XSTestAssertTrue(  n2.has_value() );
-    XSTestAssertTrue(  n3.has_value() );
-    XSTestAssertTrue(  n4.has_value() );
-    XSTestAssertTrue(  n5.has_value() );
-    XSTestAssertFalse( n6.has_value() );
+    XSTestAssertTrue(  n1 != nullptr );
+    XSTestAssertTrue(  n2 != nullptr );
+    XSTestAssertTrue(  n3 != nullptr );
+    XSTestAssertTrue(  n4 != nullptr );
+    XSTestAssertTrue(  n5 != nullptr );
+    XSTestAssertFalse( n6 != nullptr );
     
-    XSTestAssertTrue( n1 == 0x42 );
-    XSTestAssertTrue( n2 == -1 );
-    XSTestAssertTrue( n3 == 0x42FF );
-    XSTestAssertTrue( n4 == 0xFF42 );
-    XSTestAssertTrue( n5 == 0x42FF );
+    XSTestAssertTrue( *( n1 ) == 0x42 );
+    XSTestAssertTrue( *( n2 ) == -1 );
+    XSTestAssertTrue( *( n3 ) == 0x42FF );
+    XSTestAssertTrue( *( n4 ) == 0xFF42 );
+    XSTestAssertTrue( *( n5 ) == 0x42FF );
 }
 
 XSTest( BigNum, CTOR )

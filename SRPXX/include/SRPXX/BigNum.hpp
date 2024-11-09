@@ -28,7 +28,6 @@
 #include <cstdint>
 #include <memory>
 #include <string>
-#include <optional>
 #include <vector>
 
 namespace SRP
@@ -51,7 +50,7 @@ namespace SRP
                 LittleEndian
             };
             
-            static std::optional< BigNum > fromString( const std::string & value, StringFormat format = StringFormat::Auto );
+            static std::unique_ptr< BigNum > fromString( const std::string & value, StringFormat format = StringFormat::Auto );
         
             BigNum();
             BigNum( const std::vector< uint8_t > & bytes, Endianness endianness = Endianness::Auto );
