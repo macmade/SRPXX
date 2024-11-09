@@ -278,6 +278,34 @@ XSTest( BigNum, OperatorEqual_String )
     XSTestAssertTrue( SRP::BigNum( 0x42FF ).negative() == "-0X42ff" );
 }
 
+XSTest( BigNum, OperatorEqual_GetBytes_Auto )
+{
+    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
+    
+    if( SRP::Platform::isBigEndian() )
+    {
+        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
+    }
+    else
+    {
+        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
+    }
+}
+
+XSTest( BigNum, OperatorEqual_GetBytes_BigEndian )
+{
+    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
+    
+    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::BigEndian ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
+}
+
+XSTest( BigNum, OperatorEqual_GetBytes_LittleEndian )
+{
+    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
+    
+    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::LittleEndian ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
+}
+
 XSTest( BigNum, OperatorNotEqual )
 {
     SRP::BigNum n1( 42 );

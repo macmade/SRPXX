@@ -195,6 +195,29 @@ namespace SRP
         return String::toLower( s );
     }
     
+    std::vector< uint8_t > BigNum::getBytes( Endianness endianness ) const
+    {
+        size_t size = BN_num_bytes( this->impl->_bn );
+        
+        if( size == 0 )
+        {
+            return {};
+        }
+        
+        std::vector< uint8_t > bytes( size );
+        
+        if( endianness == Endianness::BigEndian || ( endianness == Endianness::Auto && Platform::isBigEndian() ) )
+        {
+            BN_bn2bin( this->impl->_bn, bytes.data() );
+        }
+        else
+        {
+            BN_bn2le_padded( bytes.data(), size, this->impl->_bn );
+        }
+        
+        return bytes;
+    }
+    
     BigNum BigNum::negative() const
     {
         BigNum n = *( this );

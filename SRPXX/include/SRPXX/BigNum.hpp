@@ -71,7 +71,8 @@ namespace SRP
             bool operator !=( uint64_t value )            const;
             bool operator !=( const std::string & value ) const;
             
-            std::string toString( StringFormat format = StringFormat::Auto ) const;
+            std::string            toString( StringFormat format = StringFormat::Auto ) const;
+            std::vector< uint8_t > getBytes( Endianness endianness = Endianness::Auto ) const;
             
             BigNum negative() const;
             BigNum positive() const;
