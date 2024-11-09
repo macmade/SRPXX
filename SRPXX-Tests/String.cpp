@@ -53,6 +53,65 @@ XSTest( String, ToHex )
     XSTestAssertTrue( SRP::String::toHex( { 0x42, 0xFF }, SRP::String::HexFormat::Lowercase ) == "42ff" );
 }
 
+XSTest( String, ToBytes )
+{
+    std::vector< uint8_t > b1 = SRP::String::toBytes( "" );
+    std::vector< uint8_t > b2 = SRP::String::toBytes( SRP::String::fromBytes( { 0 } ) );
+    std::vector< uint8_t > b3 = SRP::String::toBytes( "Ab" );
+    std::vector< uint8_t > b4 = SRP::String::toBytes( SRP::String::fromBytes( { 65, 98, 0 } ) );
+    std::vector< uint8_t > b5 = SRP::String::toBytes( SRP::String::fromBytes( { 65, 98, 0, 65 } ) );
+    
+    XSTestAssertTrue( b1.size() == 0 );
+    XSTestAssertTrue( b2.size() == 1 );
+    XSTestAssertTrue( b3.size() == 2 );
+    XSTestAssertTrue( b4.size() == 3 );
+    XSTestAssertTrue( b5.size() == 4 );
+    
+    XSTestAssertTrue( b2[ 0 ] == 0 );
+    
+    XSTestAssertTrue( b3[ 0 ] == 65 );
+    XSTestAssertTrue( b3[ 1 ] == 98 );
+    
+    XSTestAssertTrue( b4[ 0 ] == 65 );
+    XSTestAssertTrue( b4[ 1 ] == 98 );
+    XSTestAssertTrue( b4[ 2 ] == 0 );
+    
+    XSTestAssertTrue( b5[ 0 ] == 65 );
+    XSTestAssertTrue( b5[ 1 ] == 98 );
+    XSTestAssertTrue( b5[ 2 ] == 0 );
+    XSTestAssertTrue( b5[ 3 ] == 65 );
+}
+
+XSTest( String, FromBytes )
+{
+    std::string s1 = SRP::String::fromBytes( {} );
+    std::string s2 = SRP::String::fromBytes( { 0 } );
+    std::string s3 = SRP::String::fromBytes( { 65, 98 } );
+    std::string s4 = SRP::String::fromBytes( { 65, 98, 0 } );
+    std::string s5 = SRP::String::fromBytes( { 65, 98, 0, 65 } );
+    
+    XSTestAssertTrue( s1.length() == 0 );
+    XSTestAssertTrue( s2.length() == 1 );
+    XSTestAssertTrue( s3.length() == 2 );
+    XSTestAssertTrue( s4.length() == 3 );
+    XSTestAssertTrue( s5.length() == 4 );
+    
+    XSTestAssertTrue( s2[ 0 ] == 0 );
+    
+    XSTestAssertTrue( s3[ 0 ] == 65 );
+    XSTestAssertTrue( s3[ 1 ] == 98 );
+    
+    XSTestAssertTrue( s4[ 0 ] == 65 );
+    XSTestAssertTrue( s4[ 1 ] == 98 );
+    XSTestAssertTrue( s4[ 2 ] == 0 );
+    
+    XSTestAssertTrue( s5[ 0 ] == 65 );
+    XSTestAssertTrue( s5[ 1 ] == 98 );
+    XSTestAssertTrue( s5[ 2 ] == 0 );
+    XSTestAssertTrue( s5[ 3 ] == 65 );
+    
+}
+
 XSTest( String, HasPrefix )
 {
     XSTestAssertTrue( SRP::String::hasPrefix( "abcd", "a" ) );

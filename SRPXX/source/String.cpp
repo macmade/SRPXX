@@ -69,6 +69,16 @@ namespace SRP
             return s;
         }
         
+        std::vector< uint8_t > toBytes( const std::string & str )
+        {
+            return std::vector< uint8_t >( str.begin(), str.end() );
+        }
+        
+        std::string fromBytes( const std::vector< uint8_t > & str )
+        {
+            return std::string( reinterpret_cast< const char * >( str.data() ), str.size() );
+        }
+        
         bool hasPrefix( const std::string & str, const std::string & prefix )
         {
             if( str.length() < prefix.length() )

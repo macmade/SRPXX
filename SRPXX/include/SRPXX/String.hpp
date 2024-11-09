@@ -41,7 +41,11 @@ namespace SRP
         
         std::string toLower( const std::string & str );
         std::string toUpper( const std::string & str );
-        std::string toHex(   const std::vector< uint8_t > & data, HexFormat format = HexFormat::Uppercase );
+        
+        std::string toHex( const std::vector< uint8_t > & data, HexFormat format = HexFormat::Uppercase );
+        
+        std::vector< uint8_t > toBytes( const std::string & str );
+        std::string            fromBytes( const std::vector< uint8_t > & str );
         
         bool hasPrefix( const std::string & str, const std::string & prefix );
     }
