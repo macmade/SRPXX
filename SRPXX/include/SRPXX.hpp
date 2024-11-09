@@ -32,6 +32,7 @@
 #include <SRPXX/BigNum.hpp>
 #include <SRPXX/Hasher.hpp>
 #include <SRPXX/SHA1.hpp>
+#include <SRPXX/SHA224.hpp>
 #include <SRPXX/SHA256.hpp>
 #include <SRPXX/SHA512.hpp>
 

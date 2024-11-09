@@ -32,6 +32,9 @@
 		050961A42CDF802D008F4C59 /* SHA512.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961A32CDF8028008F4C59 /* SHA512.hpp */; };
 		050961A82CDF803D008F4C59 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961A72CDF8038008F4C59 /* SHA512.cpp */; };
 		050961AA2CDF8042008F4C59 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961A92CDF8041008F4C59 /* SHA512.cpp */; };
+		050961AC2CDF81D9008F4C59 /* SHA224.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 050961AB2CDF81D4008F4C59 /* SHA224.hpp */; };
+		050961AE2CDF81E3008F4C59 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961AD2CDF81E0008F4C59 /* SHA224.cpp */; };
+		050961B02CDF81EA008F4C59 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 050961AF2CDF81E6008F4C59 /* SHA224.cpp */; };
 		051F72C42CDD12600031F7FA /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72B82CDD12480031F7FA /* libSRPXX.a */; };
 		051F72DE2CDD13790031F7FA /* XSTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051F72CF2CDD12AB0031F7FA /* XSTest.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +82,9 @@
 		050961A32CDF8028008F4C59 /* SHA512.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SHA512.hpp; sourceTree = "<group>"; };
 		050961A72CDF8038008F4C59 /* SHA512.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA512.cpp; sourceTree = "<group>"; };
 		050961A92CDF8041008F4C59 /* SHA512.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA512.cpp; sourceTree = "<group>"; };
+		050961AB2CDF81D4008F4C59 /* SHA224.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SHA224.hpp; sourceTree = "<group>"; };
+		050961AD2CDF81E0008F4C59 /* SHA224.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA224.cpp; sourceTree = "<group>"; };
+		050961AF2CDF81E6008F4C59 /* SHA224.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SHA224.cpp; sourceTree = "<group>"; };
 		051F72622CDD11CE0031F7FA /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
 		051F72632CDD11CE0031F7FA /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		051F72642CDD11CE0031F7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 				0509617D2CDE6A86008F4C59 /* Platform.hpp */,
 				050961772CDE52DA008F4C59 /* Random.hpp */,
 				0509619D2CDF7E7C008F4C59 /* SHA1.hpp */,
+				050961AB2CDF81D4008F4C59 /* SHA224.hpp */,
 				050961982CDF70F9008F4C59 /* SHA256.hpp */,
 				050961A32CDF8028008F4C59 /* SHA512.hpp */,
 				050961312CDD50B4008F4C59 /* String.hpp */,
@@ -185,6 +192,7 @@
 				0509617F2CDE6A92008F4C59 /* Platform.cpp */,
 				050961792CDE52ED008F4C59 /* Random.cpp */,
 				0509619F2CDF7E87008F4C59 /* SHA1.cpp */,
+				050961AD2CDF81E0008F4C59 /* SHA224.cpp */,
 				0509619B2CDF7104008F4C59 /* SHA256.cpp */,
 				050961A72CDF8038008F4C59 /* SHA512.cpp */,
 				050961352CDD50B4008F4C59 /* String.cpp */,
@@ -209,6 +217,7 @@
 				050961812CDE6A9B008F4C59 /* Platform.cpp */,
 				0509617B2CDE52FB008F4C59 /* Random.cpp */,
 				050961A12CDF7E92008F4C59 /* SHA1.cpp */,
+				050961AF2CDF81E6008F4C59 /* SHA224.cpp */,
 				050961912CDF6C82008F4C59 /* SHA256.cpp */,
 				050961A92CDF8041008F4C59 /* SHA512.cpp */,
 				0509613B2CDD50C1008F4C59 /* String.cpp */,
@@ -393,6 +402,7 @@
 				0509619A2CDF70F9008F4C59 /* Hasher.hpp in Headers */,
 				050961452CDD56BB008F4C59 /* BigNum.hpp in Headers */,
 				050961842CDE70A2008F4C59 /* Integer.hpp in Headers */,
+				050961AC2CDF81D9008F4C59 /* SHA224.hpp in Headers */,
 				0509619E2CDF7E81008F4C59 /* SHA1.hpp in Headers */,
 				050961382CDD50B4008F4C59 /* String.hpp in Headers */,
 				050961392CDD50B4008F4C59 /* SRPXX.hpp in Headers */,
@@ -519,6 +529,7 @@
 				050961802CDE6A97008F4C59 /* Platform.cpp in Sources */,
 				050961A82CDF803D008F4C59 /* SHA512.cpp in Sources */,
 				050961472CDD56C2008F4C59 /* BigNum.cpp in Sources */,
+				050961AE2CDF81E3008F4C59 /* SHA224.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0509617C2CDE52FF008F4C59 /* Random.cpp in Sources */,
+				050961B02CDF81EA008F4C59 /* SHA224.cpp in Sources */,
 				0509613D2CDD50C1008F4C59 /* String.cpp in Sources */,
 				050961922CDF6C85008F4C59 /* SHA256.cpp in Sources */,
 				050961A22CDF7E95008F4C59 /* SHA1.cpp in Sources */,
