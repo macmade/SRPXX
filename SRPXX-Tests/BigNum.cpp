@@ -43,7 +43,7 @@ XSTest( BigNum, FromString_Auto )
         XSTestAssertFalse( n6.has_value() );
         
         XSTestAssertTrue( n1 == 42 );
-        XSTestAssertTrue( n2 == SRP::BigNum( 1 ).negative() );
+        XSTestAssertTrue( n2 == -1 );
         XSTestAssertTrue( n3 == 42 );
         XSTestAssertTrue( n5 == 42 );
     }
@@ -64,7 +64,7 @@ XSTest( BigNum, FromString_Auto )
         XSTestAssertFalse( n6.has_value() );
         
         XSTestAssertTrue( n1 == 0x42 );
-        XSTestAssertTrue( n2 == SRP::BigNum( 0x1 ).negative() );
+        XSTestAssertTrue( n2 == -1 );
         XSTestAssertTrue( n3 == 0x42FF );
         XSTestAssertTrue( n4 == 0xFF42 );
         XSTestAssertTrue( n5 == 0x42FF );
@@ -86,7 +86,7 @@ XSTest( BigNum, FromString_Auto )
         XSTestAssertFalse( n6.has_value() );
         
         XSTestAssertTrue( n1 == 0x42 );
-        XSTestAssertTrue( n2 == SRP::BigNum( 0x1 ).negative() );
+        XSTestAssertTrue( n2 == -1 );
         XSTestAssertTrue( n3 == 0x42FF );
         XSTestAssertTrue( n4 == 0xFF42 );
         XSTestAssertTrue( n5 == 0x42FF );
@@ -106,7 +106,7 @@ XSTest( BigNum, FromString_Decimal )
     XSTestAssertFalse( n4.has_value() );
     
     XSTestAssertTrue( n1 == 42 );
-    XSTestAssertTrue( n2 == SRP::BigNum( 1 ).negative() );
+    XSTestAssertTrue( n2 == -1 );
     XSTestAssertTrue( n3 == 42 );
 }
 
@@ -127,7 +127,7 @@ XSTest( BigNum, FromString_Hexadecimal )
     XSTestAssertFalse( n6.has_value() );
     
     XSTestAssertTrue( n1 == 0x42 );
-    XSTestAssertTrue( n2 == SRP::BigNum( 0x1 ).negative() );
+    XSTestAssertTrue( n2 == -1 );
     XSTestAssertTrue( n3 == 0x42FF );
     XSTestAssertTrue( n4 == 0xFF42 );
     XSTestAssertTrue( n5 == 0x42FF );
@@ -194,6 +194,7 @@ XSTest( BigNum, CCTOR )
     SRP::BigNum n1( 42 );
     SRP::BigNum n2( n1 );
     
+    XSTestAssertTrue( n1 == 42 );
     XSTestAssertTrue( n2 == 42 );
 }
 
@@ -276,20 +277,20 @@ XSTest( BigNum, OperatorEqual_String )
     XSTestAssertFalse( SRP::BigNum( 0 )  == "" );
     XSTestAssertFalse( SRP::BigNum()     == "" );
     
-    XSTestAssertTrue( SRP::BigNum( 42 )                == "42" );
-    XSTestAssertTrue( SRP::BigNum( 42 ).negative()     == "-42" );
-    XSTestAssertTrue( SRP::BigNum( 0x42 )              == "0x42" );
-    XSTestAssertTrue( SRP::BigNum( 0x42 ).negative()   == "-0x42" );
-    XSTestAssertTrue( SRP::BigNum( 0x42 )              == "0X42" );
-    XSTestAssertTrue( SRP::BigNum( 0x42 ).negative()   == "-0X42" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF )            == "0X42FF" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF ).negative() == "-0X42FF" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF )            == "0x42FF" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF ).negative() == "-0x42FF" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF )            == "0x42ff" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF ).negative() == "-0x42ff" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF )            == "0X42ff" );
-    XSTestAssertTrue( SRP::BigNum( 0x42FF ).negative() == "-0X42ff" );
+    XSTestAssertTrue( SRP::BigNum( 42 )      == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 )     == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 0x42 )    == "0x42" );
+    XSTestAssertTrue( SRP::BigNum( -0x42 )   == "-0x42" );
+    XSTestAssertTrue( SRP::BigNum( 0x42 )    == "0X42" );
+    XSTestAssertTrue( SRP::BigNum( -0x42 )   == "-0X42" );
+    XSTestAssertTrue( SRP::BigNum( 0x42FF )  == "0X42FF" );
+    XSTestAssertTrue( SRP::BigNum( -0x42FF ) == "-0X42FF" );
+    XSTestAssertTrue( SRP::BigNum( 0x42FF )  == "0x42FF" );
+    XSTestAssertTrue( SRP::BigNum( -0x42FF ) == "-0x42FF" );
+    XSTestAssertTrue( SRP::BigNum( 0x42FF )  == "0x42ff" );
+    XSTestAssertTrue( SRP::BigNum( -0x42FF ) == "-0x42ff" );
+    XSTestAssertTrue( SRP::BigNum( 0x42FF )  == "0X42ff" );
+    XSTestAssertTrue( SRP::BigNum( -0x42FF ) == "-0X42ff" );
 }
 
 XSTest( BigNum, OperatorEqual_GetBytes_Auto )
@@ -365,80 +366,90 @@ XSTest( BigNum, OperatorNotEqual_String )
     XSTestAssertTrue( SRP::BigNum( 0 )  != "" );
     XSTestAssertTrue( SRP::BigNum()     != "" );
     
-    XSTestAssertFalse( SRP::BigNum( 42 )                != "42" );
-    XSTestAssertFalse( SRP::BigNum( 42 ).negative()     != "-42" );
-    XSTestAssertFalse( SRP::BigNum( 0x42 )              != "0x42" );
-    XSTestAssertFalse( SRP::BigNum( 0x42 ).negative()   != "-0x42" );
-    XSTestAssertFalse( SRP::BigNum( 0x42 )              != "0X42" );
-    XSTestAssertFalse( SRP::BigNum( 0x42 ).negative()   != "-0X42" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF )            != "0X42FF" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF ).negative() != "-0X42FF" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF )            != "0x42FF" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF ).negative() != "-0x42FF" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF )            != "0x42ff" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF ).negative() != "-0x42ff" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF )            != "0X42ff" );
-    XSTestAssertFalse( SRP::BigNum( 0x42FF ).negative() != "-0X42ff" );
+    XSTestAssertFalse( SRP::BigNum( 42 )      != "42" );
+    XSTestAssertFalse( SRP::BigNum( -42 )     != "-42" );
+    XSTestAssertFalse( SRP::BigNum( 0x42 )    != "0x42" );
+    XSTestAssertFalse( SRP::BigNum( -0x42 )   != "-0x42" );
+    XSTestAssertFalse( SRP::BigNum( 0x42 )    != "0X42" );
+    XSTestAssertFalse( SRP::BigNum( -0x42 )   != "-0X42" );
+    XSTestAssertFalse( SRP::BigNum( 0x42FF )  != "0X42FF" );
+    XSTestAssertFalse( SRP::BigNum( -0x42FF ) != "-0X42FF" );
+    XSTestAssertFalse( SRP::BigNum( 0x42FF )  != "0x42FF" );
+    XSTestAssertFalse( SRP::BigNum( -0x42FF ) != "-0x42FF" );
+    XSTestAssertFalse( SRP::BigNum( 0x42FF )  != "0x42ff" );
+    XSTestAssertFalse( SRP::BigNum( -0x42FF ) != "-0x42ff" );
+    XSTestAssertFalse( SRP::BigNum( 0x42FF )  != "0X42ff" );
+    XSTestAssertFalse( SRP::BigNum( -0x42FF ) != "-0X42ff" );
 }
 
 XSTest( BigNum, ToString )
 {
-    XSTestAssertTrue( SRP::BigNum( 42 ).toString()            == "42" );
-    XSTestAssertTrue( SRP::BigNum( 42 ).negative().toString() == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 42 ).toString()  == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 ).toString() == "-42" );
     
-    XSTestAssertTrue( SRP::BigNum( 42 ).toString( SRP::BigNum::StringFormat::Auto )            == "42" );
-    XSTestAssertTrue( SRP::BigNum( 42 ).negative().toString( SRP::BigNum::StringFormat::Auto ) == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 42 ).toString( SRP::BigNum::StringFormat::Auto )  == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 ).toString( SRP::BigNum::StringFormat::Auto ) == "-42" );
     
-    XSTestAssertTrue( SRP::BigNum( 42 ).toString( SRP::BigNum::StringFormat::Decimal )            == "42" );
-    XSTestAssertTrue( SRP::BigNum( 42 ).negative().toString( SRP::BigNum::StringFormat::Decimal ) == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 42 ).toString( SRP::BigNum::StringFormat::Decimal )  == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 ).toString( SRP::BigNum::StringFormat::Decimal ) == "-42" );
     
-    XSTestAssertTrue( SRP::BigNum( 0x42 ).toString( SRP::BigNum::StringFormat::Hexadecimal )            == "0x42" );
-    XSTestAssertTrue( SRP::BigNum( 0x42 ).negative().toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0x42" );
+    XSTestAssertTrue( SRP::BigNum( 0x42 ).toString( SRP::BigNum::StringFormat::Hexadecimal )  == "0x42" );
+    XSTestAssertTrue( SRP::BigNum( -0x42 ).toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0x42" );
     
-    XSTestAssertTrue( SRP::BigNum( 0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal )            == "0xff" );
-    XSTestAssertTrue( SRP::BigNum( 0xFF ).negative().toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0xff" );
+    XSTestAssertTrue( SRP::BigNum( 0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal )  == "0xff" );
+    XSTestAssertTrue( SRP::BigNum( -0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0xff" );
 }
 
 XSTest( BigNum, Negative )
 {
     SRP::BigNum n1( 42 );
     SRP::BigNum n2( n1.negative() );
+    SRP::BigNum n3( n1.negative().negative() );
     
     XSTestAssertFalse( n1.isNegative() );
     XSTestAssertTrue(  n2.isNegative() );
+    XSTestAssertTrue(  n3.isNegative() );
     
     XSTestAssertTrue( n1 == 42 );
-    XSTestAssertTrue( n2.positive() == 42 );
+    XSTestAssertTrue( n2 == -42 );
+    XSTestAssertTrue( n3 == -42 );
 }
 
 XSTest( BigNum, Positive )
 {
-    SRP::BigNum n1( SRP::BigNum( 42 ).negative() );
+    SRP::BigNum n1( SRP::BigNum( -42 ) );
     SRP::BigNum n2( n1.positive() );
+    SRP::BigNum n3( n1.positive().positive() );
     
     XSTestAssertTrue(  n1.isNegative() );
     XSTestAssertFalse( n2.isNegative() );
+    XSTestAssertFalse( n3.isNegative() );
     
-    XSTestAssertTrue( n1 == SRP::BigNum( 42 ).negative() );
+    XSTestAssertTrue( n1 == -42 );
     XSTestAssertTrue( n2 == 42 );
+    XSTestAssertTrue( n3 == 42 );
 }
 
 XSTest( BigNum, IsNegative )
 {
     SRP::BigNum n1( 42 );
     SRP::BigNum n2( n1.negative() );
+    SRP::BigNum n3( n1.negative().negative() );
     
     XSTestAssertFalse( n1.isNegative() );
     XSTestAssertTrue(  n2.isNegative() );
+    XSTestAssertTrue(  n3.isNegative() );
 }
 
 XSTest( BigNum, IsPositive )
 {
-    SRP::BigNum n1( 42 );
-    SRP::BigNum n2( n1.negative() );
+    SRP::BigNum n1( -42 );
+    SRP::BigNum n2( n1.positive() );
+    SRP::BigNum n3( n1.positive().positive() );
     
-    XSTestAssertTrue(  n1.isPositive() );
-    XSTestAssertFalse( n2.isPositive() );
+    XSTestAssertFalse( n1.isPositive() );
+    XSTestAssertTrue(  n2.isPositive() );
+    XSTestAssertTrue(  n3.isPositive() );
 }
 
 XSTest( BigNum, IsOdd )
