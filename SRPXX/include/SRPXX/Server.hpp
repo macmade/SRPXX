@@ -26,7 +26,9 @@
 #define SRPXX_SERVER_HPP
 
 #include <SRPXX/Base.hpp>
+#include <SRPXX/BigNum.hpp>
 #include <memory>
+#include <string>
 
 namespace SRP
 {
@@ -35,6 +37,7 @@ namespace SRP
         public:
             
             Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
+            Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & b );
             virtual ~Server();
             
             Server( const Server & o )              = delete;

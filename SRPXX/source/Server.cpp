@@ -30,22 +30,28 @@ namespace SRP
     {
         public:
             
-            IMPL( const std::string & identity );
+            IMPL( const std::string & identity, const BigNum & b );
             ~IMPL();
             
             std::string _identity;
+            BigNum      _b;
     };
     
     Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
+        Server( identity, hashAlgorithm, groupType, {} )
+    {}
+    
+    Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & b ):
         Base( hashAlgorithm, groupType ),
-        impl( std::make_unique< IMPL >( identity ) )
+        impl( std::make_unique< IMPL >( identity, b ) )
     {}
     
     Server::~Server()
     {}
     
-    Server::IMPL::IMPL( const std::string & identity ):
-        _identity( identity )
+    Server::IMPL::IMPL( const std::string & identity, const BigNum & b ):
+        _identity( identity ),
+        _b( b )
     {}
     
     Server::IMPL::~IMPL()

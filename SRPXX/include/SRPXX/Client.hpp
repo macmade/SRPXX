@@ -26,6 +26,7 @@
 #define SRPXX_CLIENT_HPP
 
 #include <SRPXX/Base.hpp>
+#include <SRPXX/BigNum.hpp>
 #include <memory>
 #include <string>
 
@@ -36,6 +37,7 @@ namespace SRP
         public:
             
             Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
+            Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & a );
             virtual ~Client();
             
             Client( const Client & o )              = delete;
