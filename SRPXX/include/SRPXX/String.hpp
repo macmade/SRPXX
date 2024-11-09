@@ -26,13 +26,22 @@
 #define SRPXX_STRING_HPP
 
 #include <string>
+#include <vector>
+#include <cstdint>
 
 namespace SRP
 {
     namespace String
     {
+        enum class HexFormat
+        {
+            Uppercase,
+            Lowercase
+        };
+        
         std::string toLower( const std::string & str );
         std::string toUpper( const std::string & str );
+        std::string toHex(   const std::vector< uint8_t > & data, HexFormat format = HexFormat::Uppercase );
         
         bool hasPrefix( const std::string & str, const std::string & prefix );
     }

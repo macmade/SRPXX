@@ -43,6 +43,16 @@ XSTest( String, ToUpper )
     XSTestAssertTrue( SRP::String::toUpper( "a1b2" ) == "A1B2" );
 }
 
+XSTest( String, ToHex )
+{
+    XSTestAssertTrue( SRP::String::toHex( {},             SRP::String::HexFormat::Uppercase ) == "" );
+    XSTestAssertTrue( SRP::String::toHex( {},             SRP::String::HexFormat::Lowercase ) == "" );
+    XSTestAssertTrue( SRP::String::toHex( { 0x42 },       SRP::String::HexFormat::Uppercase ) == "42" );
+    XSTestAssertTrue( SRP::String::toHex( { 0x42 },       SRP::String::HexFormat::Lowercase ) == "42" );
+    XSTestAssertTrue( SRP::String::toHex( { 0x42, 0xFF }, SRP::String::HexFormat::Uppercase ) == "42FF" );
+    XSTestAssertTrue( SRP::String::toHex( { 0x42, 0xFF }, SRP::String::HexFormat::Lowercase ) == "42ff" );
+}
+
 XSTest( String, HasPrefix )
 {
     XSTestAssertTrue( SRP::String::hasPrefix( "abcd", "a" ) );

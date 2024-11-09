@@ -46,6 +46,29 @@ namespace SRP
             return ret;
         }
         
+        std::string toHex( const std::vector< uint8_t > & data, HexFormat format )
+        {
+            std::string s;
+            
+            for( uint8_t b: data )
+            {
+                char c[ 3 ];
+                
+                if( format == HexFormat::Uppercase )
+                {
+                    std::snprintf( c, 3, "%02X", b );
+                }
+                else
+                {
+                    std::snprintf( c, 3, "%02x", b );
+                }
+                
+                s.append( c );
+            }
+            
+            return s;
+        }
+        
         bool hasPrefix( const std::string & str, const std::string & prefix )
         {
             if( str.length() < prefix.length() )
