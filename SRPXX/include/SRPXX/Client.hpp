@@ -25,15 +25,17 @@
 #ifndef SRPXX_CLIENT_HPP
 #define SRPXX_CLIENT_HPP
 
+#include <SRPXX/Base.hpp>
 #include <memory>
+#include <string>
 
 namespace SRP
 {
-    class Client
+    class Client: public Base
     {
         public:
             
-            Client();
+            Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             virtual ~Client();
             
             Client( const Client & o )              = delete;

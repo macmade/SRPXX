@@ -22,23 +22,48 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_BASE_HPP
+#define SRPXX_BASE_HPP
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/BigNum.hpp>
 #include <SRPXX/HashAlgorithm.hpp>
 #include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
-#include <SRPXX/Client.hpp>
-#include <SRPXX/Server.hpp>
+#include <SRPXX/BigNum.hpp>
+#include <memory>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    class Base
+    {
+        public:
+        
+            enum class GroupType
+            {
+                NG1024,
+                NG1536,
+                NG2048,
+                NG3072,
+                NG4096,
+                NG6144,
+                NG8192
+            };
+            
+            Base( HashAlgorithm hashAlgorithm, GroupType groupType );
+            virtual ~Base();
+            
+            Base( const Base & o )              = delete;
+            Base & operator =( const Base & o ) = delete;
+            
+            std::unique_ptr< Hasher > makeHasher() const;
+            
+            BigNum N() const;
+            BigNum g() const;
+            
+        private:
+            
+            class IMPL;
+            
+            std::unique_ptr< IMPL > impl;
+    };
+}
+
+#endif /* SRPXX_BASE_HPP */

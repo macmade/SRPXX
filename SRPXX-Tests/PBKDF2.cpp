@@ -31,12 +31,12 @@
 
 struct PBKDF2Result
 {
-    SRP::PBKDF2::HashAlgorithm algorithm;
-    std::string                password;
-    std::vector< uint8_t >     salt;
-    uint32_t                   iterations;
-    size_t                     keyLength;
-    std::vector< uint8_t >     key;
+    SRP::HashAlgorithm     algorithm;
+    std::string            password;
+    std::vector< uint8_t > salt;
+    uint32_t               iterations;
+    size_t                 keyLength;
+    std::vector< uint8_t > key;
 };
 
 class PBKDF2: public XS::Test::Case
@@ -67,14 +67,14 @@ XSTestFixture( PBKDF2, HMAC_AppleCC )
 {
     #ifdef __APPLE__
     
-    std::vector< uint32_t > sizes                                                              = { 128, 256, 512, 1024 };
-    std::vector< std::pair< SRP::PBKDF2::HashAlgorithm, CCPseudoRandomAlgorithm > > algorithms =
+    std::vector< uint32_t > sizes                                                      = { 128, 256, 512, 1024 };
+    std::vector< std::pair< SRP::HashAlgorithm, CCPseudoRandomAlgorithm > > algorithms =
     {
-        { SRP::PBKDF2::HashAlgorithm::SHA1,   kCCPRFHmacAlgSHA1 },
-        { SRP::PBKDF2::HashAlgorithm::SHA224, kCCPRFHmacAlgSHA224 },
-        { SRP::PBKDF2::HashAlgorithm::SHA256, kCCPRFHmacAlgSHA256 },
-        { SRP::PBKDF2::HashAlgorithm::SHA384, kCCPRFHmacAlgSHA384 },
-        { SRP::PBKDF2::HashAlgorithm::SHA512, kCCPRFHmacAlgSHA512 }
+        { SRP::HashAlgorithm::SHA1,   kCCPRFHmacAlgSHA1 },
+        { SRP::HashAlgorithm::SHA224, kCCPRFHmacAlgSHA224 },
+        { SRP::HashAlgorithm::SHA256, kCCPRFHmacAlgSHA256 },
+        { SRP::HashAlgorithm::SHA384, kCCPRFHmacAlgSHA384 },
+        { SRP::HashAlgorithm::SHA512, kCCPRFHmacAlgSHA512 }
     };
     
     for( const auto & algorithm: algorithms )
@@ -119,7 +119,7 @@ void PBKDF2::SetUp()
     this->result =
     {
         {
-            SRP::PBKDF2::HashAlgorithm::SHA1,
+            SRP::HashAlgorithm::SHA1,
             "hello, world",
             { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 },
             1024,
@@ -127,7 +127,7 @@ void PBKDF2::SetUp()
             { 0x11, 0x5E, 0x34, 0x6A, 0xCC, 0xB4, 0xEE, 0x62, 0x11, 0x5D }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA1,
+            SRP::HashAlgorithm::SHA1,
             "hello, universe",
             { 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00 },
             4096,
@@ -135,7 +135,7 @@ void PBKDF2::SetUp()
             { 0xDF, 0x98, 0xED, 0x0D, 0x0E, 0xD1, 0x3A, 0x23, 0x43, 0xEA, 0xEB, 0xD2, 0xCD, 0xEE, 0x2B, 0xD6 }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA224,
+            SRP::HashAlgorithm::SHA224,
             "hello, world",
             { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 },
             1024,
@@ -143,7 +143,7 @@ void PBKDF2::SetUp()
             { 0x92, 0x06, 0x28, 0xFF, 0xC4, 0x86, 0x96, 0x41, 0xB1, 0xBA }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA224,
+            SRP::HashAlgorithm::SHA224,
             "hello, universe",
             { 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00 },
             4096,
@@ -151,7 +151,7 @@ void PBKDF2::SetUp()
             { 0x22, 0xD4, 0x44, 0x5C, 0xF2, 0xCB, 0xF5, 0x2A, 0x50, 0xEE, 0x52, 0x86, 0xDF, 0x11, 0x28, 0x76 }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA256,
+            SRP::HashAlgorithm::SHA256,
             "hello, world",
             { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 },
             1024,
@@ -159,7 +159,7 @@ void PBKDF2::SetUp()
             { 0x9E, 0x0D, 0x40, 0x07, 0x7D, 0x4A, 0xE7, 0xE6, 0xAF, 0xE0 }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA256,
+            SRP::HashAlgorithm::SHA256,
             "hello, universe",
             { 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00 },
             4096,
@@ -167,7 +167,7 @@ void PBKDF2::SetUp()
             { 0x31, 0x9D, 0x2F, 0x05, 0xDC, 0x29, 0xA0, 0xE0, 0x14, 0xDE, 0x1B, 0x71, 0x30, 0xF1, 0x79, 0xB0 }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA384,
+            SRP::HashAlgorithm::SHA384,
             "hello, world",
             { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 },
             1024,
@@ -175,7 +175,7 @@ void PBKDF2::SetUp()
             { 0x17, 0xB1, 0xA9, 0x5E, 0xFC, 0x9C, 0x38, 0x0B, 0xB6, 0x14 }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA384,
+            SRP::HashAlgorithm::SHA384,
             "hello, universe",
             { 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00 },
             4096,
@@ -183,7 +183,7 @@ void PBKDF2::SetUp()
             { 0x57, 0x5F, 0x47, 0x9D, 0x43, 0xBC, 0x49, 0x48, 0x62, 0xA5, 0xBC, 0xCD, 0x7B, 0x9B, 0xBB, 0x54 }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA512,
+            SRP::HashAlgorithm::SHA512,
             "hello, world",
             { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09 },
             1024,
@@ -191,7 +191,7 @@ void PBKDF2::SetUp()
             { 0x63, 0x3E, 0xAA, 0x51, 0x93, 0x82, 0x95, 0x77, 0x30, 0xDD }
         },
         {
-            SRP::PBKDF2::HashAlgorithm::SHA512,
+            SRP::HashAlgorithm::SHA512,
             "hello, universe",
             { 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00 },
             4096,

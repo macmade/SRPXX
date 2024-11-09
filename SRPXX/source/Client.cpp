@@ -23,6 +23,11 @@
  ******************************************************************************/
 
 #include <SRPXX/Client.hpp>
+#include <SRPXX/SHA1.hpp>
+#include <SRPXX/SHA224.hpp>
+#include <SRPXX/SHA256.hpp>
+#include <SRPXX/SHA384.hpp>
+#include <SRPXX/SHA512.hpp>
 
 namespace SRP
 {
@@ -30,18 +35,22 @@ namespace SRP
     {
         public:
             
-            IMPL();
+            IMPL( const std::string & identity );
             ~IMPL();
+            
+            std::string _identity;
     };
     
-    Client::Client():
-        impl( std::make_unique< IMPL >() )
+    Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
+        Base( hashAlgorithm, groupType ),
+        impl( std::make_unique< IMPL >( identity ) )
     {}
     
     Client::~Client()
     {}
     
-    Client::IMPL::IMPL()
+    Client::IMPL::IMPL( const std::string & identity ):
+        _identity( identity )
     {}
     
     Client::IMPL::~IMPL()

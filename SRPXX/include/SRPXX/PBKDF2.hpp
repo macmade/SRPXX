@@ -25,6 +25,7 @@
 #ifndef SRPXX_PBKDF2_HPP
 #define SRPXX_PBKDF2_HPP
 
+#include <SRPXX/HashAlgorithm.hpp>
 #include <string>
 #include <vector>
 
@@ -32,15 +33,6 @@ namespace SRP
 {
     namespace PBKDF2
     {
-        enum class HashAlgorithm
-        {
-            SHA1,
-            SHA224,
-            SHA256,
-            SHA384,
-            SHA512
-        };
-        
         std::vector< uint8_t > HMAC( HashAlgorithm algorithm, const std::string & password,            const std::vector< uint8_t > & salt, uint32_t iterations, size_t keyLength );
         std::vector< uint8_t > HMAC( HashAlgorithm algorithm, const std::vector< uint8_t > & password, const std::vector< uint8_t > & salt, uint32_t iterations, size_t keyLength );
     }

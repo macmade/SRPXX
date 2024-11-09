@@ -22,23 +22,19 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_HASH_ALGORITHM_HPP
+#define SRPXX_HASH_ALGORITHM_HPP
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/HashAlgorithm.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
-#include <SRPXX/Client.hpp>
-#include <SRPXX/Server.hpp>
+namespace SRP
+{
+    enum class HashAlgorithm
+    {
+        SHA1,
+        SHA224,
+        SHA256,
+        SHA384,
+        SHA512
+    };
+}
 
-#endif /* SRPXX_HPP */
+#endif /* SRPXX_HASH_ALGORITHM_HPP */
