@@ -23,6 +23,7 @@
  ******************************************************************************/
 
 #include <SRPXX/BigNum.hpp>
+#include <SRPXX/Platform.hpp>
 #include <SRPXX/String.hpp>
 #include <algorithm>
 #include <exception>
@@ -44,6 +45,7 @@ namespace SRP
         public:
             
             IMPL( BIGNUM * bn );
+            IMPL( const std::vector< uint8_t > & bytes, Endianness endianness );
             IMPL( uint64_t value );
             IMPL( const BigNum & o );
             ~IMPL();
@@ -73,6 +75,10 @@ namespace SRP
     
     BigNum::BigNum():
         BigNum( 0 )
+    {}
+    
+    BigNum::BigNum( const std::vector< uint8_t > & bytes, Endianness endianness ):
+        impl( std::make_unique< IMPL >( bytes, endianness ) )
     {}
     
     BigNum::BigNum( uint64_t value ):
@@ -243,6 +249,23 @@ namespace SRP
     BigNum::IMPL::IMPL( BIGNUM * bn ):
         _bn( bn )
     {}
+    
+    BigNum::IMPL::IMPL( const std::vector< uint8_t > & bytes, Endianness endianness ):
+        IMPL( BN_new() )
+    {
+        if( bytes.size() == 0 )
+        {
+            BN_zero( this->_bn );
+        }
+        else if( endianness == Endianness::BigEndian || ( endianness == Endianness::Auto && Platform::isBigEndian() ) )
+        {
+            BN_bin2bn( bytes.data(), bytes.size(), this->_bn );
+        }
+        else
+        {
+            BN_lebin2bn( bytes.data(), bytes.size(), this->_bn );
+        }
+    }
     
     BigNum::IMPL::IMPL( uint64_t value ):
         IMPL( BN_new() )

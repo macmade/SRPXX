@@ -138,6 +138,48 @@ XSTest( BigNum, CTOR )
     XSTestAssertTrue( SRP::BigNum() == 0 );
 }
 
+XSTest( BigNum, CTOR_Bytes_Auto )
+{
+    if( SRP::Platform::isBigEndian() )
+    {
+        XSTestAssertTrue( SRP::BigNum( { 0x01, 0x02 }, SRP::BigNum::Endianness::Auto ) == 0x0102 );
+        XSTestAssertTrue( SRP::BigNum( { 0xFF, 0x00 }, SRP::BigNum::Endianness::Auto ) == 0xFF00 );
+    }
+    else
+    {
+        XSTestAssertTrue( SRP::BigNum( { 0x01, 0x02 }, SRP::BigNum::Endianness::Auto ) == 0x0201 );
+        XSTestAssertTrue( SRP::BigNum( { 0xFF, 0x00 }, SRP::BigNum::Endianness::Auto ) == 0x00FF );
+    }
+}
+
+XSTest( BigNum, CTOR_Bytes_BigEndian )
+{
+    if( SRP::Platform::isBigEndian() )
+    {
+        XSTestAssertTrue( SRP::BigNum( { 0x01, 0x02 }, SRP::BigNum::Endianness::BigEndian ) == 0x0102 );
+        XSTestAssertTrue( SRP::BigNum( { 0xFF, 0x00 }, SRP::BigNum::Endianness::BigEndian ) == 0xFF00 );
+    }
+    else
+    {
+        XSTestAssertTrue( SRP::BigNum( { 0x01, 0x02 }, SRP::BigNum::Endianness::BigEndian ) == 0x0102 );
+        XSTestAssertTrue( SRP::BigNum( { 0xFF, 0x00 }, SRP::BigNum::Endianness::BigEndian ) == 0xFF00 );
+    }
+}
+
+XSTest( BigNum, CTOR_Bytes_LittleEndian )
+{
+    if( SRP::Platform::isBigEndian() )
+    {
+        XSTestAssertTrue( SRP::BigNum( { 0x01, 0x02 }, SRP::BigNum::Endianness::LittleEndian ) == 0x0201 );
+        XSTestAssertTrue( SRP::BigNum( { 0xFF, 0x00 }, SRP::BigNum::Endianness::LittleEndian ) == 0x00FF );
+    }
+    else
+    {
+        XSTestAssertTrue( SRP::BigNum( { 0x01, 0x02 }, SRP::BigNum::Endianness::LittleEndian ) == 0x0201 );
+        XSTestAssertTrue( SRP::BigNum( { 0xFF, 0x00 }, SRP::BigNum::Endianness::LittleEndian ) == 0x00FF );
+    }
+}
+
 XSTest( BigNum, CTOR_UInt64 )
 {
     XSTestAssertTrue( SRP::BigNum( 0 ) == 0 );

@@ -29,6 +29,7 @@
 #include <memory>
 #include <string>
 #include <optional>
+#include <vector>
 
 namespace SRP
 {
@@ -43,9 +44,17 @@ namespace SRP
                 Hexadecimal
             };
             
+            enum class Endianness
+            {
+                Auto,
+                BigEndian,
+                LittleEndian
+            };
+            
             static std::optional< BigNum > fromString( const std::string & value, StringFormat format = StringFormat::Auto );
         
             BigNum();
+            BigNum( const std::vector< uint8_t > & bytes, Endianness endianness = Endianness::Auto );
             BigNum( uint64_t value );
             BigNum( const BigNum & o );
             BigNum( BigNum && o ) noexcept;
