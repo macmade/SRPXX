@@ -64,11 +64,11 @@ namespace SRP
             BigNum & operator =( int64_t value );
             
             bool operator ==( const BigNum & o )          const;
-            bool operator ==( int64_t value )            const;
+            bool operator ==( int64_t value )             const;
             bool operator ==( const std::string & value ) const;
             
             bool operator !=( const BigNum & o )          const;
-            bool operator !=( int64_t value )            const;
+            bool operator !=( int64_t value )             const;
             bool operator !=( const std::string & value ) const;
             
             std::string            toString( StringFormat format = StringFormat::Auto ) const;
