@@ -157,6 +157,46 @@ namespace SRP
     {
         return !( *( this ) == value );
     }
+            
+    bool BigNum::operator >=( const BigNum & o ) const
+    {
+        return *( this ) > o || *( this ) == o;
+    }
+    
+    bool BigNum::operator >=( int64_t value ) const
+    {
+        return *( this ) >= BigNum( value );
+    }
+    
+    bool BigNum::operator <=( const BigNum & o ) const
+    {
+        return *( this ) < o || *( this ) == o;
+    }
+    
+    bool BigNum::operator <=( int64_t value ) const
+    {
+        return *( this ) <= BigNum( value );
+    }
+    
+    bool BigNum::operator >( const BigNum & o ) const
+    {
+        return BN_cmp( this->impl->_bn, o.impl->_bn ) == 1;
+    }
+    
+    bool BigNum::operator >( int64_t value ) const
+    {
+        return *( this ) > BigNum( value );
+    }
+    
+    bool BigNum::operator <( const BigNum & o ) const
+    {
+        return BN_cmp( this->impl->_bn, o.impl->_bn ) == -1;
+    }
+    
+    bool BigNum::operator <( int64_t value ) const
+    {
+        return *( this ) < BigNum( value );
+    }
     
     std::string BigNum::toString( StringFormat format ) const
     {

@@ -293,34 +293,6 @@ XSTest( BigNum, OperatorEqual_String )
     XSTestAssertTrue( SRP::BigNum( -0x42FF ) == "-0X42ff" );
 }
 
-XSTest( BigNum, OperatorEqual_GetBytes_Auto )
-{
-    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
-    
-    if( SRP::Platform::isBigEndian() )
-    {
-        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
-    }
-    else
-    {
-        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
-    }
-}
-
-XSTest( BigNum, OperatorEqual_GetBytes_BigEndian )
-{
-    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
-    
-    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::BigEndian ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
-}
-
-XSTest( BigNum, OperatorEqual_GetBytes_LittleEndian )
-{
-    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
-    
-    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::LittleEndian ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
-}
-
 XSTest( BigNum, OperatorNotEqual )
 {
     SRP::BigNum n1( 42 );
@@ -382,6 +354,126 @@ XSTest( BigNum, OperatorNotEqual_String )
     XSTestAssertFalse( SRP::BigNum( -0x42FF ) != "-0X42ff" );
 }
 
+XSTest( BigNum, OperatorGreatorOrEqual )
+{
+    XSTestAssertTrue(  SRP::BigNum( 42 ) >= SRP::BigNum( 42 ) );
+    XSTestAssertTrue(  SRP::BigNum( 43 ) >= SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( 42 ) >= SRP::BigNum( 43 ) );
+    
+    XSTestAssertTrue( SRP::BigNum( 42 ) >= SRP::BigNum( -42 ) );
+    XSTestAssertTrue( SRP::BigNum( 43 ) >= SRP::BigNum( -42 ) );
+    XSTestAssertTrue( SRP::BigNum( 42 ) >= SRP::BigNum( -43 ) );
+    
+    XSTestAssertFalse( SRP::BigNum( -42 ) >= SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( -43 ) >= SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( -42 ) >= SRP::BigNum( 43 ) );
+}
+
+XSTest( BigNum, OperatorGreatorOrEqual_Int64 )
+{
+    XSTestAssertTrue(  SRP::BigNum( 42 ) >= 42 );
+    XSTestAssertTrue(  SRP::BigNum( 43 ) >= 42 );
+    XSTestAssertFalse( SRP::BigNum( 42 ) >= 43 );
+    
+    XSTestAssertTrue( SRP::BigNum( 42 ) >= -42 );
+    XSTestAssertTrue( SRP::BigNum( 43 ) >= -42 );
+    XSTestAssertTrue( SRP::BigNum( 42 ) >= -43 );
+    
+    XSTestAssertFalse( SRP::BigNum( -42 ) >= 42 );
+    XSTestAssertFalse( SRP::BigNum( -43 ) >= 42 );
+    XSTestAssertFalse( SRP::BigNum( -42 ) >= 43 );
+}
+
+XSTest( BigNum, OperatorLessOrEqual )
+{
+    XSTestAssertTrue(  SRP::BigNum( 42 ) <= SRP::BigNum( 42 ) );
+    XSTestAssertTrue(  SRP::BigNum( 41 ) <= SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( 42 ) <= SRP::BigNum( 41 ) );
+    
+    XSTestAssertFalse( SRP::BigNum( 42 ) <= SRP::BigNum( -42 ) );
+    XSTestAssertFalse( SRP::BigNum( 41 ) <= SRP::BigNum( -42 ) );
+    XSTestAssertFalse( SRP::BigNum( 42 ) <= SRP::BigNum( -41 ) );
+    
+    XSTestAssertTrue( SRP::BigNum( -42 ) <= SRP::BigNum( 42 ) );
+    XSTestAssertTrue( SRP::BigNum( -41 ) <= SRP::BigNum( 42 ) );
+    XSTestAssertTrue( SRP::BigNum( -42 ) <= SRP::BigNum( 41 ) );
+}
+
+XSTest( BigNum, OperatorLessOrEqual_Int64 )
+{
+    XSTestAssertTrue(  SRP::BigNum( 42 ) <= 42 );
+    XSTestAssertTrue(  SRP::BigNum( 41 ) <= 42 );
+    XSTestAssertFalse( SRP::BigNum( 42 ) <= 41 );
+    
+    XSTestAssertFalse( SRP::BigNum( 42 ) <= -42 );
+    XSTestAssertFalse( SRP::BigNum( 41 ) <= -42 );
+    XSTestAssertFalse( SRP::BigNum( 42 ) <= -41 );
+    
+    XSTestAssertTrue( SRP::BigNum( -42 ) <= 42 );
+    XSTestAssertTrue( SRP::BigNum( -41 ) <= 42 );
+    XSTestAssertTrue( SRP::BigNum( -42 ) <= 41 );
+}
+
+XSTest( BigNum, OperatorGreater )
+{
+    XSTestAssertFalse( SRP::BigNum( 42 ) > SRP::BigNum( 42 ) );
+    XSTestAssertTrue(  SRP::BigNum( 43 ) > SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( 42 ) > SRP::BigNum( 43 ) );
+    
+    XSTestAssertTrue( SRP::BigNum( 42 ) > SRP::BigNum( -42 ) );
+    XSTestAssertTrue( SRP::BigNum( 43 ) > SRP::BigNum( -42 ) );
+    XSTestAssertTrue( SRP::BigNum( 42 ) > SRP::BigNum( -43 ) );
+    
+    XSTestAssertFalse( SRP::BigNum( -42 ) > SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( -43 ) > SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( -42 ) > SRP::BigNum( 43 ) );
+}
+
+XSTest( BigNum, OperatorGreater_Int64 )
+{
+    XSTestAssertFalse( SRP::BigNum( 42 ) > 42 );
+    XSTestAssertTrue(  SRP::BigNum( 43 ) > 42 );
+    XSTestAssertFalse( SRP::BigNum( 42 ) > 43 );
+    
+    XSTestAssertTrue( SRP::BigNum( 42 ) > -42 );
+    XSTestAssertTrue( SRP::BigNum( 43 ) > -42 );
+    XSTestAssertTrue( SRP::BigNum( 42 ) > -43 );
+    
+    XSTestAssertFalse( SRP::BigNum( -42 ) > 42 );
+    XSTestAssertFalse( SRP::BigNum( -43 ) > 42 );
+    XSTestAssertFalse( SRP::BigNum( -42 ) > 43 );
+}
+
+XSTest( BigNum, OperatorLess )
+{
+    XSTestAssertFalse( SRP::BigNum( 42 ) < SRP::BigNum( 42 ) );
+    XSTestAssertTrue(  SRP::BigNum( 41 ) < SRP::BigNum( 42 ) );
+    XSTestAssertFalse( SRP::BigNum( 42 ) < SRP::BigNum( 41 ) );
+    
+    XSTestAssertFalse( SRP::BigNum( 42 ) < SRP::BigNum( -42 ) );
+    XSTestAssertFalse( SRP::BigNum( 41 ) < SRP::BigNum( -42 ) );
+    XSTestAssertFalse( SRP::BigNum( 42 ) < SRP::BigNum( -41 ) );
+    
+    XSTestAssertTrue( SRP::BigNum( -42 ) < SRP::BigNum( 42 ) );
+    XSTestAssertTrue( SRP::BigNum( -41 ) < SRP::BigNum( 42 ) );
+    XSTestAssertTrue( SRP::BigNum( -42 ) < SRP::BigNum( 41 ) );
+}
+
+XSTest( BigNum, OperatorLess_Int64 )
+{
+    XSTestAssertFalse( SRP::BigNum( 42 ) < 42 );
+    XSTestAssertTrue(  SRP::BigNum( 41 ) < 42 );
+    XSTestAssertFalse( SRP::BigNum( 42 ) < 41 );
+    
+    XSTestAssertFalse( SRP::BigNum( 42 ) < -42 );
+    XSTestAssertFalse( SRP::BigNum( 41 ) < -42 );
+    XSTestAssertFalse( SRP::BigNum( 42 ) < -41 );
+    
+    XSTestAssertTrue( SRP::BigNum( -42 ) < 42 );
+    XSTestAssertTrue( SRP::BigNum( -41 ) < 42 );
+    XSTestAssertTrue( SRP::BigNum( -42 ) < 41 );
+}
+
 XSTest( BigNum, ToString )
 {
     XSTestAssertTrue( SRP::BigNum( 42 ).toString()  == "42" );
@@ -398,6 +490,34 @@ XSTest( BigNum, ToString )
     
     XSTestAssertTrue( SRP::BigNum( 0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal )  == "0xff" );
     XSTestAssertTrue( SRP::BigNum( -0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0xff" );
+}
+
+XSTest( BigNum, GetBytes_Auto )
+{
+    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
+    
+    if( SRP::Platform::isBigEndian() )
+    {
+        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
+    }
+    else
+    {
+        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
+    }
+}
+
+XSTest( BigNum, GetBytes_BigEndian )
+{
+    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
+    
+    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::BigEndian ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
+}
+
+XSTest( BigNum, GetBytes_LittleEndian )
+{
+    SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
+    
+    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::LittleEndian ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
 }
 
 XSTest( BigNum, Negative )
