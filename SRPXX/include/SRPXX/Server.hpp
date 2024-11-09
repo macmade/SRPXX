@@ -25,15 +25,16 @@
 #ifndef SRPXX_SERVER_HPP
 #define SRPXX_SERVER_HPP
 
+#include <SRPXX/Base.hpp>
 #include <memory>
 
 namespace SRP
 {
-    class Server
+    class Server: public Base
     {
         public:
             
-            Server();
+            Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             virtual ~Server();
             
             Server( const Server & o )              = delete;
