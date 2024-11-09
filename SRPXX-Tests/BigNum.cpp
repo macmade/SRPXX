@@ -133,6 +133,33 @@ XSTest( BigNum, FromString_Hexadecimal )
     XSTestAssertTrue( *( n5 ) == 0x42FF );
 }
 
+XSTest( BigNum, FromString_Random )
+{
+    for( unsigned int i = 1; i < 10; i++ )
+    {
+        std::vector< SRP::BigNum > n;
+        
+        for( unsigned int j = 0; j < 10; j++ )
+        {
+            n.push_back( SRP::BigNum::random( i * 128 ) );
+        }
+        
+        for( unsigned int j = 0; j < n.size(); j++ )
+        {
+            for( unsigned int k = 0; k < n.size(); k++ )
+            {
+                if( j == k )
+                {
+                    continue;
+                }
+                
+                XSTestAssertTrue( n[ j ] != n[ k ] );
+                XSTestAssertTrue( n[ j ].getBytes().size() == ( i * 128 ) / CHAR_BIT );
+            }
+        }
+    }
+}
+
 XSTest( BigNum, CTOR )
 {
     XSTestAssertTrue( SRP::BigNum() == 0 );

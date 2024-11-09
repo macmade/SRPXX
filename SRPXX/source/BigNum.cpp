@@ -73,6 +73,15 @@ namespace SRP
         return nullptr;
     }
     
+    BigNum BigNum::random( unsigned int bits )
+    {
+        BigNum n;
+        
+        BN_rand( n.impl->_bn, static_cast< int >( bits ), BN_RAND_TOP_ANY, BN_RAND_BOTTOM_ANY );
+        
+        return n;
+    }
+    
     BigNum::BigNum():
         BigNum( 0 )
     {}

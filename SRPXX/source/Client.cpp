@@ -38,7 +38,7 @@ namespace SRP
     };
     
     Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
-        Client( identity, hashAlgorithm, groupType, {} )
+        Client( identity, hashAlgorithm, groupType, BigNum::random( 256 ) )
     {}
             
     Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & a ):

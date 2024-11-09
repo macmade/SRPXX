@@ -38,7 +38,7 @@ namespace SRP
     };
     
     Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
-        Server( identity, hashAlgorithm, groupType, {} )
+        Server( identity, hashAlgorithm, groupType, BigNum::random( 256 ) )
     {}
     
     Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & b ):

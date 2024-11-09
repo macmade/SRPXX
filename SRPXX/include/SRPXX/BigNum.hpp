@@ -51,6 +51,8 @@ namespace SRP
             };
             
             static std::unique_ptr< BigNum > fromString( const std::string & value, StringFormat format = StringFormat::Auto );
+            
+            static BigNum random( unsigned int bits );
         
             BigNum();
             BigNum( const std::vector< uint8_t > & bytes, Endianness endianness = Endianness::Auto );
