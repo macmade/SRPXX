@@ -46,7 +46,7 @@ namespace SRP
             
             IMPL( BIGNUM * bn );
             IMPL( const std::vector< uint8_t > & bytes, Endianness endianness );
-            IMPL( uint64_t value );
+            IMPL( int64_t value );
             IMPL( const BigNum & o );
             ~IMPL();
             
@@ -81,7 +81,7 @@ namespace SRP
         impl( std::make_unique< IMPL >( bytes, endianness ) )
     {}
     
-    BigNum::BigNum( uint64_t value ):
+    BigNum::BigNum( int64_t value ):
         impl( std::make_unique< IMPL >( value ) )
     {}
     
@@ -103,7 +103,7 @@ namespace SRP
         return *( this );
     }
     
-    BigNum & BigNum::operator =( uint64_t value )
+    BigNum & BigNum::operator =( int64_t value )
     {
         return *( this ) = BigNum( value );
     }
@@ -113,7 +113,7 @@ namespace SRP
         return BN_cmp( this->impl->_bn, o.impl->_bn ) == 0;
     }
     
-    bool BigNum::operator ==( uint64_t value ) const
+    bool BigNum::operator ==( int64_t value ) const
     {
         return *( this ) == BigNum( value );
     }
@@ -148,7 +148,7 @@ namespace SRP
         return !( *( this ) == o );
     }
     
-    bool BigNum::operator !=( uint64_t value ) const
+    bool BigNum::operator !=( int64_t value ) const
     {
         return !( *( this ) == value );
     }
@@ -290,10 +290,25 @@ namespace SRP
         }
     }
     
-    BigNum::IMPL::IMPL( uint64_t value ):
+    BigNum::IMPL::IMPL( int64_t value ):
         IMPL( BN_new() )
     {
-        BN_set_u64( this->_bn, value );
+        if( value == INT64_MIN )
+        {
+            /* Two's complement guaranteed by C++20 */
+            BN_set_u64( this->_bn, static_cast< uint64_t >( std::abs( value + 1 ) ) );
+            BN_set_negative( this->_bn, 1 );
+            BN_sub_word( this->_bn, 1 );
+        }
+        else
+        {
+            BN_set_u64( this->_bn, static_cast< uint64_t >( std::abs( value ) ) );
+            
+            if( value < 0 )
+            {
+                BN_set_negative( this->_bn, 1 );
+            }
+        }
     }
     
     BigNum::IMPL::IMPL( const BigNum & o ):

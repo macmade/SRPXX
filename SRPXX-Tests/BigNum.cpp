@@ -180,12 +180,13 @@ XSTest( BigNum, CTOR_Bytes_LittleEndian )
     }
 }
 
-XSTest( BigNum, CTOR_UInt64 )
+XSTest( BigNum, CTOR_Int64 )
 {
-    XSTestAssertTrue( SRP::BigNum( 0 ) == 0 );
-    XSTestAssertTrue( SRP::BigNum( 1 ) == 1 );
+    XSTestAssertTrue( SRP::BigNum( 0 )         == 0 );
+    XSTestAssertTrue( SRP::BigNum( 1 )         == 1 );
+    XSTestAssertTrue( SRP::BigNum( -1 )        == -1 );
     XSTestAssertTrue( SRP::BigNum( INT64_MAX ) == INT64_MAX );
-    XSTestAssertTrue( SRP::BigNum( static_cast< uint64_t >( -1 ) ) == static_cast< uint64_t >( -1 ) );
+    XSTestAssertTrue( SRP::BigNum( INT64_MIN ) == INT64_MIN );
 }
 
 XSTest( BigNum, CCTOR )
@@ -218,15 +219,16 @@ XSTest( BigNum, OperatorAssign )
     XSTestAssertTrue( n2 == 42 );
 }
 
-XSTest( BigNum, OperatorAssign_UInt64 )
+XSTest( BigNum, OperatorAssign_Int64 )
 {
     SRP::BigNum n( 0 );
     
     XSTestAssertTrue( n == 0 );
     
-    n = 42;
-    
-    XSTestAssertTrue( n == 42 );
+    n = 42;        XSTestAssertTrue( n == 42 );
+    n = -1;        XSTestAssertTrue( n == -1 );
+    n = INT64_MAX; XSTestAssertTrue( n == INT64_MAX );
+    n = INT64_MIN; XSTestAssertTrue( n == INT64_MIN );
 }
 
 XSTest( BigNum, OperatorEqual )
@@ -248,12 +250,24 @@ XSTest( BigNum, OperatorEqual )
     XSTestAssertFalse( n3 == n2 );
 }
 
-XSTest( BigNum, OperatorEqual_UInt64 )
+XSTest( BigNum, OperatorEqual_Int64 )
 {
-    SRP::BigNum n( 42 );
+    SRP::BigNum n1( 0 );
+    SRP::BigNum n2( 1 );
+    SRP::BigNum n3( -1 );
+    SRP::BigNum n4( INT_MAX );
+    SRP::BigNum n5( INT_MIN );
     
-    XSTestAssertTrue(  n == 42 );
-    XSTestAssertFalse( n == 0 );
+    XSTestAssertTrue(  n1 == 0 );
+    XSTestAssertFalse( n1 == 1 );
+    XSTestAssertTrue(  n2 == 1 );
+    XSTestAssertFalse( n2 == 0 );
+    XSTestAssertTrue(  n3 == -1 );
+    XSTestAssertFalse( n3 == 0 );
+    XSTestAssertTrue(  n4 == INT_MAX );
+    XSTestAssertFalse( n4 == 0 );
+    XSTestAssertTrue(  n5 == INT_MIN );
+    XSTestAssertFalse( n5 == 0 );
 }
 
 XSTest( BigNum, OperatorEqual_String )
@@ -325,12 +339,24 @@ XSTest( BigNum, OperatorNotEqual )
     XSTestAssertTrue( n3 != n2 );
 }
 
-XSTest( BigNum, OperatorNotEqual_UInt64 )
+XSTest( BigNum, OperatorNotEqual_Int64 )
 {
-    SRP::BigNum n( 42 );
+    SRP::BigNum n1( 0 );
+    SRP::BigNum n2( 1 );
+    SRP::BigNum n3( -1 );
+    SRP::BigNum n4( INT_MAX );
+    SRP::BigNum n5( INT_MIN );
     
-    XSTestAssertFalse( n != 42 );
-    XSTestAssertTrue(  n != 0 );
+    XSTestAssertFalse( n1 != 0 );
+    XSTestAssertTrue(  n1 != 1 );
+    XSTestAssertFalse( n2 != 1 );
+    XSTestAssertTrue(  n2 != 0 );
+    XSTestAssertFalse( n3 != -1 );
+    XSTestAssertTrue(  n3 != 0 );
+    XSTestAssertFalse( n4 != INT_MAX );
+    XSTestAssertTrue(  n4 != 0 );
+    XSTestAssertFalse( n5 != INT_MIN );
+    XSTestAssertTrue(  n5 != 0 );
 }
 
 XSTest( BigNum, OperatorNotEqual_String )

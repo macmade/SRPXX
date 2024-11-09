@@ -55,20 +55,20 @@ namespace SRP
         
             BigNum();
             BigNum( const std::vector< uint8_t > & bytes, Endianness endianness = Endianness::Auto );
-            BigNum( uint64_t value );
+            BigNum( int64_t value );
             BigNum( const BigNum & o );
             BigNum( BigNum && o ) noexcept;
             ~BigNum();
             
             BigNum & operator =( BigNum o );
-            BigNum & operator =( uint64_t value );
+            BigNum & operator =( int64_t value );
             
             bool operator ==( const BigNum & o )          const;
-            bool operator ==( uint64_t value )            const;
+            bool operator ==( int64_t value )            const;
             bool operator ==( const std::string & value ) const;
             
             bool operator !=( const BigNum & o )          const;
-            bool operator !=( uint64_t value )            const;
+            bool operator !=( int64_t value )            const;
             bool operator !=( const std::string & value ) const;
             
             std::string            toString( StringFormat format = StringFormat::Auto ) const;
