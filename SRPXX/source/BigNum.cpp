@@ -331,6 +331,16 @@ namespace SRP
         return n;
     }
     
+    BigNum BigNum::modExp( const BigNum & exponent, const BigNum & modulus ) const
+    {
+        Context ctx;
+        BigNum  n( *( this ) );
+        
+        BN_mod_exp( n.impl->_bn, n.impl->_bn, exponent.impl->_bn, modulus.impl->_bn, ctx );
+        
+        return n;
+    }
+    
     std::string BigNum::toString( StringFormat format ) const
     {
         BigNum abs = this->positive();
