@@ -38,10 +38,12 @@ namespace SRP
             ~IMPL();
             
             void clearPassword();
+            void clearSalt();
             
             std::string            _identity;
             BigNum                 _a;
             std::vector< uint8_t > _password;
+            std::vector< uint8_t > _salt;
     };
     
     Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
@@ -68,6 +70,13 @@ namespace SRP
         this->impl->_password = password;
     }
     
+    void Client::setSalt( const std::vector< uint8_t > & salt )
+    {
+        this->impl->clearSalt();
+        
+        this->impl->_salt = salt;
+    }
+    
     BigNum Client::A() const
     {
         return this->g().modExp( this->impl->_a, this->N() );
@@ -88,6 +97,14 @@ namespace SRP
         if( this->_password.size() > 0 )
         {
             memset_s( this->_password.data(), this->_password.size(), 0, this->_password.size() );
+        }
+    }
+    
+    void Client::IMPL::clearSalt()
+    {
+        if( this->_salt.size() > 0 )
+        {
+            memset_s( this->_salt.data(), this->_salt.size(), 0, this->_salt.size() );
         }
     }
 }

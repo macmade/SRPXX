@@ -45,6 +45,7 @@ namespace SRP
             
             void setPassword( const std::string & password );
             void setPassword( const std::vector< uint8_t > & password );
+            void setSalt( const std::vector< uint8_t > & salt );
             
             BigNum A() const;
             
