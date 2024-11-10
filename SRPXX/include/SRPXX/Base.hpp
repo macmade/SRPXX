@@ -53,7 +53,9 @@ namespace SRP
             Base( const Base & o )              = delete;
             Base & operator =( const Base & o ) = delete;
             
-            std::unique_ptr< Hasher > makeHasher() const;
+            std::unique_ptr< Hasher > makeHasher()                                               const;
+            std::vector< uint8_t >    hash( const std::vector< uint8_t > & data )                const;
+            std::vector< uint8_t >    hash( const std::vector< std::vector< uint8_t > > & data ) const;
             
             BigNum N() const;
             BigNum g() const;

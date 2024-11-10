@@ -79,6 +79,25 @@ namespace SRP
         }
     }
     
+    std::vector< uint8_t > Base::hash( const std::vector< uint8_t > & data ) const
+    {
+        return this->hash( std::vector< std::vector< uint8_t > >{ data } );
+    }
+    
+    std::vector< uint8_t > Base::hash( const std::vector< std::vector< uint8_t > > & data ) const
+    {
+        auto hasher = this->makeHasher();
+        
+        for( const auto & d: data )
+        {
+            hasher->update( d );
+        }
+        
+        hasher->finalize();
+        
+        return hasher->bytes();
+    }
+    
     BigNum Base::N() const
     {
         return this->impl->_N;
