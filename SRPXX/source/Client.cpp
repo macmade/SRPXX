@@ -98,14 +98,36 @@ namespace SRP
         return ( this->impl->_options & static_cast< uint64_t >( option ) ) != 0;
     }
     
+    /* ( g ^ a % N ) */
     BigNum Client::A() const
     {
         return this->g().modExp( this->impl->_a, this->N() );
     }
     
+    /* ( SHA( s | SHA( I | `:` | P ) ) ) */
     BigNum Client::X() const
     {
-        return {};
+        std::vector< std::vector< uint8_t > > data =
+        {
+            String::toBytes( this->impl->_identity ),
+            String::toBytes( ":" ),
+            this->impl->_password
+        };
+        
+        if( this->hasOption( Options::NoUsernameInX ) )
+        {
+            data.erase( data.begin() );
+        }
+        
+        std::vector< uint8_t > hash = this->hash
+        (
+            {
+                this->impl->_salt,
+                this->hash( data )
+            }
+        );
+        
+        return { hash, BigNum::Endianness::BigEndian };
     }
     
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
