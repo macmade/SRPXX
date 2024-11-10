@@ -704,13 +704,6 @@ XSTest( BigNum, OperatorExp )
             SRP::BigNum n3( n1 ^ n2 );
             double      r = pow( static_cast< double >( a ), static_cast< double >( std::abs( b ) ) );
             
-            if( n3 != static_cast< int64_t >( r ) )
-            {
-                std::cout << static_cast< int64_t >( r ) << std::endl;
-                std::cout << n3.toString() << std::endl;
-                std::cout << "ok" << std::endl;
-            }
-            
             XSTestAssertTrue( n1 == a );
             XSTestAssertTrue( n2 == b );
             XSTestAssertTrue( n3 == static_cast< int64_t >( r ) );
