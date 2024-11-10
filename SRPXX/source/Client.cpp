@@ -219,6 +219,19 @@ namespace SRP
         );
     }
     
+    /* H( A | M | K ) */
+    std::vector< uint8_t > Client::M2() const
+    {
+        return this->hash
+        (
+            {
+                this->A().bytes( BigNum::Endianness::BigEndian ),
+                this->M1(),
+                this->K()
+            }
+        );
+    }
+    
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
         _identity( identity ),
         _a( a ),

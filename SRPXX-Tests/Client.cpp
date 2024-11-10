@@ -112,6 +112,17 @@ XSTest( Client, M1 )
     XSTestAssertTrue( client.M1() == Constants::M1() );
 }
 
+XSTest( Client, M2 )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    client.setPassword( Constants::password() );
+    client.setSalt( Constants::salt() );
+    client.setB( Constants::B() );
+    
+    XSTestAssertTrue( client.M2() == Constants::M2() );
+}
+
 XSTest( Client, SetOptions )
 {
     SRP::Client client = Constants::makeTestClient();

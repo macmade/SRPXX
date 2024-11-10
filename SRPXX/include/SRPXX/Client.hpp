@@ -70,6 +70,7 @@ namespace SRP
             
             std::vector< uint8_t > K()  const;
             std::vector< uint8_t > M1() const;
+            std::vector< uint8_t > M2() const;
             
         private:
             
