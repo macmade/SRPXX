@@ -42,6 +42,7 @@ namespace SRP
             
             std::string            _identity;
             BigNum                 _a;
+            BigNum                 _B;
             std::vector< uint8_t > _password;
             std::vector< uint8_t > _salt;
             uint64_t               _options;
@@ -78,6 +79,11 @@ namespace SRP
         this->impl->_salt = value;
     }
     
+    void Client::setB( const BigNum & value )
+    {
+        this->impl->_B = value;
+    }
+    
     void Client::setOptions( uint64_t options )
     {
         this->impl->_options = options;
@@ -107,6 +113,11 @@ namespace SRP
     BigNum Client::A() const
     {
         return this->g().modExp( this->impl->_a, this->N() );
+    }
+    
+    BigNum Client::B() const
+    {
+        return this->impl->_B;
     }
     
     /* ( SHA( s | SHA( I | `:` | P ) ) ) */

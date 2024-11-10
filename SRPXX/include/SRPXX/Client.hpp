@@ -53,6 +53,7 @@ namespace SRP
             void setPassword( const std::string & value );
             void setPassword( const std::vector< uint8_t > & value );
             void setSalt( const std::vector< uint8_t > & value );
+            void setB( const BigNum & value );
             
             void setOptions( uint64_t options );
             void addOption( Options option );
@@ -61,6 +62,7 @@ namespace SRP
             
             BigNum a() const;
             BigNum A() const;
+            BigNum B() const;
             BigNum X() const;
             
         private:

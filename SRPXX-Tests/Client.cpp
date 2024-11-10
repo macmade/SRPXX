@@ -40,13 +40,20 @@ XSTest( Client, A )
     XSTestAssertTrue( client.A() == Constants::A() );
 }
 
+XSTest( Client, SetB )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    client.setB( Constants::B() );
+    XSTestAssertTrue( client.B() == Constants::B() );
+}
+
 XSTest( Client, X )
 {
     SRP::Client client = Constants::makeTestClient();
     
     client.setPassword( Constants::password() );
     client.setSalt( Constants::salt() );
-    
     XSTestAssertTrue( client.X() == Constants::X() );
 }
 
