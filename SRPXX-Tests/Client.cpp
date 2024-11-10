@@ -63,6 +63,8 @@ XSTest( Client, u )
     
     client.setPassword( Constants::password() );
     client.setSalt( Constants::salt() );
+    client.setB( Constants::B() );
+    
     XSTestAssertTrue( client.u() == Constants::u() );
 }
 
