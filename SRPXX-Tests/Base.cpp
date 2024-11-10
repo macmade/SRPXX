@@ -143,6 +143,83 @@ XSTest( Base, Hasher_SHA512 )
     XSTestAssertTrue( SRP::String::toHex( hash1, SRP::String::HexFormat::Uppercase ) == hasher->string( SRP::String::HexFormat::Uppercase ) );
 }
 
+XSTest( Base, NG1024_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
+    size_t    size = 1024 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
+XSTest( Base, NG1536_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
+    size_t    size = 1536 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
+XSTest( Base, NG2048_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
+    size_t    size = 2048 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
+XSTest( Base, NG3072_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
+    size_t    size = 3072 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
+XSTest( Base, NG4096_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
+    size_t    size = 4096 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
+XSTest( Base, NG6144_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
+    size_t    size = 6144 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
+XSTest( Base, NG8192_Pad )
+{
+    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
+    size_t    size = 8192 / 8;
+    
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size     ) ).size() == size );
+    XSTestAssertTrue( base.pad( std::vector< uint8_t >( size + 1 ) ).size() == size + 1 );
+}
+
 XSTest( Base, NG1024 )
 {
     std::unique_ptr< SRP::Base > base;

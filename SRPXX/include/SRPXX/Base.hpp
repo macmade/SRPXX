@@ -56,6 +56,7 @@ namespace SRP
             std::unique_ptr< Hasher > makeHasher()                                               const;
             std::vector< uint8_t >    hash( const std::vector< uint8_t > & data )                const;
             std::vector< uint8_t >    hash( const std::vector< std::vector< uint8_t > > & data ) const;
+            std::vector< uint8_t >    pad(  const std::vector< uint8_t > & data )                const;
             
             BigNum N() const;
             BigNum g() const;

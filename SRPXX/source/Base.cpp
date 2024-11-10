@@ -98,6 +98,22 @@ namespace SRP
         return hasher->bytes();
     }
     
+    std::vector< uint8_t > Base::pad( const std::vector< uint8_t > & data ) const
+    {
+        size_t length = this->N().bytes( BigNum::Endianness::BigEndian ).size();
+        
+        if( data.size() < length )
+        {
+            std::vector< uint8_t > padded( length - data.size(), 0 );
+            
+            padded.insert( std::end( padded ), std::begin( data ), std::end( data ) );
+            
+            return padded;
+        }
+        
+        return data;
+    }
+    
     BigNum Base::N() const
     {
         return this->impl->_N;
