@@ -48,6 +48,7 @@ namespace SRP
             void setSalt( const std::vector< uint8_t > & salt );
             
             BigNum A() const;
+            BigNum X() const;
             
         private:
             

@@ -82,6 +82,11 @@ namespace SRP
         return this->g().modExp( this->impl->_a, this->N() );
     }
     
+    BigNum Client::X() const
+    {
+        return {};
+    }
+    
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
         _identity( identity ),
         _a( a )
