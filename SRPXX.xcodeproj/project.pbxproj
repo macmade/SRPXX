@@ -23,6 +23,7 @@
 		056231612CDFE15800104F3B /* BigNum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231492CDFE15800104F3B /* BigNum.cpp */; };
 		056231632CDFE4BC00104F3B /* Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231622CDFE4B900104F3B /* Base.cpp */; };
 		0562317B2CE0A2EB00104F3B /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0562317A2CE0A2E700104F3B /* Client.cpp */; };
+		0562319F2CE1326300104F3B /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0562319E2CE1325F00104F3B /* Server.cpp */; };
 		056BC7B21B2379D300B21D46 /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 056C881218C8B85F006260B3 /* libSRPXX.a */; };
 		05818DBE2CDFD3F900001415 /* Platform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05818D9D2CDFD3F900001415 /* Platform.hpp */; };
 		05818DBF2CDFD3F900001415 /* SHA384.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05818DA22CDFD3F900001415 /* SHA384.hpp */; };
@@ -93,6 +94,7 @@
 		056231982CE0B57400104F3B /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
 		0562319C2CE0F1E500104F3B /* RFC-2945.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RFC-2945.txt"; sourceTree = "<group>"; };
 		0562319D2CE0F1E500104F3B /* RFC-5054.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RFC-5054.txt"; sourceTree = "<group>"; };
+		0562319E2CE1325F00104F3B /* Server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 		056C58BF1B1898FF00C6214A /* SRPXX-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SRPXX-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056C881218C8B85F006260B3 /* libSRPXX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSRPXX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05818D4F2CDFD2ED00001415 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				05818DCD2CDFD40300001415 /* PBKDF2.cpp */,
 				05818DCE2CDFD40300001415 /* Platform.cpp */,
 				05818DCF2CDFD40300001415 /* Random.cpp */,
+				0562319E2CE1325F00104F3B /* Server.cpp */,
 				05818DD02CDFD40300001415 /* SHA1.cpp */,
 				05818DD12CDFD40300001415 /* SHA224.cpp */,
 				05818DD22CDFD40300001415 /* SHA256.cpp */,
@@ -592,6 +595,7 @@
 			files = (
 				056231632CDFE4BC00104F3B /* Base.cpp in Sources */,
 				05818DD72CDFD40300001415 /* Platform.cpp in Sources */,
+				0562319F2CE1326300104F3B /* Server.cpp in Sources */,
 				05818DD82CDFD40300001415 /* SHA512.cpp in Sources */,
 				05818DD92CDFD40300001415 /* SHA384.cpp in Sources */,
 				05818DDA2CDFD40300001415 /* Random.cpp in Sources */,

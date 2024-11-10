@@ -22,43 +22,13 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#include <SRPXX/Server.hpp>
+#include <SRPXX.hpp>
+#include <XSTest/XSTest.hpp>
+#include "Constants.hpp"
 
-namespace SRP
+XSTest( Server, b )
 {
-    class Server::IMPL
-    {
-        public:
-            
-            IMPL( const std::string & identity, const BigNum & b );
-            ~IMPL();
-            
-            std::string _identity;
-            BigNum      _b;
-    };
+    SRP::Server server = Constants::makeTestServer();
     
-    Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
-        Server( identity, hashAlgorithm, groupType, BigNum::random( 256 ) )
-    {}
-    
-    Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & b ):
-        Base( hashAlgorithm, groupType ),
-        impl( std::make_unique< IMPL >( identity, b ) )
-    {}
-    
-    Server::~Server()
-    {}
-    
-    BigNum Server::b() const
-    {
-        return this->impl->_b;
-    }
-    
-    Server::IMPL::IMPL( const std::string & identity, const BigNum & b ):
-        _identity( identity ),
-        _b( b )
-    {}
-    
-    Server::IMPL::~IMPL()
-    {}
+    XSTestAssertTrue( server.b() == Constants::b() );
 }

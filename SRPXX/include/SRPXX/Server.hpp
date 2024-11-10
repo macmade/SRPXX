@@ -44,7 +44,6 @@ namespace SRP
             Server & operator =( const Server & o ) = delete;
             
             BigNum b() const;
-            BigNum B() const;
             
         private:
             

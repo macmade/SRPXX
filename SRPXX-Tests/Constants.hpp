@@ -224,6 +224,11 @@ namespace Constants
     {
         return { identity(), SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048, a() };
     }
+    
+    inline SRP::Server makeTestServer()
+    {
+        return { identity(), SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048, b() };
+    }
 }
 
 #endif /* SRPXX_TESTS_CONSTANTS_HPP */
