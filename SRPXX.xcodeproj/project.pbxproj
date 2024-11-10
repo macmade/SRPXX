@@ -91,6 +91,8 @@
 		056231622CDFE4B900104F3B /* Base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Base.cpp; sourceTree = "<group>"; };
 		0562317A2CE0A2E700104F3B /* Client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
 		056231982CE0B57400104F3B /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
+		0562319C2CE0F1E500104F3B /* RFC-2945.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RFC-2945.txt"; sourceTree = "<group>"; };
+		0562319D2CE0F1E500104F3B /* RFC-5054.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RFC-5054.txt"; sourceTree = "<group>"; };
 		056C58BF1B1898FF00C6214A /* SRPXX-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SRPXX-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056C881218C8B85F006260B3 /* libSRPXX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSRPXX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		05818D4F2CDFD2ED00001415 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -192,12 +194,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0562319B2CE0F1CB00104F3B /* RFC */ = {
+			isa = PBXGroup;
+			children = (
+				0562319C2CE0F1E500104F3B /* RFC-2945.txt */,
+				0562319D2CE0F1E500104F3B /* RFC-5054.txt */,
+			);
+			path = RFC;
+			sourceTree = "<group>";
+		};
 		056C87C518C8B0F8006260B3 = {
 			isa = PBXGroup;
 			children = (
 				051F09651946EB70004B6E47 /* README.md */,
 				05818D502CDFD2ED00001415 /* LICENSE */,
 				05818D4F2CDFD2ED00001415 /* CODE_OF_CONDUCT.md */,
+				0562319B2CE0F1CB00104F3B /* RFC */,
 				05818DB32CDFD3F900001415 /* SRPXX */,
 				05818DD62CDFD40300001415 /* SRPXX-Tests */,
 				0544CC6922749F32004A2499 /* XSTest.xcodeproj */,
