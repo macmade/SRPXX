@@ -43,6 +43,8 @@ namespace SRP
             Client( const Client & o )              = delete;
             Client & operator =( const Client & o ) = delete;
             
+            BigNum A() const;
+            
         private:
             
             class IMPL;
