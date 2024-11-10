@@ -182,7 +182,10 @@ namespace SRP
     /* ( ( B - ( k * g ^ x ) ) ^ ( a + ( u * x ) ) % N ) */
     BigNum Client::S() const
     {
-        return {};
+        BigNum left  = this->B() - ( this->k() * this->g().modExp( this->x(), this->N() ) );
+        BigNum right = this->a() + ( this->u() * this->x() );
+
+        return left.modExp( right, this->N() );
     }
     
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
