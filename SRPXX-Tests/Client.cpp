@@ -26,6 +26,13 @@
 #include <XSTest/XSTest.hpp>
 #include "Constants.hpp"
 
+XSTest( Client, a )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    XSTestAssertTrue( client.a() == Constants::a() );
+}
+
 XSTest( Client, A )
 {
     SRP::Client client = Constants::makeTestClient();

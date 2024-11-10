@@ -59,6 +59,7 @@ namespace SRP
             void removeOption( Options option );
             bool hasOption( Options option ) const;
             
+            BigNum a() const;
             BigNum A() const;
             BigNum X() const;
             
