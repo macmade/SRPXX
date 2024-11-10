@@ -55,7 +55,7 @@ namespace SRP
             static BigNum random( unsigned int bits );
         
             BigNum();
-            BigNum( const std::vector< uint8_t > & bytes, Endianness endianness = Endianness::Auto );
+            BigNum( const std::vector< uint8_t > & bytes, Endianness endianness );
             BigNum( int64_t value );
             BigNum( const BigNum & o );
             BigNum( BigNum && o ) noexcept;
