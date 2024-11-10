@@ -43,6 +43,9 @@ namespace SRP
             Client( const Client & o )              = delete;
             Client & operator =( const Client & o ) = delete;
             
+            void setPassword( const std::string & password );
+            void setPassword( const std::vector< uint8_t > & password );
+            
             BigNum A() const;
             
         private:

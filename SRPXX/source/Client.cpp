@@ -22,7 +22,11 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
+/* For memset_s */
+#define __STDC_WANT_LIB_EXT1__ 1
+
 #include <SRPXX/Client.hpp>
+#include <string.h>
 
 namespace SRP
 {
@@ -33,8 +37,11 @@ namespace SRP
             IMPL( const std::string & identity, const BigNum & a );
             ~IMPL();
             
-            std::string _identity;
-            BigNum      _a;
+            void clearPassword();
+            
+            std::string            _identity;
+            BigNum                 _a;
+            std::vector< uint8_t > _password;
     };
     
     Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
@@ -49,6 +56,18 @@ namespace SRP
     Client::~Client()
     {}
     
+    void Client::setPassword( const std::string & password )
+    {
+        this->setPassword( SRP::String::toBytes( password ) );
+    }
+    
+    void Client::setPassword( const std::vector< uint8_t > & password )
+    {
+        this->impl->clearPassword();
+        
+        this->impl->_password = password;
+    }
+    
     BigNum Client::A() const
     {
         return this->g().modExp( this->impl->_a, this->N() );
@@ -60,5 +79,15 @@ namespace SRP
     {}
     
     Client::IMPL::~IMPL()
-    {}
+    {
+        this->clearPassword();
+    }
+    
+    void Client::IMPL::clearPassword()
+    {
+        if( this->_password.size() > 0 )
+        {
+            memset_s( this->_password.data(), this->_password.size(), 0, this->_password.size() );
+        }
+    }
 }
