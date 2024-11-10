@@ -115,6 +115,7 @@ namespace SRP
         return this->g().modExp( this->impl->_a, this->N() );
     }
     
+    /* From server */
     BigNum Client::B() const
     {
         return this->impl->_B;
