@@ -43,8 +43,8 @@ namespace SRP
             virtual bool update( const std::string & data )            = 0;
             virtual bool finalize()                                    = 0;
             
-            virtual std::vector< uint8_t > getBytes()                                                           = 0;
-            virtual std::string            getString( String::HexFormat format = String::HexFormat::Uppercase ) = 0;
+            virtual std::vector< uint8_t > bytes()                            const = 0;
+            virtual std::string            string( String::HexFormat format ) const = 0;
     };
 }
 

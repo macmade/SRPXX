@@ -52,8 +52,8 @@ namespace SRP
             bool update( const std::string & data            ) override;
             bool finalize()                                    override;
             
-            std::vector< uint8_t > getBytes()                            override;
-            std::string            getString( String::HexFormat format ) override;
+            std::vector< uint8_t > bytes()                            const override;
+            std::string            string( String::HexFormat format ) const override;
             
         private:
             

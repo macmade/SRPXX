@@ -51,7 +51,7 @@ namespace SRP
         hasher.update( data, length );
         hasher.finalize();
         
-        return hasher.getBytes();
+        return hasher.bytes();
     }
     
     std::vector< uint8_t > SHA512::bytes( const std::string & data )
@@ -118,7 +118,7 @@ namespace SRP
         return false;
     }
     
-    std::vector< uint8_t > SHA512::getBytes()
+    std::vector< uint8_t > SHA512::bytes() const
     {
         if( this->impl->_finalized == false )
         {
@@ -132,9 +132,9 @@ namespace SRP
         return bytes;
     }
     
-    std::string SHA512::getString( String::HexFormat format )
+    std::string SHA512::string( String::HexFormat format ) const
     {
-        return String::toHex( this->getBytes(), format );
+        return String::toHex( this->bytes(), format );
     }
     
     SHA512::IMPL::IMPL():

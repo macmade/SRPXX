@@ -156,12 +156,12 @@ XSTestFixture( SHA384, GetBytes )
     {
         SRP::SHA384 hasher;
         
-        XSTestAssertTrue( hasher.getBytes().size() == 0 );
+        XSTestAssertTrue( hasher.bytes().size() == 0 );
         XSTestAssertTrue( hasher.update( r.bytes ) );
-        XSTestAssertTrue( hasher.getBytes().size() == 0 );
+        XSTestAssertTrue( hasher.bytes().size() == 0 );
         XSTestAssertTrue( hasher.finalize() );
-        XSTestAssertTrue( hasher.getBytes().size() > 0 );
-        XSTestAssertTrue( hasher.getBytes() == r.hashBytes );
+        XSTestAssertTrue( hasher.bytes().size() > 0 );
+        XSTestAssertTrue( hasher.bytes() == r.hashBytes );
     }
 }
 
@@ -171,16 +171,16 @@ XSTestFixture( SHA384, GetString )
     {
         SRP::SHA384 hasher;
         
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Uppercase ).size() == 0 );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Lowercase ).size() == 0 );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Uppercase ).size() == 0 );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Lowercase ).size() == 0 );
         XSTestAssertTrue( hasher.update( r.bytes ) );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Uppercase ).size() == 0 );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Lowercase ).size() == 0 );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Uppercase ).size() == 0 );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Lowercase ).size() == 0 );
         XSTestAssertTrue( hasher.finalize() );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Uppercase ).size() > 0 );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Lowercase ).size() > 0 );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Uppercase ) == r.hashStringUppercase );
-        XSTestAssertTrue( hasher.getString( SRP::String::HexFormat::Lowercase ) == r.hashStringLowercase );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Uppercase ).size() > 0 );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Lowercase ).size() > 0 );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Uppercase ) == r.hashStringUppercase );
+        XSTestAssertTrue( hasher.string( SRP::String::HexFormat::Lowercase ) == r.hashStringLowercase );
     }
 }
 
