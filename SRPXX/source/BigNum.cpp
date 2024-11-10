@@ -259,6 +259,24 @@ namespace SRP
         return *( this );
     }
     
+    BigNum & BigNum::operator %=( const BigNum & value )
+    {
+        Context ctx;
+        
+        BN_div( nullptr, this->impl->_bn, this->impl->_bn, value.impl->_bn, ctx );
+        
+        return *( this );
+    }
+    
+    BigNum & BigNum::operator ^=( const BigNum & value )
+    {
+        Context ctx;
+        
+        BN_exp( this->impl->_bn, this->impl->_bn, value.impl->_bn, ctx );
+        
+        return *( this );
+    }
+    
     BigNum BigNum::operator +( const BigNum & value ) const
     {
         BigNum n( *( this ) );
@@ -291,6 +309,24 @@ namespace SRP
         BigNum n( *( this ) );
         
         n /= value;
+        
+        return n;
+    }
+    
+    BigNum BigNum::operator %( const BigNum & value ) const
+    {
+        BigNum n( *( this ) );
+        
+        n %= value;
+        
+        return n;
+    }
+    
+    BigNum BigNum::operator ^( const BigNum & value ) const
+    {
+        BigNum n( *( this ) );
+        
+        n ^= value;
         
         return n;
     }

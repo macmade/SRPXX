@@ -549,6 +549,49 @@ XSTest( BigNum, OperatorDivideEqual )
     }
 }
 
+XSTest( BigNum, OperatorModEqual )
+{
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
+    {
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            
+            n1 %= n2;
+            
+            if( b == 0 )
+            {
+                XSTestAssertTrue( n1 == a );
+            }
+            else
+            {
+                XSTestAssertTrue( n1 == a % b );
+            }
+            
+            XSTestAssertTrue( n2 == b );
+        }
+    }
+}
+
+XSTest( BigNum, OperatorExpEqual )
+{
+    for( int64_t a = -10; a <= 10; a++ )
+    {
+        for( int64_t b = -10; b <= 10; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            double      r = pow( static_cast< double >( a ), static_cast< double >( std::abs( b ) ) );
+            
+            n1 ^= n2;
+            
+            XSTestAssertTrue( n1 == static_cast< int64_t >( r ) );
+            XSTestAssertTrue( n2 == b );
+        }
+    }
+}
+
 XSTest( BigNum, OperatorPlus )
 {
     for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
@@ -621,6 +664,56 @@ XSTest( BigNum, OperatorDivide )
             {
                 XSTestAssertTrue( n3 == a / b );
             }
+        }
+    }
+}
+
+XSTest( BigNum, OperatorMod )
+{
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
+    {
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            SRP::BigNum n3( n1 % n2 );
+            
+            XSTestAssertTrue( n1 == a );
+            XSTestAssertTrue( n2 == b );
+            
+            if( b == 0 )
+            {
+                XSTestAssertTrue( n3 == a );
+            }
+            else
+            {
+                XSTestAssertTrue( n3 == a % b );
+            }
+        }
+    }
+}
+
+XSTest( BigNum, OperatorExp )
+{
+    for( int64_t a = -10; a <= 10; a++ )
+    {
+        for( int64_t b = -10; b <= 10; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            SRP::BigNum n3( n1 ^ n2 );
+            double      r = pow( static_cast< double >( a ), static_cast< double >( std::abs( b ) ) );
+            
+            if( n3 != static_cast< int64_t >( r ) )
+            {
+                std::cout << static_cast< int64_t >( r ) << std::endl;
+                std::cout << n3.toString() << std::endl;
+                std::cout << "ok" << std::endl;
+            }
+            
+            XSTestAssertTrue( n1 == a );
+            XSTestAssertTrue( n2 == b );
+            XSTestAssertTrue( n3 == static_cast< int64_t >( r ) );
         }
     }
 }
