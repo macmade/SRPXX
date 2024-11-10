@@ -29,12 +29,19 @@
 #include <SRPXX/BigNum.hpp>
 #include <memory>
 #include <string>
+#include <cstdint>
+#include <vector>
 
 namespace SRP
 {
     class Client: public Base
     {
         public:
+        
+            enum class Options: uint64_t
+            {
+                NoUsernameInX = 1 << 0
+            };
             
             Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & a );
@@ -46,6 +53,11 @@ namespace SRP
             void setPassword( const std::string & password );
             void setPassword( const std::vector< uint8_t > & password );
             void setSalt( const std::vector< uint8_t > & salt );
+            
+            void setOptions( uint64_t options );
+            void addOption( Options option );
+            void removeOption( Options option );
+            bool hasOption( Options option ) const;
             
             BigNum A() const;
             BigNum X() const;

@@ -44,6 +44,7 @@ namespace SRP
             BigNum                 _a;
             std::vector< uint8_t > _password;
             std::vector< uint8_t > _salt;
+            uint64_t               _options;
     };
     
     Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
@@ -77,6 +78,26 @@ namespace SRP
         this->impl->_salt = salt;
     }
     
+    void Client::setOptions( uint64_t options )
+    {
+        this->impl->_options = options;
+    }
+    
+    void Client::addOption( Options option )
+    {
+        this->impl->_options |= static_cast< uint64_t >( option );
+    }
+    
+    void Client::removeOption( Options option )
+    {
+        this->impl->_options &= ~static_cast< uint64_t >( option );
+    }
+    
+    bool Client::hasOption( Options option ) const
+    {
+        return ( this->impl->_options & static_cast< uint64_t >( option ) ) != 0;
+    }
+    
     BigNum Client::A() const
     {
         return this->g().modExp( this->impl->_a, this->N() );
@@ -89,7 +110,8 @@ namespace SRP
     
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
         _identity( identity ),
-        _a( a )
+        _a( a ),
+        _options( 0 )
     {}
     
     Client::IMPL::~IMPL()

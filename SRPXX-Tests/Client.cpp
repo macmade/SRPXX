@@ -32,3 +32,45 @@ XSTest( Client, A )
     
     XSTestAssertTrue( client.A() == Constants::A() );
 }
+
+XSTest( Client, SetOptions )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.setOptions( static_cast< uint64_t >( SRP::Client::Options::NoUsernameInX ) );
+    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.setOptions( 0 );
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+}
+    
+XSTest( Client, AddOption )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.addOption( SRP::Client::Options::NoUsernameInX );
+    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+}
+    
+XSTest( Client, RemoveOption )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.addOption( SRP::Client::Options::NoUsernameInX );
+    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.removeOption( SRP::Client::Options::NoUsernameInX );
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+}
+    
+XSTest( Client, HasOption )
+{
+    SRP::Client client = Constants::makeTestClient();
+    
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.addOption( SRP::Client::Options::NoUsernameInX );
+    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    client.removeOption( SRP::Client::Options::NoUsernameInX );
+    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+}
