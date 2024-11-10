@@ -154,7 +154,7 @@ XSTest( BigNum, Random )
                 }
                 
                 XSTestAssertTrue( n[ j ] != n[ k ] );
-                XSTestAssertTrue( n[ j ].bytes().size() == ( i * 128 ) / CHAR_BIT );
+                XSTestAssertTrue( n[ j ].bytes( SRP::BigNum::Endianness::BigEndian ).size() == ( i * 128 ) / CHAR_BIT );
             }
         }
     }
@@ -718,9 +718,6 @@ XSTest( BigNum, ModExp )
 
 XSTest( BigNum, ToString )
 {
-    XSTestAssertTrue( SRP::BigNum( 42 ).string()  == "42" );
-    XSTestAssertTrue( SRP::BigNum( -42 ).string() == "-42" );
-    
     XSTestAssertTrue( SRP::BigNum( 42 ).string( SRP::BigNum::StringFormat::Auto )  == "42" );
     XSTestAssertTrue( SRP::BigNum( -42 ).string( SRP::BigNum::StringFormat::Auto ) == "-42" );
     

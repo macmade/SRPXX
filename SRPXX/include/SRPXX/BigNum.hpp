@@ -96,8 +96,8 @@ namespace SRP
             
             BigNum modExp( const BigNum & exponent, const BigNum & modulus ) const;
             
-            std::string            string( StringFormat format = StringFormat::Auto ) const;
-            std::vector< uint8_t > bytes( Endianness endianness = Endianness::Auto )  const;
+            std::string            string( StringFormat format )  const;
+            std::vector< uint8_t > bytes( Endianness endianness ) const;
             
             BigNum negative() const;
             BigNum positive() const;
