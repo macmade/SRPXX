@@ -163,6 +163,22 @@ namespace SRP
         );
     }
     
+    /* H( N | PAD( g ) ) */
+    BigNum Client::k() const
+    {
+        return BigNum
+        (
+            this->hash
+            (
+                {
+                    this->N().bytes( SRP::BigNum::Endianness::BigEndian ),
+                    this->pad( this->g().bytes( SRP::BigNum::Endianness::BigEndian ) ),
+                }
+            ),
+            BigNum::Endianness::BigEndian
+        );
+    }
+    
     /* ( ( B - ( k * g ^ x ) ) ^ ( a + ( u * x ) ) % N ) */
     BigNum Client::S() const
     {
