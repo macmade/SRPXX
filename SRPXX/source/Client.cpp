@@ -121,7 +121,7 @@ namespace SRP
     }
     
     /* ( SHA( s | SHA( I | `:` | P ) ) ) */
-    BigNum Client::X() const
+    BigNum Client::x() const
     {
         std::vector< std::vector< uint8_t > > data =
         {
