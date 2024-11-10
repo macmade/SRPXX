@@ -431,9 +431,7 @@ XSTest( BigNum, OperatorLess )
 
 XSTest( BigNum, OperatorPrefixIncrement )
 {
-    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
-    
-    for( auto i: test )
+    for( int64_t i = INT8_MIN; i <= INT8_MAX; i++ )
     {
         SRP::BigNum n( i );
         
@@ -444,9 +442,7 @@ XSTest( BigNum, OperatorPrefixIncrement )
 
 XSTest( BigNum, OperatorPrefixDecrement )
 {
-    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
-    
-    for( auto i: test )
+    for( int64_t i = INT8_MIN; i <= INT8_MAX; i++ )
     {
         SRP::BigNum n( i );
         
@@ -457,9 +453,7 @@ XSTest( BigNum, OperatorPrefixDecrement )
 
 XSTest( BigNum, OperatorPostfixIncrement )
 {
-    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
-    
-    for( auto i: test )
+    for( int64_t i = INT8_MIN; i <= INT8_MAX; i++ )
     {
         SRP::BigNum n( i );
         
@@ -470,9 +464,7 @@ XSTest( BigNum, OperatorPostfixIncrement )
 
 XSTest( BigNum, OperatorPostfixDecrement )
 {
-    std::vector< int64_t > test = { -2, -1, 0, 1, 2 };
-    
-    for( auto i: test )
+    for( int64_t i = INT8_MIN; i <= INT8_MAX; i++ )
     {
         SRP::BigNum n( i );
         
@@ -483,176 +475,152 @@ XSTest( BigNum, OperatorPostfixDecrement )
 
 XSTest( BigNum, OperatorPlusEqual )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        
-        n1 += n2;
-        
-        XSTestAssertTrue( n1 == a + b );
-        XSTestAssertTrue( n2 == b );
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            
+            n1 += n2;
+            
+            XSTestAssertTrue( n1 == a + b );
+            XSTestAssertTrue( n2 == b );
+        }
     }
 }
 
 XSTest( BigNum, OperatorMinusEqual )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        
-        n1 -= n2;
-        
-        XSTestAssertTrue( n1 == a - b );
-        XSTestAssertTrue( n2 == b );
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+            {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            
+            n1 -= n2;
+            
+            XSTestAssertTrue( n1 == a - b );
+            XSTestAssertTrue( n2 == b );
+        }
     }
 }
 
 XSTest( BigNum, OperatorMultiplyEqual )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        
-        n1 *= n2;
-        
-        XSTestAssertTrue( n1 == a * b );
-        XSTestAssertTrue( n2 == b );
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            
+            n1 *= n2;
+            
+            XSTestAssertTrue( n1 == a * b );
+            XSTestAssertTrue( n2 == b );
+        }
     }
 }
 
 XSTest( BigNum, OperatorDivideEqual )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        
-        n1 /= n2;
-        
-        if( b == 0 )
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
         {
-            XSTestAssertTrue( n1 == a );
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            
+            n1 /= n2;
+            
+            if( b == 0 )
+            {
+                XSTestAssertTrue( n1 == a );
+            }
+            else
+            {
+                XSTestAssertTrue( n1 == a / b );
+            }
+            
+            XSTestAssertTrue( n2 == b );
         }
-        else
-        {
-            XSTestAssertTrue( n1 == a / b );
-        }
-        
-        XSTestAssertTrue( n2 == b );
     }
 }
 
 XSTest( BigNum, OperatorPlus )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        SRP::BigNum n3( n1 + n2 );
-        
-        XSTestAssertTrue( n1 == a );
-        XSTestAssertTrue( n2 == b );
-        XSTestAssertTrue( n3 == a + b );
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            SRP::BigNum n3( n1 + n2 );
+            
+            XSTestAssertTrue( n1 == a );
+            XSTestAssertTrue( n2 == b );
+            XSTestAssertTrue( n3 == a + b );
+        }
     }
 }
 
 XSTest( BigNum, OperatorMinus )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        SRP::BigNum n3( n1 - n2 );
-        
-        XSTestAssertTrue( n1 == a );
-        XSTestAssertTrue( n2 == b );
-        XSTestAssertTrue( n3 == a - b );
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            SRP::BigNum n3( n1 - n2 );
+            
+            XSTestAssertTrue( n1 == a );
+            XSTestAssertTrue( n2 == b );
+            XSTestAssertTrue( n3 == a - b );
+        }
     }
 }
 
 XSTest( BigNum, OperatorMultiply )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        SRP::BigNum n3( n1 * n2 );
-        
-        XSTestAssertTrue( n1 == a );
-        XSTestAssertTrue( n2 == b );
-        XSTestAssertTrue( n3 == a * b );
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
+        {
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            SRP::BigNum n3( n1 * n2 );
+            
+            XSTestAssertTrue( n1 == a );
+            XSTestAssertTrue( n2 == b );
+            XSTestAssertTrue( n3 == a * b );
+        }
     }
 }
 
 XSTest( BigNum, OperatorDivide )
 {
-    std::vector< std::tuple< int64_t, int64_t > > test =
+    for( int64_t a = INT8_MIN; a <= INT8_MAX; a++ )
     {
-        { 42,  0 }, { -42,  0 }, {  0, 42 }, {   0, -42 },
-        { 42, 24 }, { -42, 24 }, { 24, 42 }, { -24, -42 }
-    };
-    
-    for( auto [ a, b ]: test )
-    {
-        SRP::BigNum n1( a );
-        SRP::BigNum n2( b );
-        SRP::BigNum n3( n1 / n2 );
-        
-        XSTestAssertTrue( n1 == a );
-        XSTestAssertTrue( n2 == b );
-        
-        if( b == 0 )
+        for( int64_t b = INT8_MIN; b <= INT8_MAX; b++ )
         {
-            XSTestAssertTrue( n3 == a );
-        }
-        else
-        {
-            XSTestAssertTrue( n3 == a / b );
+            SRP::BigNum n1( a );
+            SRP::BigNum n2( b );
+            SRP::BigNum n3( n1 / n2 );
+            
+            XSTestAssertTrue( n1 == a );
+            XSTestAssertTrue( n2 == b );
+            
+            if( b == 0 )
+            {
+                XSTestAssertTrue( n3 == a );
+            }
+            else
+            {
+                XSTestAssertTrue( n3 == a / b );
+            }
         }
     }
 }
