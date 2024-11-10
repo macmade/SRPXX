@@ -65,6 +65,7 @@ namespace SRP
             BigNum B() const;
             BigNum x() const;
             BigNum u() const;
+            BigNum S() const;
             
         private:
             

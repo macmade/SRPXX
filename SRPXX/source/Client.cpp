@@ -163,6 +163,12 @@ namespace SRP
         );
     }
     
+    /* ( ( B - ( k * g ^ x ) ) ^ ( a + ( u * x ) ) % N ) */
+    BigNum Client::S() const
+    {
+        return {};
+    }
+    
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
         _identity( identity ),
         _a( a ),
