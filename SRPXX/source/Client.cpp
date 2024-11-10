@@ -197,7 +197,26 @@ namespace SRP
     /* H( H( N ) xor H( g ), H( I ), s, A, B, K ) */
     std::vector< uint8_t > Client::M1() const
     {
-        return {};
+        std::vector< uint8_t > hn = this->hash( this->N().bytes( BigNum::Endianness::BigEndian ) );
+        std::vector< uint8_t > hg = this->hash( this->pad( this->g().bytes( BigNum::Endianness::BigEndian ) ) );
+        std::vector< uint8_t > ng;
+        
+        for( size_t i = 0; i < hn.size(); i++ )
+        {
+            ng.push_back( hn[ i ] ^ hg[ i ] );
+        }
+        
+        return this->hash
+        (
+            {
+                ng,
+                this->hash( String::toBytes( this->impl->_identity ) ),
+                this->impl->_salt,
+                this->A().bytes( BigNum::Endianness::BigEndian ),
+                this->B().bytes( BigNum::Endianness::BigEndian ),
+                this->K()
+            }
+        );
     }
     
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
