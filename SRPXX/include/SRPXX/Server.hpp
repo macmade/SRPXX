@@ -43,6 +43,9 @@ namespace SRP
             Server( const Server & o )              = delete;
             Server & operator =( const Server & o ) = delete;
             
+            BigNum b() const;
+            BigNum B() const;
+            
         private:
             
             class IMPL;

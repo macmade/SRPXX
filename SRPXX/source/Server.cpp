@@ -49,6 +49,17 @@ namespace SRP
     Server::~Server()
     {}
     
+    BigNum Server::b() const
+    {
+        return this->impl->_b;
+    }
+    
+    /* ( ( k * v + g ^ b ) % N ) */
+    BigNum Server::B() const
+    {
+        return {};
+    }
+    
     Server::IMPL::IMPL( const std::string & identity, const BigNum & b ):
         _identity( identity ),
         _b( b )
