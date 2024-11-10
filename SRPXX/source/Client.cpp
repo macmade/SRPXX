@@ -146,6 +146,12 @@ namespace SRP
         return { hash, BigNum::Endianness::BigEndian };
     }
     
+    /* H( PAD( A ) | PAD( B ) ) */
+    BigNum Client::u() const
+    {
+        return {};
+    }
+    
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
         _identity( identity ),
         _a( a ),
