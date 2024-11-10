@@ -59,23 +59,23 @@ namespace SRP
     Client::~Client()
     {}
     
-    void Client::setPassword( const std::string & password )
+    void Client::setPassword( const std::string & value )
     {
-        this->setPassword( SRP::String::toBytes( password ) );
+        this->setPassword( SRP::String::toBytes( value ) );
     }
     
-    void Client::setPassword( const std::vector< uint8_t > & password )
+    void Client::setPassword( const std::vector< uint8_t > & value )
     {
         this->impl->clearPassword();
         
-        this->impl->_password = password;
+        this->impl->_password = value;
     }
     
-    void Client::setSalt( const std::vector< uint8_t > & salt )
+    void Client::setSalt( const std::vector< uint8_t > & value )
     {
         this->impl->clearSalt();
         
-        this->impl->_salt = salt;
+        this->impl->_salt = value;
     }
     
     void Client::setOptions( uint64_t options )

@@ -50,9 +50,9 @@ namespace SRP
             Client( const Client & o )              = delete;
             Client & operator =( const Client & o ) = delete;
             
-            void setPassword( const std::string & password );
-            void setPassword( const std::vector< uint8_t > & password );
-            void setSalt( const std::vector< uint8_t > & salt );
+            void setPassword( const std::string & value );
+            void setPassword( const std::vector< uint8_t > & value );
+            void setSalt( const std::vector< uint8_t > & value );
             
             void setOptions( uint64_t options );
             void addOption( Options option );
