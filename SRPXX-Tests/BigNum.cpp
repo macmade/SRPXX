@@ -154,7 +154,7 @@ XSTest( BigNum, Random )
                 }
                 
                 XSTestAssertTrue( n[ j ] != n[ k ] );
-                XSTestAssertTrue( n[ j ].getBytes().size() == ( i * 128 ) / CHAR_BIT );
+                XSTestAssertTrue( n[ j ].bytes().size() == ( i * 128 ) / CHAR_BIT );
             }
         }
     }
@@ -718,20 +718,20 @@ XSTest( BigNum, ModExp )
 
 XSTest( BigNum, ToString )
 {
-    XSTestAssertTrue( SRP::BigNum( 42 ).toString()  == "42" );
-    XSTestAssertTrue( SRP::BigNum( -42 ).toString() == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 42 ).string()  == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 ).string() == "-42" );
     
-    XSTestAssertTrue( SRP::BigNum( 42 ).toString( SRP::BigNum::StringFormat::Auto )  == "42" );
-    XSTestAssertTrue( SRP::BigNum( -42 ).toString( SRP::BigNum::StringFormat::Auto ) == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 42 ).string( SRP::BigNum::StringFormat::Auto )  == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 ).string( SRP::BigNum::StringFormat::Auto ) == "-42" );
     
-    XSTestAssertTrue( SRP::BigNum( 42 ).toString( SRP::BigNum::StringFormat::Decimal )  == "42" );
-    XSTestAssertTrue( SRP::BigNum( -42 ).toString( SRP::BigNum::StringFormat::Decimal ) == "-42" );
+    XSTestAssertTrue( SRP::BigNum( 42 ).string( SRP::BigNum::StringFormat::Decimal )  == "42" );
+    XSTestAssertTrue( SRP::BigNum( -42 ).string( SRP::BigNum::StringFormat::Decimal ) == "-42" );
     
-    XSTestAssertTrue( SRP::BigNum( 0x42 ).toString( SRP::BigNum::StringFormat::Hexadecimal )  == "0x42" );
-    XSTestAssertTrue( SRP::BigNum( -0x42 ).toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0x42" );
+    XSTestAssertTrue( SRP::BigNum( 0x42 ).string( SRP::BigNum::StringFormat::Hexadecimal )  == "0x42" );
+    XSTestAssertTrue( SRP::BigNum( -0x42 ).string( SRP::BigNum::StringFormat::Hexadecimal ) == "-0x42" );
     
-    XSTestAssertTrue( SRP::BigNum( 0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal )  == "0xff" );
-    XSTestAssertTrue( SRP::BigNum( -0xFF ).toString( SRP::BigNum::StringFormat::Hexadecimal ) == "-0xff" );
+    XSTestAssertTrue( SRP::BigNum( 0xFF ).string( SRP::BigNum::StringFormat::Hexadecimal )  == "0xff" );
+    XSTestAssertTrue( SRP::BigNum( -0xFF ).string( SRP::BigNum::StringFormat::Hexadecimal ) == "-0xff" );
 }
 
 XSTest( BigNum, GetBytes_Auto )
@@ -740,11 +740,11 @@ XSTest( BigNum, GetBytes_Auto )
     
     if( SRP::Platform::isBigEndian() )
     {
-        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
+        XSTestAssertTrue( n1.bytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
     }
     else
     {
-        XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
+        XSTestAssertTrue( n1.bytes( SRP::BigNum::Endianness::Auto ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
     }
 }
 
@@ -752,14 +752,14 @@ XSTest( BigNum, GetBytes_BigEndian )
 {
     SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
     
-    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::BigEndian ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
+    XSTestAssertTrue( n1.bytes( SRP::BigNum::Endianness::BigEndian ) == std::vector< uint8_t >( { 0x42, 0xFF } ) );
 }
 
 XSTest( BigNum, GetBytes_LittleEndian )
 {
     SRP::BigNum n1( { 0x42, 0xFF }, SRP::BigNum::Endianness::BigEndian );
     
-    XSTestAssertTrue( n1.getBytes( SRP::BigNum::Endianness::LittleEndian ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
+    XSTestAssertTrue( n1.bytes( SRP::BigNum::Endianness::LittleEndian ) == std::vector< uint8_t >( { 0xFF, 0x42 } ) );
 }
 
 XSTest( BigNum, Negative )

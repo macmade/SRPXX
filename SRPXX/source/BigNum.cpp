@@ -158,7 +158,7 @@ namespace SRP
             format = StringFormat::Hexadecimal;
         }
         
-        std::string s1 = this->toString( format );
+        std::string s1 = this->string( format );
         std::string s2 = String::toLower( value );
         
         return s1 == s2;
@@ -341,7 +341,7 @@ namespace SRP
         return n;
     }
     
-    std::string BigNum::toString( StringFormat format ) const
+    std::string BigNum::string( StringFormat format ) const
     {
         BigNum abs = this->positive();
         char * cp  = nullptr;
@@ -378,7 +378,7 @@ namespace SRP
         return String::toLower( s );
     }
     
-    std::vector< uint8_t > BigNum::getBytes( Endianness endianness ) const
+    std::vector< uint8_t > BigNum::bytes( Endianness endianness ) const
     {
         size_t size = BN_num_bytes( this->impl->_bn );
         
