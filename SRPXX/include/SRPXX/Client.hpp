@@ -60,13 +60,14 @@ namespace SRP
             void removeOption( Options option );
             bool hasOption( Options option ) const;
             
-            BigNum a() const;
-            BigNum A() const;
-            BigNum B() const;
-            BigNum x() const;
-            BigNum u() const;
-            BigNum k() const;
-            BigNum S() const;
+            BigNum                 a() const;
+            BigNum                 A() const;
+            BigNum                 B() const;
+            BigNum                 x() const;
+            BigNum                 u() const;
+            BigNum                 k() const;
+            BigNum                 S() const;
+            std::vector< uint8_t > K() const;
             
         private:
             

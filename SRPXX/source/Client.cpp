@@ -188,6 +188,12 @@ namespace SRP
         return left.modExp( right, this->N() );
     }
     
+    /* H( S ) */
+    std::vector< uint8_t > Client::K() const
+    {
+        return this->hash( this->S().bytes( BigNum::Endianness::BigEndian ) );
+    }
+    
     Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
         _identity( identity ),
         _a( a ),
