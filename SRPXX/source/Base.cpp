@@ -124,6 +124,22 @@ namespace SRP
         return this->impl->_g;
     }
     
+    /* H( N | PAD( g ) ) */
+    BigNum Base::k() const
+    {
+        return BigNum
+        (
+            this->hash
+            (
+                {
+                    this->N().bytes( SRP::BigNum::Endianness::BigEndian ),
+                    this->pad( this->g().bytes( SRP::BigNum::Endianness::BigEndian ) ),
+                }
+            ),
+            BigNum::Endianness::BigEndian
+        );
+    }
+    
     Base::IMPL::IMPL( HashAlgorithm hashAlgorithm, GroupType groupType ):
         _hashAlgorithm( hashAlgorithm ),
         _groupType( groupType ),
