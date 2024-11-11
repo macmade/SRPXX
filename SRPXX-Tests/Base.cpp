@@ -49,6 +49,11 @@ class ConcreteBase: public SRP::Base
         {
             return Constants::B();
         }
+        
+        SRP::BigNum S() const override
+        {
+            return {};
+        }
 };
 
 XSTest( Base, u )

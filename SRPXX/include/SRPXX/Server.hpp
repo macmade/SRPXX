@@ -48,6 +48,7 @@ namespace SRP
             
             BigNum A() const override;
             BigNum B() const override;
+            BigNum S() const override;
             
             BigNum v() const;
             BigNum b() const;

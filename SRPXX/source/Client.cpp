@@ -153,12 +153,6 @@ namespace SRP
         return left.modExp( right, this->N() );
     }
     
-    /* H( S ) */
-    std::vector< uint8_t > Client::K() const
-    {
-        return this->hash( this->S().bytes( BigNum::Endianness::BigEndian ) );
-    }
-    
     /* H( H( N ) xor H( g ), H( I ), s, A, B, K ) */
     std::vector< uint8_t > Client::M1() const
     {

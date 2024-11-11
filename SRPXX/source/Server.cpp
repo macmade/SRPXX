@@ -75,6 +75,11 @@ namespace SRP
         return left.modAdd( right, this->N() );
     }
     
+    BigNum Server::S() const
+    {
+        return {};
+    }
+    
     BigNum Server::v() const
     {
         return this->impl->_v;

@@ -128,6 +128,12 @@ namespace SRP
         );
     }
     
+    /* H( S ) */
+    std::vector< uint8_t > Base::K() const
+    {
+        return this->hash( this->S().bytes( BigNum::Endianness::BigEndian ) );
+    }
+    
     std::unique_ptr< Hasher > Base::makeHasher() const
     {
         switch( this->impl->_hashAlgorithm )

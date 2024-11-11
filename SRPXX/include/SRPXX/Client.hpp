@@ -61,13 +61,12 @@ namespace SRP
             
             BigNum A() const override;
             BigNum B() const override;
+            BigNum S() const override;
             
             BigNum a() const;
             BigNum x() const;
             BigNum v() const;
-            BigNum S() const;
             
-            std::vector< uint8_t > K()  const;
             std::vector< uint8_t > M1() const;
             std::vector< uint8_t > M2() const;
             
