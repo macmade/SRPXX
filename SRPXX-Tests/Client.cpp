@@ -26,6 +26,29 @@
 #include <XSTest/XSTest.hpp>
 #include "Constants.hpp"
 
+XSTest( Client, SetB )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setB( constants.B() );
+        XSTestAssertTrue( client.B() == constants.B() );
+    }
+}
+
+XSTest( Client, v )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        XSTestAssertTrue( client.v() == constants.v() );
+    }
+}
+
 XSTest( Client, a )
 {
     for( const auto & constants: Constants::all() )
@@ -46,38 +69,17 @@ XSTest( Client, A )
     }
 }
 
-XSTest( Client, SetB )
+XSTest( Client, u )
 {
     for( const auto & constants: Constants::all() )
     {
         SRP::Client client = constants.makeClient();
         
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
         client.setB( constants.B() );
-        XSTestAssertTrue( client.B() == constants.B() );
-    }
-}
-
-XSTest( Client, X )
-{
-    for( const auto & constants: Constants::all() )
-    {
-        SRP::Client client = constants.makeClient();
         
-        client.setPassword( constants.password() );
-        client.setSalt( constants.salt() );
-        XSTestAssertTrue( client.x() == constants.x() );
-    }
-}
-
-XSTest( Client, v )
-{
-    for( const auto & constants: Constants::all() )
-    {
-        SRP::Client client = constants.makeClient();
-        
-        client.setPassword( constants.password() );
-        client.setSalt( constants.salt() );
-        XSTestAssertTrue( client.v() == constants.v() );
+        XSTestAssertTrue( client.u() == constants.u() );
     }
 }
 
@@ -106,6 +108,18 @@ XSTest( Client, S )
         client.setB( constants.B() );
         
         XSTestAssertTrue( client.S() == constants.S() );
+    }
+}
+
+XSTest( Client, X )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        XSTestAssertTrue( client.x() == constants.x() );
     }
 }
 
