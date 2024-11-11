@@ -33,6 +33,29 @@ static std::string removeSpaces( std::string s )
     return s;
 }
 
+XSTest( Base, Salt )
+{
+    std::unique_ptr< SRP::Base > base;
+    
+    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 ) );
+    
+    XSTestAssertTrue( base->salt().size() == 0 );
+    
+    std::vector< uint8_t > salt1 = SRP::Random::bytes( 16 );
+    std::vector< uint8_t > salt2 = SRP::Random::bytes( 16 );
+    
+    XSTestAssertTrue( salt1 != salt2 );
+    
+    base->setSalt( salt1 );
+    XSTestAssertTrue(  base->salt() == salt1 );
+    
+    base->setSalt( salt2 );
+    XSTestAssertTrue(  base->salt() == salt2 );
+    
+    base->setSalt( {} );
+    XSTestAssertTrue( base->salt().size() == 0 );
+}
+
 XSTest( Base, Hasher_SHA1 )
 {
     std::unique_ptr< SRP::Base > base;

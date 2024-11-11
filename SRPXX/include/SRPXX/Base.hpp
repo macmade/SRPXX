@@ -29,6 +29,8 @@
 #include <SRPXX/Hasher.hpp>
 #include <SRPXX/BigNum.hpp>
 #include <memory>
+#include <vector>
+#include <cstdint>
 
 namespace SRP
 {
@@ -52,6 +54,10 @@ namespace SRP
             
             Base( const Base & o )              = delete;
             Base & operator =( const Base & o ) = delete;
+            
+            std::vector< uint8_t > salt() const;
+            
+            void setSalt( const std::vector< uint8_t > & value );
             
             std::unique_ptr< Hasher > makeHasher()                                               const;
             std::vector< uint8_t >    hash( const std::vector< uint8_t > & data )                const;

@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
+/* For memset_s */
+#define __STDC_WANT_LIB_EXT1__ 1
+
 #include <SRPXX/Base.hpp>
 #include <SRPXX/SHA1.hpp>
 #include <SRPXX/SHA224.hpp>
@@ -31,6 +34,7 @@
 #include <string>
 #include <cctype>
 #include <stdexcept>
+#include <string.h>
 
 namespace SRP
 {
@@ -41,10 +45,13 @@ namespace SRP
             IMPL( HashAlgorithm hashAlgorithm, GroupType groupType );
             ~IMPL();
             
-            HashAlgorithm _hashAlgorithm;
-            GroupType     _groupType;
-            BigNum        _N;
-            BigNum        _g;
+            HashAlgorithm          _hashAlgorithm;
+            GroupType              _groupType;
+            BigNum                 _N;
+            BigNum                 _g;
+            std::vector< uint8_t > _salt;
+            
+            void clearSalt();
             
             static BigNum getN( GroupType groupType );
             static BigNum getG( GroupType groupType );
@@ -66,6 +73,18 @@ namespace SRP
     
     Base::~Base()
     {}
+    
+    std::vector< uint8_t > Base::salt() const
+    {
+        return this->impl->_salt;
+    }
+    
+    void Base::setSalt( const std::vector< uint8_t > & value )
+    {
+        this->impl->clearSalt();
+        
+        this->impl->_salt = value;
+    }
     
     std::unique_ptr< Hasher > Base::makeHasher() const
     {
@@ -148,7 +167,17 @@ namespace SRP
     {}
     
     Base::IMPL::~IMPL()
-    {}
+    {
+        this->clearSalt();
+    }
+    
+    void Base::IMPL::clearSalt()
+    {
+        if( this->_salt.size() > 0 )
+        {
+            memset_s( this->_salt.data(), this->_salt.size(), 0, this->_salt.size() );
+        }
+    }
             
     BigNum Base::IMPL::getN( GroupType groupType )
     {

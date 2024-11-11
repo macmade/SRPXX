@@ -38,13 +38,11 @@ namespace SRP
             ~IMPL();
             
             void clearPassword();
-            void clearSalt();
             
             std::string            _identity;
             BigNum                 _a;
             BigNum                 _B;
             std::vector< uint8_t > _password;
-            std::vector< uint8_t > _salt;
             uint64_t               _options;
     };
     
@@ -70,13 +68,6 @@ namespace SRP
         this->impl->clearPassword();
         
         this->impl->_password = value;
-    }
-    
-    void Client::setSalt( const std::vector< uint8_t > & value )
-    {
-        this->impl->clearSalt();
-        
-        this->impl->_salt = value;
     }
     
     void Client::setB( const BigNum & value )
@@ -139,7 +130,7 @@ namespace SRP
         std::vector< uint8_t > hash = this->hash
         (
             {
-                this->impl->_salt,
+                this->salt(),
                 this->hash( data )
             }
         );
@@ -201,7 +192,7 @@ namespace SRP
             {
                 ng,
                 this->hash( String::toBytes( this->impl->_identity ) ),
-                this->impl->_salt,
+                this->salt(),
                 this->A().bytes( BigNum::Endianness::BigEndian ),
                 this->B().bytes( BigNum::Endianness::BigEndian ),
                 this->K()
@@ -238,14 +229,6 @@ namespace SRP
         if( this->_password.size() > 0 )
         {
             memset_s( this->_password.data(), this->_password.size(), 0, this->_password.size() );
-        }
-    }
-    
-    void Client::IMPL::clearSalt()
-    {
-        if( this->_salt.size() > 0 )
-        {
-            memset_s( this->_salt.data(), this->_salt.size(), 0, this->_salt.size() );
         }
     }
 }
