@@ -34,12 +34,11 @@ namespace SRP
     {
         public:
             
-            IMPL( const std::string & identity, const BigNum & a );
+            IMPL( const BigNum & a );
             ~IMPL();
             
             void clearPassword();
             
-            std::string            _identity;
             BigNum                 _a;
             BigNum                 _B;
             std::vector< uint8_t > _password;
@@ -51,8 +50,8 @@ namespace SRP
     {}
             
     Client::Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & a ):
-        Base( hashAlgorithm, groupType ),
-        impl( std::make_unique< IMPL >( identity, a ) )
+        Base( identity, hashAlgorithm, groupType ),
+        impl( std::make_unique< IMPL >( a ) )
     {}
     
     Client::~Client()
@@ -117,7 +116,7 @@ namespace SRP
     {
         std::vector< std::vector< uint8_t > > data =
         {
-            String::toBytes( this->impl->_identity ),
+            String::toBytes( this->identity() ),
             String::toBytes( ":" ),
             this->impl->_password
         };
@@ -169,7 +168,7 @@ namespace SRP
         (
             {
                 ng,
-                this->hash( String::toBytes( this->impl->_identity ) ),
+                this->hash( String::toBytes( this->identity() ) ),
                 this->salt(),
                 this->A().bytes( BigNum::Endianness::BigEndian ),
                 this->B().bytes( BigNum::Endianness::BigEndian ),
@@ -191,8 +190,7 @@ namespace SRP
         );
     }
     
-    Client::IMPL::IMPL( const std::string & identity, const BigNum & a ):
-        _identity( identity ),
+    Client::IMPL::IMPL( const BigNum & a ):
         _a( a ),
         _options( 0 )
     {}

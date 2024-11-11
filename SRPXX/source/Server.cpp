@@ -30,13 +30,12 @@ namespace SRP
     {
         public:
             
-            IMPL( const std::string & identity, const BigNum & b );
+            IMPL( const BigNum & b );
             ~IMPL();
             
-            std::string _identity;
-            BigNum      _v;
-            BigNum      _b;
-            BigNum      _A;
+            BigNum _v;
+            BigNum _b;
+            BigNum _A;
     };
     
     Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
@@ -44,8 +43,8 @@ namespace SRP
     {}
     
     Server::Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & b ):
-        Base( hashAlgorithm, groupType ),
-        impl( std::make_unique< IMPL >( identity, b ) )
+        Base( identity, hashAlgorithm, groupType ),
+        impl( std::make_unique< IMPL >( b ) )
     {}
     
     Server::~Server()
@@ -90,8 +89,7 @@ namespace SRP
         return this->impl->_b;
     }
     
-    Server::IMPL::IMPL( const std::string & identity, const BigNum & b ):
-        _identity( identity ),
+    Server::IMPL::IMPL( const BigNum & b ):
         _b( b )
     {}
     

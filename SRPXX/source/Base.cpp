@@ -42,13 +42,14 @@ namespace SRP
     {
         public:
             
-            IMPL( HashAlgorithm hashAlgorithm, GroupType groupType );
+            IMPL( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             ~IMPL();
             
             HashAlgorithm          _hashAlgorithm;
             GroupType              _groupType;
             BigNum                 _N;
             BigNum                 _g;
+            std::string            _identity;
             std::vector< uint8_t > _salt;
             
             void clearSalt();
@@ -67,12 +68,17 @@ namespace SRP
             static struct NGGroup RFCGroups[];
     };
     
-    Base::Base( HashAlgorithm hashAlgorithm, GroupType groupType ):
-        impl( std::make_unique< IMPL >( hashAlgorithm, groupType ) )
+    Base::Base( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
+        impl( std::make_unique< IMPL >( identity, hashAlgorithm, groupType ) )
     {}
     
     Base::~Base()
     {}
+    
+    std::string Base::identity() const
+    {
+        return this->impl->_identity;
+    }
     
     std::vector< uint8_t > Base::salt() const
     {
@@ -181,11 +187,12 @@ namespace SRP
         return data;
     }
     
-    Base::IMPL::IMPL( HashAlgorithm hashAlgorithm, GroupType groupType ):
+    Base::IMPL::IMPL( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType ):
         _hashAlgorithm( hashAlgorithm ),
         _groupType( groupType ),
         _N( IMPL::getN( groupType ) ),
-        _g( IMPL::getG( groupType ) )
+        _g( IMPL::getG( groupType ) ),
+        _identity( identity )
     {}
     
     Base::IMPL::~IMPL()

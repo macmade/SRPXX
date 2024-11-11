@@ -49,15 +49,16 @@ namespace SRP
                 NG8192
             };
             
-            Base( HashAlgorithm hashAlgorithm, GroupType groupType );
+            Base( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             virtual ~Base();
             
             Base( const Base & o )              = delete;
             Base & operator =( const Base & o ) = delete;
             
-            std::vector< uint8_t > salt() const;
+            std::string identity() const;
             
-            void setSalt( const std::vector< uint8_t > & value );
+            std::vector< uint8_t > salt() const;
+            void                   setSalt( const std::vector< uint8_t > & value );
             
             BigNum N() const;
             BigNum g() const;
