@@ -65,7 +65,9 @@ namespace SRP
             BigNum k() const;
             BigNum u() const;
             
-            std::vector< uint8_t > K() const;
+            std::vector< uint8_t > K()  const;
+            std::vector< uint8_t > M1() const;
+            std::vector< uint8_t > M2() const;
             
             virtual BigNum A() const = 0;
             virtual BigNum B() const = 0;

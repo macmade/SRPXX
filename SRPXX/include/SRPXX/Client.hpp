@@ -67,9 +67,6 @@ namespace SRP
             BigNum x() const;
             BigNum v() const;
             
-            std::vector< uint8_t > M1() const;
-            std::vector< uint8_t > M2() const;
-            
         private:
             
             class IMPL;
