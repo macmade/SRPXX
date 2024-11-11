@@ -59,14 +59,14 @@ namespace SRP
             
             void setSalt( const std::vector< uint8_t > & value );
             
+            BigNum N() const;
+            BigNum g() const;
+            BigNum k() const;
+            
             std::unique_ptr< Hasher > makeHasher()                                               const;
             std::vector< uint8_t >    hash( const std::vector< uint8_t > & data )                const;
             std::vector< uint8_t >    hash( const std::vector< std::vector< uint8_t > > & data ) const;
             std::vector< uint8_t >    pad(  const std::vector< uint8_t > & data )                const;
-            
-            BigNum N() const;
-            BigNum g() const;
-            BigNum k() const;
             
         private:
             

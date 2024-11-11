@@ -86,6 +86,32 @@ namespace SRP
         this->impl->_salt = value;
     }
     
+    BigNum Base::N() const
+    {
+        return this->impl->_N;
+    }
+    
+    BigNum Base::g() const
+    {
+        return this->impl->_g;
+    }
+    
+    /* H( N | PAD( g ) ) */
+    BigNum Base::k() const
+    {
+        return BigNum
+        (
+            this->hash
+            (
+                {
+                    this->N().bytes( SRP::BigNum::Endianness::BigEndian ),
+                    this->pad( this->g().bytes( SRP::BigNum::Endianness::BigEndian ) ),
+                }
+            ),
+            BigNum::Endianness::BigEndian
+        );
+    }
+    
     std::unique_ptr< Hasher > Base::makeHasher() const
     {
         switch( this->impl->_hashAlgorithm )
@@ -131,32 +157,6 @@ namespace SRP
         }
         
         return data;
-    }
-    
-    BigNum Base::N() const
-    {
-        return this->impl->_N;
-    }
-    
-    BigNum Base::g() const
-    {
-        return this->impl->_g;
-    }
-    
-    /* H( N | PAD( g ) ) */
-    BigNum Base::k() const
-    {
-        return BigNum
-        (
-            this->hash
-            (
-                {
-                    this->N().bytes( SRP::BigNum::Endianness::BigEndian ),
-                    this->pad( this->g().bytes( SRP::BigNum::Endianness::BigEndian ) ),
-                }
-            ),
-            BigNum::Endianness::BigEndian
-        );
     }
     
     Base::IMPL::IMPL( HashAlgorithm hashAlgorithm, GroupType groupType ):
