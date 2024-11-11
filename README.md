@@ -20,7 +20,7 @@ C++ implementation of the Secure Remote Password protocol (SRP) - RFC 5054.
 
 // Server storage
 std::vector< uint8_t > salt;
-SRP::BigNum            verifier;
+std::vector< uint8_t > verifier;
 
 /* Registration */
 {
@@ -37,7 +37,7 @@ SRP::BigNum            verifier;
     // Server receives salt and verifier from Client
     // Client can then discard them
     salt     = client.salt();
-    verifier = client.v();
+    verifier = client.v().bytes( SRP::BigNum::Endianness::BigEndian );
 }
 
 /* Authentication */
@@ -47,7 +47,7 @@ SRP::BigNum            verifier;
     
     // Server has stored salt and verifier during authentication (see above)
     server.setSalt( salt );
-    server.setV( verifier );
+    server.setV( SRP::BigNum( verifier, SRP::BigNum::Endianness::BigEndian ) );
     
     // Client -> Server:
     // Server receives A from Client

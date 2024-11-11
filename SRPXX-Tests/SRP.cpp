@@ -29,7 +29,7 @@ XSTest( SRP, Complete )
 {
     // Server storage
     std::vector< uint8_t > salt;
-    SRP::BigNum            verifier;
+    std::vector< uint8_t > verifier;
     
     /* Registration */
     {
@@ -44,7 +44,7 @@ XSTest( SRP, Complete )
         // Client -> Server:
         // Server receives salt and verifier from Client
         salt     = client.salt();
-        verifier = client.v();
+        verifier = client.v().bytes( SRP::BigNum::Endianness::BigEndian );
     }
     
     /* Authentication */
@@ -54,7 +54,7 @@ XSTest( SRP, Complete )
         
         // Server has stored salt and verifier during authentication (see above)
         server.setSalt( salt );
-        server.setV( verifier );
+        server.setV( SRP::BigNum( verifier, SRP::BigNum::Endianness::BigEndian ) );
         
         // Client -> Server:
         // Server receives A from Client
