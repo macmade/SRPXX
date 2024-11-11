@@ -95,11 +95,6 @@ namespace SRP
         return ( this->impl->_options & static_cast< uint64_t >( option ) ) != 0;
     }
     
-    BigNum Client::a() const
-    {
-        return this->impl->_a;
-    }
-    
     /* ( g ^ a % N ) */
     BigNum Client::A() const
     {
@@ -110,6 +105,11 @@ namespace SRP
     BigNum Client::B() const
     {
         return this->impl->_B;
+    }
+    
+    BigNum Client::a() const
+    {
+        return this->impl->_a;
     }
     
     /* ( SHA( s | SHA( I | `:` | P ) ) ) */

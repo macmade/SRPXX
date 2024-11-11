@@ -45,6 +45,16 @@ namespace SRP
         Base( hashAlgorithm, groupType ),
         impl( std::make_unique< IMPL >( identity, b ) )
     {}
+            
+    BigNum Server::A() const
+    {
+        return {};
+    }
+    
+    BigNum Server::B() const
+    {
+        return {};
+    }
     
     Server::~Server()
     {}

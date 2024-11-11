@@ -24,6 +24,7 @@
 
 #include <SRPXX.hpp>
 #include <XSTest/XSTest.hpp>
+#include "Constants.hpp"
 
 static std::string removeSpaces( std::string s );
 static std::string removeSpaces( std::string s )
@@ -33,36 +34,48 @@ static std::string removeSpaces( std::string s )
     return s;
 }
 
+class ConcreteBase: public SRP::Base
+{
+    public:
+        
+        using SRP::Base::Base;
+        
+        SRP::BigNum A() const override
+        {
+            return Constants::A();
+        }
+        
+        SRP::BigNum B() const override
+        {
+            return Constants::B();
+        }
+};
+
 XSTest( Base, Salt )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 ) );
-    
-    XSTestAssertTrue( base->salt().size() == 0 );
+    XSTestAssertTrue( base.salt().size() == 0 );
     
     std::vector< uint8_t > salt1 = SRP::Random::bytes( 16 );
     std::vector< uint8_t > salt2 = SRP::Random::bytes( 16 );
     
     XSTestAssertTrue( salt1 != salt2 );
     
-    base->setSalt( salt1 );
-    XSTestAssertTrue(  base->salt() == salt1 );
+    base.setSalt( salt1 );
+    XSTestAssertTrue( base.salt() == salt1 );
     
-    base->setSalt( salt2 );
-    XSTestAssertTrue(  base->salt() == salt2 );
+    base.setSalt( salt2 );
+    XSTestAssertTrue( base.salt() == salt2 );
     
-    base->setSalt( {} );
-    XSTestAssertTrue( base->salt().size() == 0 );
+    base.setSalt( {} );
+    XSTestAssertTrue( base.salt().size() == 0 );
 }
 
 XSTest( Base, Hasher_SHA1 )
 {
-    std::unique_ptr< SRP::Base > base;
-    
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 ) );
-    
-    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
+    auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
     hasher->finalize();
@@ -70,8 +83,8 @@ XSTest( Base, Hasher_SHA1 )
     XSTestAssertEqual( hasher->string( SRP::String::HexFormat::Uppercase ), "B7E23EC29AF22B0B4E41DA31E868D57226121C84" );
     
     auto hash1 = hasher->bytes();
-    auto hash2 = base->hash( SRP::String::toBytes( "hello, world" ) );
-    auto hash3 = base->hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
+    auto hash2 = base.hash( SRP::String::toBytes( "hello, world" ) );
+    auto hash3 = base.hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
     
     XSTestAssertTrue( hash1 == hash2 );
     XSTestAssertTrue( hash1 == hash3 );
@@ -80,11 +93,8 @@ XSTest( Base, Hasher_SHA1 )
 
 XSTest( Base, Hasher_SHA224 )
 {
-    std::unique_ptr< SRP::Base > base;
-    
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA224, SRP::Base::GroupType::NG1024 ) );
-    
-    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    ConcreteBase base( SRP::HashAlgorithm::SHA224, SRP::Base::GroupType::NG1024 );
+    auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
     hasher->finalize();
@@ -92,8 +102,8 @@ XSTest( Base, Hasher_SHA224 )
     XSTestAssertEqual( hasher->string( SRP::String::HexFormat::Uppercase ), "6E1A93E32FB44081A401F3DB3EF2E6E108B7BBEEB5705AFDAF01FB27" );
     
     auto hash1 = hasher->bytes();
-    auto hash2 = base->hash( SRP::String::toBytes( "hello, world" ) );
-    auto hash3 = base->hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
+    auto hash2 = base.hash( SRP::String::toBytes( "hello, world" ) );
+    auto hash3 = base.hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
     
     XSTestAssertTrue( hash1 == hash2 );
     XSTestAssertTrue( hash1 == hash3 );
@@ -102,11 +112,8 @@ XSTest( Base, Hasher_SHA224 )
 
 XSTest( Base, Hasher_SHA256 )
 {
-    std::unique_ptr< SRP::Base > base;
-    
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG1024 ) );
-    
-    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    ConcreteBase base( SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG1024 );
+    auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
     hasher->finalize();
@@ -114,8 +121,8 @@ XSTest( Base, Hasher_SHA256 )
     XSTestAssertEqual( hasher->string( SRP::String::HexFormat::Uppercase ), "09CA7E4EAA6E8AE9C7D261167129184883644D07DFBA7CBFBC4C8A2E08360D5B" );
     
     auto hash1 = hasher->bytes();
-    auto hash2 = base->hash( SRP::String::toBytes( "hello, world" ) );
-    auto hash3 = base->hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
+    auto hash2 = base.hash( SRP::String::toBytes( "hello, world" ) );
+    auto hash3 = base.hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
     
     XSTestAssertTrue( hash1 == hash2 );
     XSTestAssertTrue( hash1 == hash3 );
@@ -124,11 +131,8 @@ XSTest( Base, Hasher_SHA256 )
 
 XSTest( Base, Hasher_SHA384 )
 {
-    std::unique_ptr< SRP::Base > base;
-    
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA384, SRP::Base::GroupType::NG1024 ) );
-    
-    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    ConcreteBase base( SRP::HashAlgorithm::SHA384, SRP::Base::GroupType::NG1024 );
+    auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
     hasher->finalize();
@@ -136,8 +140,8 @@ XSTest( Base, Hasher_SHA384 )
     XSTestAssertEqual( hasher->string( SRP::String::HexFormat::Uppercase ), "1FCDB6059CE05172A26BBE2A3CCC88ED5A8CD5FC53EDFD9053304D429296A6DA23B1CD9E5C9ED3BB34F00418A70CDB7E" );
     
     auto hash1 = hasher->bytes();
-    auto hash2 = base->hash( SRP::String::toBytes( "hello, world" ) );
-    auto hash3 = base->hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
+    auto hash2 = base.hash( SRP::String::toBytes( "hello, world" ) );
+    auto hash3 = base.hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
     
     XSTestAssertTrue( hash1 == hash2 );
     XSTestAssertTrue( hash1 == hash3 );
@@ -146,11 +150,8 @@ XSTest( Base, Hasher_SHA384 )
 
 XSTest( Base, Hasher_SHA512 )
 {
-    std::unique_ptr< SRP::Base > base;
-    
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA512, SRP::Base::GroupType::NG1024 ) );
-    
-    std::unique_ptr< SRP::Hasher > hasher = base->makeHasher();
+    ConcreteBase base( SRP::HashAlgorithm::SHA512, SRP::Base::GroupType::NG1024 );
+    auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
     hasher->finalize();
@@ -158,8 +159,8 @@ XSTest( Base, Hasher_SHA512 )
     XSTestAssertEqual( hasher->string( SRP::String::HexFormat::Uppercase ), "8710339DCB6814D0D9D2290EF422285C9322B7163951F9A0CA8F883D3305286F44139AA374848E4174F5AADA663027E4548637B6D19894AEC4FB6C46A139FBF9" );
     
     auto hash1 = hasher->bytes();
-    auto hash2 = base->hash( SRP::String::toBytes( "hello, world" ) );
-    auto hash3 = base->hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
+    auto hash2 = base.hash( SRP::String::toBytes( "hello, world" ) );
+    auto hash3 = base.hash( { SRP::String::toBytes( "hello, " ), SRP::String::toBytes( "world" ) } );
     
     XSTestAssertTrue( hash1 == hash2 );
     XSTestAssertTrue( hash1 == hash3 );
@@ -168,8 +169,8 @@ XSTest( Base, Hasher_SHA512 )
 
 XSTest( Base, NG1024_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
-    size_t    size = 1024 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
+    size_t       size = 1024 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -179,8 +180,8 @@ XSTest( Base, NG1024_Pad )
 
 XSTest( Base, NG1536_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
-    size_t    size = 1536 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
+    size_t       size = 1536 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -190,8 +191,8 @@ XSTest( Base, NG1536_Pad )
 
 XSTest( Base, NG2048_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
-    size_t    size = 2048 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
+    size_t       size = 2048 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -201,8 +202,8 @@ XSTest( Base, NG2048_Pad )
 
 XSTest( Base, NG3072_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
-    size_t    size = 3072 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
+    size_t       size = 3072 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -212,8 +213,8 @@ XSTest( Base, NG3072_Pad )
 
 XSTest( Base, NG4096_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
-    size_t    size = 4096 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
+    size_t       size = 4096 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -223,8 +224,8 @@ XSTest( Base, NG4096_Pad )
 
 XSTest( Base, NG6144_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
-    size_t    size = 6144 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
+    size_t       size = 6144 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -234,8 +235,8 @@ XSTest( Base, NG6144_Pad )
 
 XSTest( Base, NG8192_Pad )
 {
-    SRP::Base base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
-    size_t    size = 8192 / 8;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
+    size_t       size = 8192 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
     XSTestAssertTrue( base.pad( std::vector< uint8_t >( size - 1 ) ).size() == size );
@@ -245,13 +246,12 @@ XSTest( Base, NG8192_Pad )
 
 XSTest( Base, NG1024 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 ) );
-    XSTestAssertEqual( base->g(), "2" );
+    XSTestAssertEqual( base.g(), "2" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"
@@ -266,13 +266,12 @@ XSTest( Base, NG1024 )
 
 XSTest( Base, NG1536 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 ) );
-    XSTestAssertEqual( base->g(), "2" );
+    XSTestAssertEqual( base.g(), "2" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"
@@ -289,13 +288,12 @@ XSTest( Base, NG1536 )
 
 XSTest( Base, NG2048 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 ) );
-    XSTestAssertEqual( base->g(), "2" );
+    XSTestAssertEqual( base.g(), "2" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"
@@ -315,13 +313,12 @@ XSTest( Base, NG2048 )
 
 XSTest( Base, NG3072 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 ) );
-    XSTestAssertEqual( base->g(), "5" );
+    XSTestAssertEqual( base.g(), "5" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"
@@ -345,13 +342,12 @@ XSTest( Base, NG3072 )
 
 XSTest( Base, NG4096 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 ) );
-    XSTestAssertEqual( base->g(), "5" );
+    XSTestAssertEqual( base.g(), "5" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"
@@ -380,13 +376,12 @@ XSTest( Base, NG4096 )
 
 XSTest( Base, NG6144 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 ) );
-    XSTestAssertEqual( base->g(), "5" );
+    XSTestAssertEqual( base.g(), "5" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"
@@ -424,13 +419,12 @@ XSTest( Base, NG6144 )
 
 XSTest( Base, NG8192 )
 {
-    std::unique_ptr< SRP::Base > base;
+    ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
     
-    XSTestAssertNoThrow( base = std::make_unique< SRP::Base >( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 ) );
-    XSTestAssertEqual( base->g(), "19" );
+    XSTestAssertEqual( base.g(), "19" );
     XSTestAssertEqual
     (
-        base->N(),
+        base.N(),
         removeSpaces
         (
             "0x"

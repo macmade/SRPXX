@@ -38,10 +38,13 @@ namespace SRP
             
             Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             Server( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & b );
-            virtual ~Server();
+            virtual ~Server() override;
             
             Server( const Server & o )              = delete;
             Server & operator =( const Server & o ) = delete;
+            
+            BigNum A() const override;
+            BigNum B() const override;
             
             BigNum b() const;
             

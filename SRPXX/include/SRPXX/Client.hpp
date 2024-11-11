@@ -45,7 +45,7 @@ namespace SRP
             
             Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType );
             Client( const std::string & identity, HashAlgorithm hashAlgorithm, GroupType groupType, const BigNum & a );
-            virtual ~Client();
+            virtual ~Client() override;
             
             Client( const Client & o )              = delete;
             Client & operator =( const Client & o ) = delete;
@@ -59,9 +59,10 @@ namespace SRP
             void removeOption( Options option );
             bool hasOption( Options option ) const;
             
+            BigNum A() const override;
+            BigNum B() const override;
+            
             BigNum a() const;
-            BigNum A() const;
-            BigNum B() const;
             BigNum x() const;
             BigNum v() const;
             BigNum u() const;
