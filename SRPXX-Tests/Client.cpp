@@ -28,137 +28,179 @@
 
 XSTest( Client, a )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    XSTestAssertTrue( client.a() == Constants::a() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        XSTestAssertTrue( client.a() == constants.a() );
+    }
 }
 
 XSTest( Client, A )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    XSTestAssertTrue( client.A() == Constants::A() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        XSTestAssertTrue( client.A() == constants.A() );
+    }
 }
 
 XSTest( Client, SetB )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setB( Constants::B() );
-    XSTestAssertTrue( client.B() == Constants::B() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setB( constants.B() );
+        XSTestAssertTrue( client.B() == constants.B() );
+    }
 }
 
 XSTest( Client, X )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    XSTestAssertTrue( client.x() == Constants::x() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        XSTestAssertTrue( client.x() == constants.x() );
+    }
 }
 
 XSTest( Client, v )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    XSTestAssertTrue( client.v() == Constants::v() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        XSTestAssertTrue( client.v() == constants.v() );
+    }
 }
 
 XSTest( Client, k )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    client.setB( Constants::B() );
-    
-    XSTestAssertTrue( client.k() == Constants::k() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        client.setB( constants.B() );
+        
+        XSTestAssertTrue( client.k() == constants.k() );
+    }
 }
 
 XSTest( Client, S )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    client.setB( Constants::B() );
-    
-    XSTestAssertTrue( client.S() == Constants::S() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        client.setB( constants.B() );
+        
+        XSTestAssertTrue( client.S() == constants.S() );
+    }
 }
 
 XSTest( Client, K )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    client.setB( Constants::B() );
-    
-    XSTestAssertTrue( client.K() == Constants::K() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        client.setB( constants.B() );
+        
+        XSTestAssertTrue( client.K() == constants.K() );
+    }
 }
 
 XSTest( Client, M1 )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    client.setB( Constants::B() );
-    
-    XSTestAssertTrue( client.M1() == Constants::M1() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        client.setB( constants.B() );
+        
+        XSTestAssertTrue( client.M1() == constants.M1() );
+    }
 }
 
 XSTest( Client, M2 )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    client.setPassword( Constants::password() );
-    client.setSalt( Constants::salt() );
-    client.setB( Constants::B() );
-    
-    XSTestAssertTrue( client.M2() == Constants::M2() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        client.setPassword( constants.password() );
+        client.setSalt( constants.salt() );
+        client.setB( constants.B() );
+        
+        XSTestAssertTrue( client.M2() == constants.M2() );
+    }
 }
 
 XSTest( Client, SetOptions )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.setOptions( static_cast< uint64_t >( SRP::Client::Options::NoUsernameInX ) );
-    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.setOptions( 0 );
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.setOptions( static_cast< uint64_t >( SRP::Client::Options::NoUsernameInX ) );
+        XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.setOptions( 0 );
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    }
 }
     
 XSTest( Client, AddOption )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.addOption( SRP::Client::Options::NoUsernameInX );
-    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.addOption( SRP::Client::Options::NoUsernameInX );
+        XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    }
 }
     
 XSTest( Client, RemoveOption )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.addOption( SRP::Client::Options::NoUsernameInX );
-    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.removeOption( SRP::Client::Options::NoUsernameInX );
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.addOption( SRP::Client::Options::NoUsernameInX );
+        XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.removeOption( SRP::Client::Options::NoUsernameInX );
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    }
 }
     
 XSTest( Client, HasOption )
 {
-    SRP::Client client = Constants::makeTestClient();
-    
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.addOption( SRP::Client::Options::NoUsernameInX );
-    XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
-    client.removeOption( SRP::Client::Options::NoUsernameInX );
-    XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Client client = constants.makeClient();
+        
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.addOption( SRP::Client::Options::NoUsernameInX );
+        XSTestAssertTrue( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+        client.removeOption( SRP::Client::Options::NoUsernameInX );
+        XSTestAssertFalse( client.hasOption( SRP::Client::Options::NoUsernameInX ) );
+    }
 }

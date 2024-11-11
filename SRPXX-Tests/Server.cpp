@@ -28,27 +28,36 @@
 
 XSTest( Server, SetV )
 {
-    SRP::Server server = Constants::makeTestServer();
-    
-    XSTestAssertTrue( server.v() == SRP::BigNum() );
-    server.setV( SRP::BigNum( 42 ) );
-    XSTestAssertTrue( server.v() == SRP::BigNum( 42 ) );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Server server = constants.makeServer();
+        
+        XSTestAssertTrue( server.v() == SRP::BigNum() );
+        server.setV( SRP::BigNum( 42 ) );
+        XSTestAssertTrue( server.v() == SRP::BigNum( 42 ) );
+    }
 }
 
 XSTest( Server, SetA )
 {
-    SRP::Server server = Constants::makeTestServer();
-    
-    XSTestAssertTrue( server.A() == SRP::BigNum() );
-    server.setA( SRP::BigNum( 42 ) );
-    XSTestAssertTrue( server.A() == SRP::BigNum( 42 ) );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Server server = constants.makeServer();
+        
+        XSTestAssertTrue( server.A() == SRP::BigNum() );
+        server.setA( SRP::BigNum( 42 ) );
+        XSTestAssertTrue( server.A() == SRP::BigNum( 42 ) );
+    }
 }
 
 XSTest( Server, b )
 {
-    SRP::Server server = Constants::makeTestServer();
-    
-    XSTestAssertTrue( server.b() == Constants::b() );
+    for( const auto & constants: Constants::all() )
+    {
+        SRP::Server server = constants.makeServer();
+        
+        XSTestAssertTrue( server.b() == constants.b() );
+    }
 }
 
 XSTest( Server, B )
