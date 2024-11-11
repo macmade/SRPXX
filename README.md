@@ -12,6 +12,42 @@ SRPXX
 
 C++ implementation of the Secure Remote Password protocol (SRP) - RFC 5054.
 
+### Usage
+
+```cpp
+
+/*******************************************************************************
+ * 1 - Registration
+ ******************************************************************************/
+
+{
+    // Create a SRP client for an identity, with a given hash algorithm and group type
+    SRP::Client client( "milford@cubicle.org", SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
+    
+    // Generate a random salt
+    std::vector< uint8_t > salt( SRP::Random::bytes( 16 ) );
+    
+    // Set the salt and password
+    client.setPassword( "1234" );
+    client.setSalt( salt );
+    
+    // Generate the verifier
+    std::vector< uint8_t > verifier = client.v().bytes( SRP::BigNum::Endianness::BigEndian );
+    
+    // Send the salt and verifier to the server
+    // ...
+}
+
+/*******************************************************************************
+ * 2 - Authentication
+ ******************************************************************************/
+
+{
+    // TODO: ...
+}
+
+```
+
 License
 -------
 
