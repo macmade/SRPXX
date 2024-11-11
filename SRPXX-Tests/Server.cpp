@@ -26,9 +26,32 @@
 #include <XSTest/XSTest.hpp>
 #include "Constants.hpp"
 
+XSTest( Server, SetV )
+{
+    SRP::Server server = Constants::makeTestServer();
+    
+    XSTestAssertTrue( server.v() == SRP::BigNum() );
+    server.setV( SRP::BigNum( 42 ) );
+    XSTestAssertTrue( server.v() == SRP::BigNum( 42 ) );
+}
+
+XSTest( Server, SetA )
+{
+    SRP::Server server = Constants::makeTestServer();
+    
+    XSTestAssertTrue( server.A() == SRP::BigNum() );
+    server.setA( SRP::BigNum( 42 ) );
+    XSTestAssertTrue( server.A() == SRP::BigNum( 42 ) );
+}
+
 XSTest( Server, b )
 {
     SRP::Server server = Constants::makeTestServer();
     
     XSTestAssertTrue( server.b() == Constants::b() );
+}
+
+XSTest( Server, B )
+{
+    // TODO: Implement test...
 }
