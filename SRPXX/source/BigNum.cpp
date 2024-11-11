@@ -341,6 +341,26 @@ namespace SRP
         return n;
     }
     
+    BigNum BigNum::modAdd( const BigNum & add, const BigNum & modulus ) const
+    {
+        Context ctx;
+        BigNum  n( *( this ) );
+        
+        BN_mod_add( n.impl->_bn, n.impl->_bn, add.impl->_bn, modulus.impl->_bn, ctx );
+        
+        return n;
+    }
+    
+    BigNum BigNum::modMul( const BigNum & multiplier, const BigNum & modulus ) const
+    {
+        Context ctx;
+        BigNum  n( *( this ) );
+        
+        BN_mod_mul( n.impl->_bn, n.impl->_bn, multiplier.impl->_bn, modulus.impl->_bn, ctx );
+        
+        return n;
+    }
+    
     std::string BigNum::string( StringFormat format ) const
     {
         BigNum abs = this->positive();

@@ -716,6 +716,16 @@ XSTest( BigNum, ModExp )
     // TODO: Implement test...
 }
 
+XSTest( BigNum, ModAdd )
+{
+    // TODO: Implement test...
+}
+
+XSTest( BigNum, ModMul )
+{
+    // TODO: Implement test...
+}
+
 XSTest( BigNum, ToString )
 {
     XSTestAssertTrue( SRP::BigNum( 42 ).string( SRP::BigNum::StringFormat::Auto )  == "42" );

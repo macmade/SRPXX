@@ -94,7 +94,9 @@ namespace SRP
             BigNum operator %( const BigNum & value ) const;
             BigNum operator ^( const BigNum & value ) const;
             
-            BigNum modExp( const BigNum & exponent, const BigNum & modulus ) const;
+            BigNum modExp( const BigNum & exponent,   const BigNum & modulus ) const;
+            BigNum modAdd( const BigNum & add,        const BigNum & modulus ) const;
+            BigNum modMul( const BigNum & multiplier, const BigNum & modulus ) const;
             
             std::string            string( StringFormat format )  const;
             std::vector< uint8_t > bytes( Endianness endianness ) const;
