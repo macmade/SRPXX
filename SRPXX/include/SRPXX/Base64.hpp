@@ -22,24 +22,20 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#ifndef SRPXX_BASE64_HPP
+#define SRPXX_BASE64_HPP
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/Base64.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/HashAlgorithm.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
-#include <SRPXX/Client.hpp>
-#include <SRPXX/Server.hpp>
+#include <vector>
+#include <cstdint>
+#include <string>
 
-#endif /* SRPXX_HPP */
+namespace SRP
+{
+    namespace Base64
+    {
+        std::string            encode( const std::vector< uint8_t > & value );
+        std::vector< uint8_t > decode( const std::string & value );
+    }
+}
+
+#endif /* SRPXX_BASE64_HPP */

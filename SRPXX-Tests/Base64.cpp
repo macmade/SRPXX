@@ -22,24 +22,55 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#ifndef SRPXX_HPP
-#define SRPXX_HPP
+#include <SRPXX.hpp>
+#include <XSTest/XSTest.hpp>
 
-#include <SRPXX/Platform.hpp>
-#include <SRPXX/Integer.hpp>
-#include <SRPXX/String.hpp>
-#include <SRPXX/Random.hpp>
-#include <SRPXX/Base64.hpp>
-#include <SRPXX/BigNum.hpp>
-#include <SRPXX/HashAlgorithm.hpp>
-#include <SRPXX/Hasher.hpp>
-#include <SRPXX/SHA1.hpp>
-#include <SRPXX/SHA224.hpp>
-#include <SRPXX/SHA256.hpp>
-#include <SRPXX/SHA384.hpp>
-#include <SRPXX/SHA512.hpp>
-#include <SRPXX/PBKDF2.hpp>
-#include <SRPXX/Client.hpp>
-#include <SRPXX/Server.hpp>
+struct Base64Test
+{
+    const char * encoded;
+    const char * decoded;
+};
 
-#endif /* SRPXX_HPP */
+static struct Base64Test TestData[] =
+{
+    {
+        "",
+        ""
+    },
+    {
+        "QQ==",
+        "A"
+    },
+    {
+        "aGVsbG8sIHdvcmxk",
+        "hello, world"
+    },
+    {
+        "aGVsbG8sIHdvcmxkIQ==",
+        "hello, world!"
+    },
+    {
+        "aGVsbG8sIHVuaXZlcnNl",
+        "hello, universe"
+    },
+    {
+        "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    }
+};
+
+XSTest( Base64, Encode )
+{
+    for( size_t i = 0; i < sizeof( TestData ) / sizeof( struct Base64Test ); i++ )
+    {
+        XSTestAssertTrue( SRP::Base64::encode( SRP::String::toBytes( TestData[ i ].decoded ) ) == TestData[ i ].encoded );
+    }
+}
+
+XSTest( Base64, Decode )
+{
+    for( size_t i = 0; i < sizeof( TestData ) / sizeof( struct Base64Test ); i++ )
+    {
+        XSTestAssertTrue( SRP::Base64::decode( TestData[ i ].encoded ) == SRP::String::toBytes( TestData[ i ].decoded ) );
+    }
+}
