@@ -51,6 +51,13 @@ class ConcreteBase: public SRP::Base
         }
 };
 
+XSTest( Base, u )
+{
+    ConcreteBase base( SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG1024 );
+    
+    XSTestAssertTrue( base.u() == Constants::u() );
+}
+
 XSTest( Base, Salt )
 {
     ConcreteBase base( SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );

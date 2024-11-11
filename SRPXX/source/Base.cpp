@@ -112,6 +112,22 @@ namespace SRP
         );
     }
     
+    /* H( PAD( A ) | PAD( B ) ) */
+    BigNum Base::u() const
+    {
+        return BigNum
+        (
+            this->hash
+            (
+                {
+                    this->pad( this->A().bytes( SRP::BigNum::Endianness::BigEndian ) ),
+                    this->pad( this->B().bytes( SRP::BigNum::Endianness::BigEndian ) ),
+                }
+            ),
+            BigNum::Endianness::BigEndian
+        );
+    }
+    
     std::unique_ptr< Hasher > Base::makeHasher() const
     {
         switch( this->impl->_hashAlgorithm )

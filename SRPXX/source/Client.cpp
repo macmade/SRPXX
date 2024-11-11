@@ -144,22 +144,6 @@ namespace SRP
         return this->g().modExp( this->x(), this->N() );
     }
     
-    /* H( PAD( A ) | PAD( B ) ) */
-    BigNum Client::u() const
-    {
-        return BigNum
-        (
-            this->hash
-            (
-                {
-                    this->pad( this->A().bytes( SRP::BigNum::Endianness::BigEndian ) ),
-                    this->pad( this->B().bytes( SRP::BigNum::Endianness::BigEndian ) ),
-                }
-            ),
-            BigNum::Endianness::BigEndian
-        );
-    }
-    
     /* ( ( B - ( k * g ^ x ) ) ^ ( a + ( u * x ) ) % N ) */
     BigNum Client::S() const
     {

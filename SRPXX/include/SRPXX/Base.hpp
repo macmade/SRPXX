@@ -62,6 +62,7 @@ namespace SRP
             BigNum N() const;
             BigNum g() const;
             BigNum k() const;
+            BigNum u() const;
             
             virtual BigNum A() const = 0;
             virtual BigNum B() const = 0;
