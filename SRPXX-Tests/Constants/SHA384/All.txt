@@ -1,0 +1,9 @@
+#include "NG1024/All.txt"
+,
+#include "NG1536/All.txt"
+,
+#include "NG2048/All.txt"
+,
+#include "NG4096/All.txt"
+,
+#include "NG8192/All.txt"

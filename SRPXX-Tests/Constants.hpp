@@ -34,7 +34,7 @@ class Constants
 {
     public:
         
-        Constants( std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 );
+        Constants( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 );
         Constants( const Constants & o );
         ~Constants();
         
@@ -45,21 +45,23 @@ class Constants
         SRP::Client makeClient() const;
         SRP::Server makeServer() const;
         
-        std::string            identity() const;
-        std::string            password() const;
-        std::vector< uint8_t > salt()     const;
-        SRP::BigNum            v()        const;
-        SRP::BigNum            a()        const;
-        SRP::BigNum            A()        const;
-        SRP::BigNum            b()        const;
-        SRP::BigNum            B()        const;
-        SRP::BigNum            u()        const;
-        SRP::BigNum            k()        const;
-        SRP::BigNum            S()        const;
-        SRP::BigNum            x()        const;
-        std::vector< uint8_t > K()        const;
-        std::vector< uint8_t > M1()       const;
-        std::vector< uint8_t > M2()       const;
+        SRP::HashAlgorithm     hashAlgorithm() const;
+        SRP::Base::GroupType   groupType()     const;
+        std::string            identity()      const;
+        std::string            password()      const;
+        std::vector< uint8_t > salt()          const;
+        SRP::BigNum            v()             const;
+        SRP::BigNum            a()             const;
+        SRP::BigNum            A()             const;
+        SRP::BigNum            b()             const;
+        SRP::BigNum            B()             const;
+        SRP::BigNum            u()             const;
+        SRP::BigNum            k()             const;
+        SRP::BigNum            S()             const;
+        SRP::BigNum            x()             const;
+        std::vector< uint8_t > K()             const;
+        std::vector< uint8_t > M1()            const;
+        std::vector< uint8_t > M2()            const;
         
         static std::vector< Constants > all();
         
