@@ -75,6 +75,12 @@ SRP::BigNum            verifier;
 
 ```
 
+Requirements
+------------
+
+This project requires OpenSSL.  
+A pre-built version of BoringSSL is provided for macOS and Windows in the `Submodules/BoringSSL/lib` directory.
+
 License
 -------
 
