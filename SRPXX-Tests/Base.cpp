@@ -69,7 +69,52 @@ XSTest( Base, u )
     {
         ConcreteBase base( constants, SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
         
+        base.setSalt( constants.salt() );
         XSTestAssertTrue( base.u() == constants.u() );
+    }
+}
+
+XSTest( Base, k )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        ConcreteBase base( constants, SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
+        
+        base.setSalt( constants.salt() );
+        XSTestAssertTrue( base.k() == constants.k() );
+    }
+}
+
+XSTest( Base, K )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        ConcreteBase base( constants, SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
+        
+        base.setSalt( constants.salt() );
+        XSTestAssertTrue( base.K() == constants.K() );
+    }
+}
+
+XSTest( Base, M1 )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        ConcreteBase base( constants, SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
+        
+        base.setSalt( constants.salt() );
+        XSTestAssertTrue( base.M1() == constants.M1() );
+    }
+}
+
+XSTest( Base, M2 )
+{
+    for( const auto & constants: Constants::all() )
+    {
+        ConcreteBase base( constants, SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
+        
+        base.setSalt( constants.salt() );
+        XSTestAssertTrue( base.M2() == constants.M2() );
     }
 }
 
