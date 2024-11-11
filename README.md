@@ -12,6 +12,24 @@ SRPXX
 
 C++ implementation of the Secure Remote Password protocol (SRP) - RFC 5054.
 
+**Supported Hash Algorithms:**
+
+ - SHA-1
+ - SHA-224
+ - SHA-256
+ - SHA-384
+ - SHA-512
+
+**Supported Group Parameters:**
+
+ - 1024 bits
+ - 1536 bits
+ - 2048 bits
+ - 3072 bits
+ - 4096 bits
+ - 6144 bits
+ - 8192 bits
+
 ### Example Usage
 
 ```cpp
