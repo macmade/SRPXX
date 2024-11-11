@@ -27,6 +27,7 @@
 
 XSTest( SRP, Complete )
 {
+    // Server storage
     std::vector< uint8_t > salt;
     SRP::BigNum            verifier;
     

@@ -12,38 +12,65 @@ SRPXX
 
 C++ implementation of the Secure Remote Password protocol (SRP) - RFC 5054.
 
-### Usage
+### Example Usage
 
 ```cpp
 
-/*******************************************************************************
- * 1 - Registration
- ******************************************************************************/
+#include <SRPXX.hpp>
 
+// Server storage
+std::vector< uint8_t > salt;
+SRP::BigNum            verifier;
+
+/* Registration */
 {
     // Create a SRP client for an identity, with a given hash algorithm and group type
     SRP::Client client( "milford@cubicle.org", SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
     
-    // Generate a random salt
-    std::vector< uint8_t > salt( SRP::Random::bytes( 16 ) );
-    
-    // Set the salt and password
+    // User registers with a password
     client.setPassword( "1234" );
-    client.setSalt( salt );
     
-    // Generate the verifier
-    std::vector< uint8_t > verifier = client.v().bytes( SRP::BigNum::Endianness::BigEndian );
+    // Client generates a salt
+    client.setSalt( SRP::Random::bytes( 16 ) );
     
-    // Send the salt and verifier to the server
-    // ...
+    // Client -> Server:
+    // Server receives salt and verifier from Client
+    // Client can then discard them
+    salt     = client.salt();
+    verifier = client.v();
 }
 
-/*******************************************************************************
- * 2 - Authentication
- ******************************************************************************/
-
+/* Authentication */
 {
-    // TODO: ...
+    SRP::Client client( "milford@cubicle.org", SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
+    SRP::Server server( "milford@cubicle.org", SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
+    
+    // Server has stored salt and verifier during authentication (see above)
+    server.setSalt( salt );
+    server.setV( verifier );
+    
+    // Client -> Server:
+    // Server receives A from Client
+    server.setA( client.A() );
+    
+    // Server -> Client:
+    // Client receives B and salt from Server
+    client.setB( server.B() );
+    client.setSalt( server.salt() );
+    
+    // User inputs a wrong password
+    client.setPassword( "4321" );
+    
+    // Client and Server will not have matching M1 and M2, meaning the authentication failed
+    AssertFalse( client.M1() == server.M1() );
+    AssertFalse( client.M2() == server.M2() );
+    
+    // User inputs the correct password
+    client.setPassword( "1234" );
+    
+    // With the correct password, Client and Server will have matching M1 and M2, meaning the authentication was successful
+    AssertTrue( client.M1() == server.M1() );
+    AssertTrue( client.M2() == server.M2() );
 }
 
 ```
