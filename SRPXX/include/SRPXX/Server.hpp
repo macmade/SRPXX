@@ -43,9 +43,13 @@ namespace SRP
             Server( const Server & o )              = delete;
             Server & operator =( const Server & o ) = delete;
             
+            void setV( const BigNum & value );
+            void setA( const BigNum & value );
+            
             BigNum A() const override;
             BigNum B() const override;
             
+            BigNum v() const;
             BigNum b() const;
             
         private:
