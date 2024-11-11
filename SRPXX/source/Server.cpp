@@ -66,9 +66,13 @@ namespace SRP
         return this->impl->_A;
     }
     
+    /* k * v + g ^ b % N */
     BigNum Server::B() const
     {
-        return {};
+        BigNum left  = this->k().modMul( this->v(), this->N() );
+        BigNum right = this->g().modExp( this->b(), this->N() );
+        
+        return left.modAdd( right, this->N() );
     }
     
     BigNum Server::v() const
