@@ -1,0 +1,19 @@
+name: ci-win
+on:   [push]
+jobs:
+    ci:
+        runs-on: windows-2022
+        strategy:
+            matrix:
+                run-config:
+                    - { platform: 'x64', toolset: 'x64', configuration: 'Debug',   solution: 'SRPXX.sln' }
+                    - { platform: 'x64', toolset: 'x64', configuration: 'Release', solution: 'SRPXX.sln' }
+                    - { platform: 'x86', toolset: 'x64', configuration: 'Debug',   solution: 'SRPXX.sln' }
+                    - { platform: 'x86', toolset: 'x64', configuration: 'Release', solution: 'SRPXX.sln' }
+        steps:
+            
+            - uses: actions/checkout@v1
+              with:
+                submodules: 'recursive'
+                
+            - uses: macmade/action-msbuild@v1.1.0
