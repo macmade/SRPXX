@@ -109,6 +109,10 @@ static std::string stringFromHashAlgorithm( SRP::HashAlgorithm algorithm )
         case SRP::HashAlgorithm::SHA256: return "SRP::HashAlgorithm::SHA256";
         case SRP::HashAlgorithm::SHA384: return "SRP::HashAlgorithm::SHA384";
         case SRP::HashAlgorithm::SHA512: return "SRP::HashAlgorithm::SHA512";
+            
+        #ifdef _WIN32
+        default: return {};
+        #endif
     }
 }
 
@@ -123,6 +127,10 @@ static std::string stringFromGroupType( SRP::Base::GroupType groupType )
         case SRP::Base::GroupType::NG4096: return "SRP::Base::GroupType::NG4096";
         case SRP::Base::GroupType::NG6144: return "SRP::Base::GroupType::NG6144";
         case SRP::Base::GroupType::NG8192: return "SRP::Base::GroupType::NG8192";
+            
+        #ifdef _WIN32
+        default: return {};
+        #endif
     }
 }
 

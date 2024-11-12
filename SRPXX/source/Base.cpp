@@ -191,6 +191,10 @@ namespace SRP
             case HashAlgorithm::SHA256: return std::make_unique< SHA256 >();
             case HashAlgorithm::SHA384: return std::make_unique< SHA384 >();
             case HashAlgorithm::SHA512: return std::make_unique< SHA512 >();
+            
+            #ifdef _WIN32
+            default: return {};
+            #endif
         }
     }
     
