@@ -4,6 +4,10 @@
 ,
 #include "NG2048/All.txt"
 ,
+#include "NG3072/All.txt"
+,
 #include "NG4096/All.txt"
+,
+#include "NG6144/All.txt"
 ,
 #include "NG8192/All.txt"
