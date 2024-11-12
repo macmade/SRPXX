@@ -74,23 +74,7 @@ void swap( Constants & o1, Constants & o2 )
 {
     using std::swap;
     
-    swap( o1.impl->_hashAlgorithm, o2.impl->_hashAlgorithm );
-    swap( o1.impl->_groupType,     o2.impl->_groupType );
-    swap( o1.impl->_identity,      o2.impl->_identity );
-    swap( o1.impl->_password,      o2.impl->_password );
-    swap( o1.impl->_salt,          o2.impl->_salt );
-    swap( o1.impl->_v,             o2.impl->_v );
-    swap( o1.impl->_a,             o2.impl->_a );
-    swap( o1.impl->_A,             o2.impl->_A );
-    swap( o1.impl->_b,             o2.impl->_b );
-    swap( o1.impl->_B,             o2.impl->_B );
-    swap( o1.impl->_u,             o2.impl->_u );
-    swap( o1.impl->_k,             o2.impl->_k );
-    swap( o1.impl->_S,             o2.impl->_S );
-    swap( o1.impl->_x,             o2.impl->_x );
-    swap( o1.impl->_K,             o2.impl->_K );
-    swap( o1.impl->_M1,            o2.impl->_M1 );
-    swap( o1.impl->_M2,            o2.impl->_M2 );
+    swap( o1.impl, o2.impl );
 }
 
 SRP::Client Constants::makeClient() const
