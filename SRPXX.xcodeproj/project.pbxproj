@@ -598,6 +598,7 @@
 		05D961BF2CE3CF9D0092F68E /* 010.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 010.txt; sourceTree = "<group>"; };
 		05D961C02CE3CF9D0092F68E /* All.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = All.txt; sourceTree = "<group>"; };
 		05D961C22CE3CF9D0092F68E /* All.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = All.txt; sourceTree = "<group>"; };
+		05D961D22CE412910092F68E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		05ECBB642CE1FEF7007AF82F /* Base64.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Base64.hpp; sourceTree = "<group>"; };
 		05ECBB662CE1FF07007AF82F /* Base64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Base64.cpp; sourceTree = "<group>"; };
 		05ECBB682CE1FF10007AF82F /* Base64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Base64.cpp; sourceTree = "<group>"; };
@@ -871,6 +872,7 @@
 		05818DD62CDFD40300001415 /* SRPXX-Tests */ = {
 			isa = PBXGroup;
 			children = (
+				05D961D22CE412910092F68E /* main.cpp */,
 				05818DE22CDFD4EE00001415 /* Info.plist */,
 				056231622CDFE4B900104F3B /* Base.cpp */,
 				05ECBB682CE1FF10007AF82F /* Base64.cpp */,
