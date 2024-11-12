@@ -30,11 +30,11 @@ XSTest( Server, SetV )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        XSTestAssertTrue( server.v() == SRP::BigNum() );
-        server.setV( SRP::BigNum( 42 ) );
-        XSTestAssertTrue( server.v() == SRP::BigNum( 42 ) );
+        XSTestAssertTrue( server->v() == SRP::BigNum() );
+        server->setV( SRP::BigNum( 42 ) );
+        XSTestAssertTrue( server->v() == SRP::BigNum( 42 ) );
     }
 }
 
@@ -42,11 +42,11 @@ XSTest( Server, SetA )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        XSTestAssertTrue( server.A() == SRP::BigNum() );
-        server.setA( SRP::BigNum( 42 ) );
-        XSTestAssertTrue( server.A() == SRP::BigNum( 42 ) );
+        XSTestAssertTrue( server->A() == SRP::BigNum() );
+        server->setA( SRP::BigNum( 42 ) );
+        XSTestAssertTrue( server->A() == SRP::BigNum( 42 ) );
     }
 }
 
@@ -54,12 +54,12 @@ XSTest( Server, b )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.b() == constants.b() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->b() == constants.b() );
     }
 }
 
@@ -67,12 +67,12 @@ XSTest( Server, B )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.B() == constants.B() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->B() == constants.B() );
     }
 }
 
@@ -80,12 +80,12 @@ XSTest( Server, u )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.u() == constants.u() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->u() == constants.u() );
     }
 }
 
@@ -93,12 +93,12 @@ XSTest( Server, k )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.k() == constants.k() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->k() == constants.k() );
     }
 }
 
@@ -106,12 +106,12 @@ XSTest( Server, S )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.S() == constants.S() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->S() == constants.S() );
     }
 }
 
@@ -119,12 +119,12 @@ XSTest( Server, K )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.K() == constants.K() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->K() == constants.K() );
     }
 }
 
@@ -132,12 +132,12 @@ XSTest( Server, M1 )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.M1() == constants.M1() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->M1() == constants.M1() );
     }
 }
 
@@ -145,11 +145,11 @@ XSTest( Server, M2 )
 {
     for( const auto & constants: Constants::all() )
     {
-        SRP::Server server = constants.makeServer();
+        auto server = constants.makeServer();
         
-        server.setV( constants.v() );
-        server.setSalt( constants.salt() );
-        server.setA( constants.A() );
-        XSTestAssertTrue( server.M2() == constants.M2() );
+        server->setV( constants.v() );
+        server->setSalt( constants.salt() );
+        server->setA( constants.A() );
+        XSTestAssertTrue( server->M2() == constants.M2() );
     }
 }

@@ -77,14 +77,14 @@ void swap( Constants & o1, Constants & o2 )
     swap( o1.impl, o2.impl );
 }
 
-SRP::Client Constants::makeClient() const
+std::unique_ptr< SRP::Client > Constants::makeClient() const
 {
-    return SRP::Client( this->identity(), this->impl->_hashAlgorithm, this->impl->_groupType, this->a() );
+    return std::make_unique< SRP::Client >( this->identity(), this->impl->_hashAlgorithm, this->impl->_groupType, this->a() );
 }
 
-SRP::Server Constants::makeServer() const
+std::unique_ptr< SRP::Server > Constants::makeServer() const
 {
-    return SRP::Server( this->identity(), this->impl->_hashAlgorithm, this->impl->_groupType, this->b() );
+    return std::make_unique< SRP::Server >( this->identity(), this->impl->_hashAlgorithm, this->impl->_groupType, this->b() );
 }
 
 SRP::HashAlgorithm Constants::hashAlgorithm() const

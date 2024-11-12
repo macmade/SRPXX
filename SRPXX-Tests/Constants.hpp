@@ -29,6 +29,7 @@
 #include <string>
 #include <vector>
 #include <cstdint>
+#include <memory>
 
 class Constants
 {
@@ -42,8 +43,8 @@ class Constants
         
         friend void swap( Constants & o1, Constants & o2 );
         
-        SRP::Client makeClient() const;
-        SRP::Server makeServer() const;
+        std::unique_ptr< SRP::Client > makeClient() const;
+        std::unique_ptr< SRP::Server > makeServer() const;
         
         SRP::HashAlgorithm     hashAlgorithm() const;
         SRP::Base::GroupType   groupType()     const;
