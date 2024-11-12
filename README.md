@@ -172,7 +172,6 @@ SRP::Base::GroupType::NG1024,
 }
 ```
 
-
 License
 -------
 
