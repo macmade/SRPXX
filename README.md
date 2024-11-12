@@ -63,7 +63,7 @@ std::vector< uint8_t > verifier;
     SRP::Client client( "milford@cubicle.org", SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
     SRP::Server server( "milford@cubicle.org", SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
     
-    // Server has stored salt and verifier during authentication (see above)
+    // Server has stored salt and verifier during registration (see above)
     server.setSalt( salt );
     server.setV( SRP::BigNum( verifier, SRP::BigNum::Endianness::BigEndian ) );
     
