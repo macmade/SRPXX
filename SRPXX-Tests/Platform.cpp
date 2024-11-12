@@ -27,9 +27,7 @@
 
 XSTest( Platform, IsBigEndian )
 {
-    #if defined( __x86_64__ )
-    XSTestAssertFalse( SRP::Platform::isBigEndian() );
-    #elif defined( __arm64__ )
+    #if defined( __x86_64__ ) || defined( __arm64__ ) || defined( _M_IX86 ) || defined( _M_AMD64 ) || defined( _M_ARM64  )
     XSTestAssertFalse( SRP::Platform::isBigEndian() );
     #else
     #error "Unsupported architecture"
@@ -38,9 +36,7 @@ XSTest( Platform, IsBigEndian )
 
 XSTest( Platform, IsLittleEndian )
 {
-    #if defined( __x86_64__ )
-    XSTestAssertTrue( SRP::Platform::isLittleEndian() );
-    #elif defined( __arm64__ )
+    #if defined( __x86_64__ ) || defined( __arm64__ ) || defined( _M_IX86 ) || defined( _M_AMD64 ) || defined( _M_ARM64  )
     XSTestAssertTrue( SRP::Platform::isLittleEndian() );
     #else
     #error "Unsupported architecture"
