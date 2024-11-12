@@ -23,6 +23,7 @@
  ******************************************************************************/
 
 #include <SRPXX/String.hpp>
+#include <algorithm>
 
 namespace SRP
 {

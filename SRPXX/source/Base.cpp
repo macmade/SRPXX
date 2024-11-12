@@ -36,6 +36,10 @@
 #include <stdexcept>
 #include <string.h>
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 namespace SRP
 {
     class Base::IMPL
@@ -242,7 +246,11 @@ namespace SRP
     {
         if( this->_salt.size() > 0 )
         {
+            #ifdef _WIN32
+            SecureZeroMemory( this->_salt.data(), this->_salt.size() );
+            #else
             memset_s( this->_salt.data(), this->_salt.size(), 0, this->_salt.size() );
+            #endif
         }
     }
             

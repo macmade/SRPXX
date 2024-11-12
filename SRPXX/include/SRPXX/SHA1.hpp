@@ -26,6 +26,7 @@
 #define SRPXX_SHA_1_HPP
 
 #include <SRPXX/Hasher.hpp>
+#include <memory>
 
 namespace SRP
 {

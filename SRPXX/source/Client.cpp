@@ -28,6 +28,10 @@
 #include <SRPXX/Client.hpp>
 #include <string.h>
 
+#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 namespace SRP
 {
     class Client::IMPL
@@ -166,7 +170,11 @@ namespace SRP
     {
         if( this->_password.size() > 0 )
         {
+            #ifdef _WIN32
+            SecureZeroMemory( this->_password.data(), this->_password.size() );
+            #else
             memset_s( this->_password.data(), this->_password.size(), 0, this->_password.size() );
+            #endif
         }
     }
 }
