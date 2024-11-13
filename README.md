@@ -100,6 +100,24 @@ Requirements
 This project requires OpenSSL.  
 A pre-built version of BoringSSL is provided for macOS and Windows in the `Submodules/BoringSSL/lib` directory.
 
+Building
+--------
+
+### macOS
+
+An Xcode project is provided: `SRPXX.xcodeproj`.  
+It contains targets for the library and the debug tool.
+
+### Windows
+
+A Visual Studio solution is provided: `SRPXX.sln`.
+The library is available for the following toolsets and architectures:
+
+ - v142 - x86
+ - v142 - x64
+ - v143 - x86
+ - v143 - x64
+
 Test Vectors
 ------------
 
