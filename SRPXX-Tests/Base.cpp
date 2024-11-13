@@ -38,8 +38,13 @@ class ConcreteBase: public SRP::Base
 {
     public:
         
-        ConcreteBase( const TestVectors & test, SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType ):
-            SRP::Base( test.identity(), hashAlgorithm, groupType ),
+        ConcreteBase( const std::string & identity, SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType ):
+            SRP::Base( identity, hashAlgorithm, groupType ),
+            _test( hashAlgorithm, groupType, identity, "", {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {} )
+        {}
+        
+        ConcreteBase( const TestVectors & test ):
+            SRP::Base( test.identity(), test.hashAlgorithm(), test.groupType() ),
             _test( test )
         {}
         
@@ -67,7 +72,7 @@ XSTest( Base, u )
 {
     for( const auto & test: TestVectors::all() )
     {
-        ConcreteBase base( test, test.hashAlgorithm(), test.groupType() );
+        ConcreteBase base( test );
         
         base.setSalt( test.salt() );
         XSTestAssertTrue( base.u() == test.u() );
@@ -78,7 +83,7 @@ XSTest( Base, k )
 {
     for( const auto & test: TestVectors::all() )
     {
-        ConcreteBase base( test, test.hashAlgorithm(), test.groupType() );
+        ConcreteBase base( test );
         
         base.setSalt( test.salt() );
         XSTestAssertTrue( base.k() == test.k() );
@@ -89,7 +94,7 @@ XSTest( Base, K )
 {
     for( const auto & test: TestVectors::all() )
     {
-        ConcreteBase base( test, test.hashAlgorithm(), test.groupType() );
+        ConcreteBase base( test );
         
         base.setSalt( test.salt() );
         XSTestAssertTrue( base.K() == test.K() );
@@ -100,7 +105,7 @@ XSTest( Base, M1 )
 {
     for( const auto & test: TestVectors::all() )
     {
-        ConcreteBase base( test, test.hashAlgorithm(), test.groupType() );
+        ConcreteBase base( test );
         
         base.setSalt( test.salt() );
         XSTestAssertTrue( base.M1() == test.M1() );
@@ -111,7 +116,7 @@ XSTest( Base, M2 )
 {
     for( const auto & test: TestVectors::all() )
     {
-        ConcreteBase base( test, test.hashAlgorithm(), test.groupType() );
+        ConcreteBase base( test );
         
         base.setSalt( test.salt() );
         XSTestAssertTrue( base.M2() == test.M2() );
@@ -120,7 +125,7 @@ XSTest( Base, M2 )
 
 XSTest( Base, Salt )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG2048 );
     
     XSTestAssertTrue( base.salt().size() == 0 );
     
@@ -141,7 +146,7 @@ XSTest( Base, Salt )
 
 XSTest( Base, Hasher_SHA1 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
     auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
@@ -160,7 +165,7 @@ XSTest( Base, Hasher_SHA1 )
 
 XSTest( Base, Hasher_SHA224 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA224, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA224, SRP::Base::GroupType::NG1024 );
     auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
@@ -179,7 +184,7 @@ XSTest( Base, Hasher_SHA224 )
 
 XSTest( Base, Hasher_SHA256 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA256, SRP::Base::GroupType::NG1024 );
     auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
@@ -198,7 +203,7 @@ XSTest( Base, Hasher_SHA256 )
 
 XSTest( Base, Hasher_SHA384 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA384, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA384, SRP::Base::GroupType::NG1024 );
     auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
@@ -217,7 +222,7 @@ XSTest( Base, Hasher_SHA384 )
 
 XSTest( Base, Hasher_SHA512 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA512, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA512, SRP::Base::GroupType::NG1024 );
     auto         hasher = base.makeHasher();
     
     hasher->update( "hello, world" );
@@ -236,7 +241,7 @@ XSTest( Base, Hasher_SHA512 )
 
 XSTest( Base, NG1024_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
     size_t       size = 1024 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -247,7 +252,7 @@ XSTest( Base, NG1024_Pad )
 
 XSTest( Base, NG1536_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
     size_t       size = 1536 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -258,7 +263,7 @@ XSTest( Base, NG1536_Pad )
 
 XSTest( Base, NG2048_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
     size_t       size = 2048 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -269,7 +274,7 @@ XSTest( Base, NG2048_Pad )
 
 XSTest( Base, NG3072_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
     size_t       size = 3072 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -280,7 +285,7 @@ XSTest( Base, NG3072_Pad )
 
 XSTest( Base, NG4096_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
     size_t       size = 4096 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -291,7 +296,7 @@ XSTest( Base, NG4096_Pad )
 
 XSTest( Base, NG6144_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
     size_t       size = 6144 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -302,7 +307,7 @@ XSTest( Base, NG6144_Pad )
 
 XSTest( Base, NG8192_Pad )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
     size_t       size = 8192 / 8;
     
     XSTestAssertTrue( base.pad( std::vector< uint8_t >(        0 ) ).size() == size );
@@ -313,7 +318,7 @@ XSTest( Base, NG8192_Pad )
 
 XSTest( Base, NG1024 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1024 );
     
     XSTestAssertEqual( base.g(), "2" );
     XSTestAssertEqual
@@ -333,7 +338,7 @@ XSTest( Base, NG1024 )
 
 XSTest( Base, NG1536 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG1536 );
     
     XSTestAssertEqual( base.g(), "2" );
     XSTestAssertEqual
@@ -355,7 +360,7 @@ XSTest( Base, NG1536 )
 
 XSTest( Base, NG2048 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG2048 );
     
     XSTestAssertEqual( base.g(), "2" );
     XSTestAssertEqual
@@ -380,7 +385,7 @@ XSTest( Base, NG2048 )
 
 XSTest( Base, NG3072 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG3072 );
     
     XSTestAssertEqual( base.g(), "5" );
     XSTestAssertEqual
@@ -409,7 +414,7 @@ XSTest( Base, NG3072 )
 
 XSTest( Base, NG4096 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG4096 );
     
     XSTestAssertEqual( base.g(), "5" );
     XSTestAssertEqual
@@ -443,7 +448,7 @@ XSTest( Base, NG4096 )
 
 XSTest( Base, NG6144 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG6144 );
     
     XSTestAssertEqual( base.g(), "5" );
     XSTestAssertEqual
@@ -486,7 +491,7 @@ XSTest( Base, NG6144 )
 
 XSTest( Base, NG8192 )
 {
-    ConcreteBase base( TestVectors::all().front(), SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
+    ConcreteBase base( "", SRP::HashAlgorithm::SHA1, SRP::Base::GroupType::NG8192 );
     
     XSTestAssertEqual( base.g(), "19" );
     XSTestAssertEqual
