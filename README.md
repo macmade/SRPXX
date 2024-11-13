@@ -2,7 +2,7 @@ SRPXX
 =====
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/macmade/SRPXX/ci-mac.yaml?label=macOS&logo=apple)](https://github.com/macmade/SRPXX/actions/workflows/ci-mac.yaml)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/macmade/SRPXX/ci-win.yaml?label=Windows&logo=windows)](https://github.com/macmade/SRPXX/actions/workflows/ci-win.yaml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/macmade/SRPXX/ci-win.yaml?label=Windows&logo=cplusplus)](https://github.com/macmade/SRPXX/actions/workflows/ci-win.yaml)
 [![Issues](http://img.shields.io/github/issues/macmade/SRPXX.svg?logo=github)](https://github.com/macmade/SRPXX/issues)
 ![Status](https://img.shields.io/badge/status-active-brightgreen.svg?logo=git)
 ![License](https://img.shields.io/badge/license-mit-brightgreen.svg?logo=open-source-initiative)  
