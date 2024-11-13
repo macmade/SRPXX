@@ -39,61 +39,70 @@ static struct Account Accounts[] =
     { "jeremy@fisher.org",          "kenneth" },
 };
 
-XSTest( SRP, Complete )
+XSTest( SRP, EndToEnd )
 {
-    for( size_t i = 0; i < sizeof( Accounts ) / sizeof( struct Account ); i++ )
+    std::vector< SRP::HashAlgorithm >   algorithms = { SRP::HashAlgorithm::SHA1, SRP::HashAlgorithm::SHA224, SRP::HashAlgorithm::SHA256, SRP::HashAlgorithm::SHA384, SRP::HashAlgorithm::SHA512 };
+    std::vector< SRP::Base::GroupType > groups     = { SRP::Base::GroupType::NG1024, SRP::Base::GroupType::NG1536, SRP::Base::GroupType::NG2048, SRP::Base::GroupType::NG3072, SRP::Base::GroupType::NG4096, SRP::Base::GroupType::NG6144, SRP::Base::GroupType::NG8192 };
+    
+    for( auto algorithm: algorithms )
     {
-        // Server storage
-        std::vector< uint8_t > salt;
-        std::vector< uint8_t > verifier;
-        
-        /* Registration */
+        for( auto group: groups )
         {
-            SRP::Client client( Accounts[ i ].identity, SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
-            
-            // User registers with a password
-            client.setPassword( Accounts[ i ].password );
-            
-            // Client generates a salt
-            client.setSalt( SRP::Random::bytes( 16 ) );
-            
-            // Client -> Server:
-            // Server receives salt and verifier from Client
-            salt     = client.salt();
-            verifier = client.v().bytes( SRP::BigNum::Endianness::BigEndian );
-        }
-        
-        /* Authentication */
-        {
-            SRP::Client client( Accounts[ i ].identity, SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
-            SRP::Server server( Accounts[ i ].identity, SRP::HashAlgorithm::SHA256, SRP::Client::GroupType::NG2048 );
-            
-            // Server has stored salt and verifier during authentication (see above)
-            server.setSalt( salt );
-            server.setV( SRP::BigNum( verifier, SRP::BigNum::Endianness::BigEndian ) );
-            
-            // Client -> Server:
-            // Server receives A from Client
-            server.setA( client.A() );
-            
-            // Server -> Client:
-            // Client receives B and salt from Server
-            client.setB( server.B() );
-            client.setSalt( server.salt() );
-            
-            // User inputs a wrong password
-            client.setPassword( "salad" );
-            
-            // Client and Server will not have matching M1 and M2, meaning the authentication failed
-            XSTestAssertFalse( client.M1() == server.M1() );
-            XSTestAssertFalse( client.M2() == server.M2() );
-            
-            // User inputs the correct password
-            client.setPassword( Accounts[ i ].password );
-            
-            // With the correct password, Client and Server will have matching M1 and M2, meaning the authentication was successful
-            XSTestAssertTrue( client.M1() == server.M1() );
-            XSTestAssertTrue( client.M2() == server.M2() );
+            for( size_t i = 0; i < sizeof( Accounts ) / sizeof( struct Account ); i++ )
+            {
+                // Server storage
+                std::vector< uint8_t > salt;
+                std::vector< uint8_t > verifier;
+                
+                /* Registration */
+                {
+                    SRP::Client client( Accounts[ i ].identity, algorithm, group );
+                    
+                    // User registers with a password
+                    client.setPassword( Accounts[ i ].password );
+                    
+                    // Client generates a salt
+                    client.setSalt( SRP::Random::bytes( 16 ) );
+                    
+                    // Client -> Server:
+                    // Server receives salt and verifier from Client
+                    salt     = client.salt();
+                    verifier = client.v().bytes( SRP::BigNum::Endianness::BigEndian );
+                }
+                
+                /* Authentication */
+                {
+                    SRP::Client client( Accounts[ i ].identity, algorithm, group );
+                    SRP::Server server( Accounts[ i ].identity, algorithm, group );
+                    
+                    // Server has stored salt and verifier during authentication (see above)
+                    server.setSalt( salt );
+                    server.setV( SRP::BigNum( verifier, SRP::BigNum::Endianness::BigEndian ) );
+                    
+                    // Client -> Server:
+                    // Server receives A from Client
+                    server.setA( client.A() );
+                    
+                    // Server -> Client:
+                    // Client receives B and salt from Server
+                    client.setB( server.B() );
+                    client.setSalt( server.salt() );
+                    
+                    // User inputs a wrong password
+                    client.setPassword( "salad" );
+                    
+                    // Client and Server will not have matching M1 and M2, meaning the authentication failed
+                    XSTestAssertFalse( client.M1() == server.M1() );
+                    XSTestAssertFalse( client.M2() == server.M2() );
+                    
+                    // User inputs the correct password
+                    client.setPassword( Accounts[ i ].password );
+                    
+                    // With the correct password, Client and Server will have matching M1 and M2, meaning the authentication was successful
+                    XSTestAssertTrue( client.M1() == server.M1() );
+                    XSTestAssertTrue( client.M2() == server.M2() );
+                }
+            }
         }
     }
 }
