@@ -100,6 +100,11 @@ Requirements
 This project requires OpenSSL.  
 A pre-built version of BoringSSL is provided for macOS and Windows in the `Submodules/BoringSSL/lib` directory.
 
+Test Vectors
+------------
+
+Test vectors are provided in the `SRPXX-Tests/Test-Vectors` directory for all supported hash algorithms and group parameters.
+
 Debug Tool
 ----------
 
@@ -112,7 +117,7 @@ Usage: srp <identity> <password> <hash algorithm> <group parameter>
     - Supported group parameters: 1024 1536 2048 3072 4096 6144 8192
 ```
 
-When invoked, it will output test data representing all values used during the SRP session, similar to files in the `SRPXX-Tests/Test-Vectors` directory:
+When invoked, it will output test vectors with all values used during the SRP session:
 
 ```cpp
 SRP::HashAlgorithm::SHA1,
