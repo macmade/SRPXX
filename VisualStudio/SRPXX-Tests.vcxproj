@@ -168,7 +168,7 @@
     <ClCompile Include="..\SRPXX-Tests\Base64.cpp" />
     <ClCompile Include="..\SRPXX-Tests\BigNum.cpp" />
     <ClCompile Include="..\SRPXX-Tests\Client.cpp" />
-    <ClCompile Include="..\SRPXX-Tests\Constants.cpp" />
+    <ClCompile Include="..\SRPXX-Tests\TestVectors.cpp" />
     <ClCompile Include="..\SRPXX-Tests\Integer.cpp" />
     <ClCompile Include="..\SRPXX-Tests\main.cpp" />
     <ClCompile Include="..\SRPXX-Tests\PBKDF2.cpp" />
@@ -184,7 +184,7 @@
     <ClCompile Include="..\SRPXX-Tests\String.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SRPXX-Tests\Constants.hpp" />
+    <ClInclude Include="..\SRPXX-Tests\TestVectors.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

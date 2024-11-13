@@ -27,7 +27,7 @@
     <ClCompile Include="..\SRPXX-Tests\Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\SRPXX-Tests\Constants.cpp">
+    <ClCompile Include="..\SRPXX-Tests\TestVectors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\SRPXX-Tests\Integer.cpp">
@@ -71,7 +71,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\SRPXX-Tests\Constants.hpp">
+    <ClInclude Include="..\SRPXX-Tests\TestVectors.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

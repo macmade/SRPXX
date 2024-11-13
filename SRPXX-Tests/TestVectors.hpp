@@ -31,17 +31,17 @@
 #include <cstdint>
 #include <memory>
 
-class Constants
+class TestVectors
 {
     public:
         
-        Constants( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 );
-        Constants( const Constants & o );
-        ~Constants();
+        TestVectors( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 );
+        TestVectors( const TestVectors & o );
+        ~TestVectors();
         
-        Constants & operator =( Constants o );
+        TestVectors & operator =( TestVectors o );
         
-        friend void swap( Constants & o1, Constants & o2 );
+        friend void swap( TestVectors & o1, TestVectors & o2 );
         
         std::unique_ptr< SRP::Client > makeClient() const;
         std::unique_ptr< SRP::Server > makeServer() const;
@@ -64,7 +64,7 @@ class Constants
         std::vector< uint8_t > M1()            const;
         std::vector< uint8_t > M2()            const;
         
-        static std::vector< Constants > all();
+        static std::vector< TestVectors > all();
         
     private:
         

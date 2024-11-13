@@ -24,7 +24,7 @@
 
 #include <SRPXX.hpp>
 #include <XSTest/XSTest.hpp>
-#include "Constants.hpp"
+#include "TestVectors.hpp"
 
 struct Account
 {
@@ -111,7 +111,7 @@ XSTest( SRP, EndToEnd )
 XSTest( SRP, RFC )
 {
     /* Test Vectors from RFC-5054 */
-    Constants rfc
+    TestVectors rfc
     (
         SRP::HashAlgorithm::SHA1,
         SRP::Base::GroupType::NG1024,

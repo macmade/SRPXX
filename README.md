@@ -112,7 +112,7 @@ Usage: srp <identity> <password> <hash algorithm> <group parameter>
     - Supported group parameters: 1024 1536 2048 3072 4096 6144 8192
 ```
 
-When invoked, it will output test data representing all values used during the SRP session, similar to files in the `SRPXX-Tests/Constants` directory:
+When invoked, it will output test data representing all values used during the SRP session, similar to files in the `SRPXX-Tests/Test-Vectors` directory:
 
 ```cpp
 SRP::HashAlgorithm::SHA1,

@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#include "Constants.hpp"
+#include "TestVectors.hpp"
 #include <algorithm>
 
-class Constants::IMPL
+class TestVectors::IMPL
 {
     public:
         
@@ -52,127 +52,127 @@ class Constants::IMPL
         std::vector< uint8_t > _M2;
 };
 
-Constants::Constants( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 ):
+TestVectors::TestVectors( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 ):
     impl( std::make_unique< IMPL >( hashAlgorithm, groupType, identity, password, salt, v, a, A, b, B, u, k, S, x, K, M1, M2 ) )
 {}
 
-Constants::Constants( const Constants & o ):
+TestVectors::TestVectors( const TestVectors & o ):
     impl( std::make_unique< IMPL >( *( o.impl ) ) )
 {}
 
-Constants::~Constants()
+TestVectors::~TestVectors()
 {}
 
-Constants & Constants::operator =( Constants o )
+TestVectors & TestVectors::operator =( TestVectors o )
 {
     swap( *( this ), o );
     
     return *( this );
 }
 
-void swap( Constants & o1, Constants & o2 )
+void swap( TestVectors & o1, TestVectors & o2 )
 {
     using std::swap;
     
     swap( o1.impl, o2.impl );
 }
 
-std::unique_ptr< SRP::Client > Constants::makeClient() const
+std::unique_ptr< SRP::Client > TestVectors::makeClient() const
 {
     return std::make_unique< SRP::Client >( this->identity(), this->impl->_hashAlgorithm, this->impl->_groupType, this->a() );
 }
 
-std::unique_ptr< SRP::Server > Constants::makeServer() const
+std::unique_ptr< SRP::Server > TestVectors::makeServer() const
 {
     return std::make_unique< SRP::Server >( this->identity(), this->impl->_hashAlgorithm, this->impl->_groupType, this->b() );
 }
 
-SRP::HashAlgorithm Constants::hashAlgorithm() const
+SRP::HashAlgorithm TestVectors::hashAlgorithm() const
 {
     return this->impl->_hashAlgorithm;
 }
 
-SRP::Base::GroupType Constants::groupType() const
+SRP::Base::GroupType TestVectors::groupType() const
 {
     return this->impl->_groupType;
 }
 
-std::string Constants::identity() const
+std::string TestVectors::identity() const
 {
     return this->impl->_identity;
 }
 
-std::string Constants::password() const
+std::string TestVectors::password() const
 {
     return this->impl->_password;
 }
 
-std::vector< uint8_t > Constants::salt() const
+std::vector< uint8_t > TestVectors::salt() const
 {
     return this->impl->_salt;
 }
 
-SRP::BigNum Constants::v() const
+SRP::BigNum TestVectors::v() const
 {
     return this->impl->_v;
 }
 
-SRP::BigNum Constants::a() const
+SRP::BigNum TestVectors::a() const
 {
     return this->impl->_a;
 }
 
-SRP::BigNum Constants::A() const
+SRP::BigNum TestVectors::A() const
 {
     return this->impl->_A;
 }
 
-SRP::BigNum Constants::b() const
+SRP::BigNum TestVectors::b() const
 {
     return this->impl->_b;
 }
 
-SRP::BigNum Constants::B() const
+SRP::BigNum TestVectors::B() const
 {
     return this->impl->_B;
 }
 
-SRP::BigNum Constants::u() const
+SRP::BigNum TestVectors::u() const
 {
     return this->impl->_u;
 }
 
-SRP::BigNum Constants::k() const
+SRP::BigNum TestVectors::k() const
 {
     return this->impl->_k;
 }
 
-SRP::BigNum Constants::S() const
+SRP::BigNum TestVectors::S() const
 {
     return this->impl->_S;
 }
 
-SRP::BigNum Constants::x() const
+SRP::BigNum TestVectors::x() const
 {
     return this->impl->_x;
 }
 
-std::vector< uint8_t > Constants::K() const
+std::vector< uint8_t > TestVectors::K() const
 {
     return this->impl->_K;
 }
 
-std::vector< uint8_t > Constants::M1() const
+std::vector< uint8_t > TestVectors::M1() const
 {
     return this->impl->_M1;
 }
 
-std::vector< uint8_t > Constants::M2() const
+std::vector< uint8_t > TestVectors::M2() const
 {
     return this->impl->_M2;
 }
 
-Constants::IMPL::IMPL( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 ):
+TestVectors::IMPL::IMPL( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType groupType, std::string identity, std::string password, std::vector< uint8_t > salt, std::vector< uint8_t > v, std::vector< uint8_t > a, std::vector< uint8_t > A, std::vector< uint8_t > b, std::vector< uint8_t > B, std::vector< uint8_t > u, std::vector< uint8_t > k, std::vector< uint8_t > S, std::vector< uint8_t > x, std::vector< uint8_t > K, std::vector< uint8_t > M1, std::vector< uint8_t > M2 ):
     _hashAlgorithm( hashAlgorithm ),
     _groupType(     groupType ),
     _identity(      identity ),
@@ -192,7 +192,7 @@ Constants::IMPL::IMPL( SRP::HashAlgorithm hashAlgorithm, SRP::Base::GroupType gr
     _M2(            M2 )
 {}
 
-Constants::IMPL::IMPL( const IMPL & o ):
+TestVectors::IMPL::IMPL( const IMPL & o ):
     _hashAlgorithm( o._hashAlgorithm ),
     _groupType(     o._groupType ),
     _identity(      o._identity ),
@@ -212,21 +212,21 @@ Constants::IMPL::IMPL( const IMPL & o ):
     _M2(            o._M2 )
 {}
 
-Constants::IMPL::~IMPL()
+TestVectors::IMPL::~IMPL()
 {}
 
-std::vector< Constants > Constants::all()
+std::vector< TestVectors > TestVectors::all()
 {
     return
     {
-        #include "Constants/SHA1/All.txt"
+        #include "Test-Vectors/SHA1/All.txt"
         ,
-        #include "Constants/SHA224/All.txt"
+        #include "Test-Vectors/SHA224/All.txt"
         ,
-        #include "Constants/SHA256/All.txt"
+        #include "Test-Vectors/SHA256/All.txt"
         ,
-        #include "Constants/SHA384/All.txt"
+        #include "Test-Vectors/SHA384/All.txt"
         ,
-        #include "Constants/SHA512/All.txt"
+        #include "Test-Vectors/SHA512/All.txt"
     };
 }

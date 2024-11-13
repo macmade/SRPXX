@@ -54,8 +54,8 @@
 		05818DF02CDFD65500001415 /* Server.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05818DEF2CDFD65200001415 /* Server.hpp */; };
 		05818DF42CDFD86A00001415 /* HashAlgorithm.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 05818DF32CDFD85E00001415 /* HashAlgorithm.hpp */; };
 		0581C6932CE24C150024687F /* SRP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0581C6922CE24C120024687F /* SRP.cpp */; };
-		0581C6C42CE294CA0024687F /* Constants.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 0581C6C32CE294C40024687F /* Constants.hpp */; };
-		0581C6C72CE296C70024687F /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231982CE0B57400104F3B /* Constants.cpp */; };
+		0581C6C42CE294CA0024687F /* TestVectors.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 0581C6C32CE294C40024687F /* TestVectors.hpp */; };
+		0581C6C72CE296C70024687F /* TestVectors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231982CE0B57400104F3B /* TestVectors.cpp */; };
 		05D960032CE3B6CD0092F68E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05D960012CE3B6CD0092F68E /* main.cpp */; };
 		05D960052CE3B8010092F68E /* Arguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05D960042CE3B7FC0092F68E /* Arguments.cpp */; };
 		05D960072CE3BD140092F68E /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 056C881218C8B85F006260B3 /* libSRPXX.a */; };
@@ -119,7 +119,7 @@
 		056231542CDFE15800104F3B /* String.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = String.cpp; sourceTree = "<group>"; };
 		056231622CDFE4B900104F3B /* Base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Base.cpp; sourceTree = "<group>"; };
 		0562317A2CE0A2E700104F3B /* Client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Client.cpp; sourceTree = "<group>"; };
-		056231982CE0B57400104F3B /* Constants.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Constants.cpp; sourceTree = "<group>"; };
+		056231982CE0B57400104F3B /* TestVectors.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestVectors.cpp; sourceTree = "<group>"; };
 		0562319C2CE0F1E500104F3B /* RFC-2945.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RFC-2945.txt"; sourceTree = "<group>"; };
 		0562319D2CE0F1E500104F3B /* RFC-5054.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "RFC-5054.txt"; sourceTree = "<group>"; };
 		0562319E2CE1325F00104F3B /* Server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		05818DEF2CDFD65200001415 /* Server.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Server.hpp; sourceTree = "<group>"; };
 		05818DF32CDFD85E00001415 /* HashAlgorithm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashAlgorithm.hpp; sourceTree = "<group>"; };
 		0581C6922CE24C120024687F /* SRP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SRP.cpp; sourceTree = "<group>"; };
-		0581C6C32CE294C40024687F /* Constants.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Constants.hpp; sourceTree = "<group>"; };
+		0581C6C32CE294C40024687F /* TestVectors.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestVectors.hpp; sourceTree = "<group>"; };
 		05D95FFA2CE3B6C80092F68E /* SRPXX-Debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SRPXX-Debug"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D960012CE3B6CD0092F68E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		05D960042CE3B7FC0092F68E /* Arguments.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Arguments.cpp; sourceTree = "<group>"; };
@@ -632,7 +632,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0515DE562CE2B4AA00AB23C4 /* Constants */ = {
+		0515DE562CE2B4AA00AB23C4 /* Test-Vectors */ = {
 			isa = PBXGroup;
 			children = (
 				05D9606B2CE3CF9D0092F68E /* SHA1 */,
@@ -641,7 +641,7 @@
 				05D9616D2CE3CF9D0092F68E /* SHA384 */,
 				05D961C32CE3CF9D0092F68E /* SHA512 */,
 			);
-			path = Constants;
+			path = "Test-Vectors";
 			sourceTree = "<group>";
 		};
 		0562319B2CE0F1CB00104F3B /* RFC */ = {
@@ -878,8 +878,6 @@
 				05ECBB682CE1FF10007AF82F /* Base64.cpp */,
 				05818DCB2CDFD40300001415 /* BigNum.cpp */,
 				0562317A2CE0A2E700104F3B /* Client.cpp */,
-				0581C6C32CE294C40024687F /* Constants.hpp */,
-				056231982CE0B57400104F3B /* Constants.cpp */,
 				05818DCC2CDFD40300001415 /* Integer.cpp */,
 				05818DCD2CDFD40300001415 /* PBKDF2.cpp */,
 				05818DCE2CDFD40300001415 /* Platform.cpp */,
@@ -892,7 +890,9 @@
 				05818DD42CDFD40300001415 /* SHA512.cpp */,
 				0581C6922CE24C120024687F /* SRP.cpp */,
 				05818DD52CDFD40300001415 /* String.cpp */,
-				0515DE562CE2B4AA00AB23C4 /* Constants */,
+				0581C6C32CE294C40024687F /* TestVectors.hpp */,
+				056231982CE0B57400104F3B /* TestVectors.cpp */,
+				0515DE562CE2B4AA00AB23C4 /* Test-Vectors */,
 			);
 			path = "SRPXX-Tests";
 			sourceTree = "<group>";
@@ -1791,14 +1791,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				056231632CDFE4BC00104F3B /* Base.cpp in Sources */,
-				0581C6C72CE296C70024687F /* Constants.cpp in Sources */,
+				0581C6C72CE296C70024687F /* TestVectors.cpp in Sources */,
 				05818DD72CDFD40300001415 /* Platform.cpp in Sources */,
 				0562319F2CE1326300104F3B /* Server.cpp in Sources */,
 				05818DD82CDFD40300001415 /* SHA512.cpp in Sources */,
 				05818DD92CDFD40300001415 /* SHA384.cpp in Sources */,
 				05818DDA2CDFD40300001415 /* Random.cpp in Sources */,
 				05818DDB2CDFD40300001415 /* SHA1.cpp in Sources */,
-				0581C6C42CE294CA0024687F /* Constants.hpp in Sources */,
+				0581C6C42CE294CA0024687F /* TestVectors.hpp in Sources */,
 				05818DDC2CDFD40300001415 /* Integer.cpp in Sources */,
 				05818DDD2CDFD40300001415 /* BigNum.cpp in Sources */,
 				05818DDE2CDFD40300001415 /* SHA224.cpp in Sources */,
