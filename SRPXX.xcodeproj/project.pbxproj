@@ -56,6 +56,25 @@
 		0581C6932CE24C150024687F /* SRP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0581C6922CE24C120024687F /* SRP.cpp */; };
 		0581C6C42CE294CA0024687F /* TestVectors.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 0581C6C32CE294C40024687F /* TestVectors.hpp */; };
 		0581C6C72CE296C70024687F /* TestVectors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231982CE0B57400104F3B /* TestVectors.cpp */; };
+		058A42FF2CE6726C00768026 /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 056C881218C8B85F006260B3 /* libSRPXX.a */; };
+		058A43052CE672BB00768026 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DCE2CDFD40300001415 /* Platform.cpp */; };
+		058A43062CE672BB00768026 /* PBKDF2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DCD2CDFD40300001415 /* PBKDF2.cpp */; };
+		058A43072CE672BB00768026 /* BigNum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DCB2CDFD40300001415 /* BigNum.cpp */; };
+		058A43082CE672BB00768026 /* TestVectors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231982CE0B57400104F3B /* TestVectors.cpp */; };
+		058A43092CE672BB00768026 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05D961D22CE412910092F68E /* main.cpp */; };
+		058A430A2CE672BB00768026 /* SHA1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD02CDFD40300001415 /* SHA1.cpp */; };
+		058A430B2CE672BB00768026 /* SRP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0581C6922CE24C120024687F /* SRP.cpp */; };
+		058A430C2CE672BB00768026 /* SHA224.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD12CDFD40300001415 /* SHA224.cpp */; };
+		058A430D2CE672BB00768026 /* SHA256.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD22CDFD40300001415 /* SHA256.cpp */; };
+		058A430E2CE672BB00768026 /* Random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DCF2CDFD40300001415 /* Random.cpp */; };
+		058A430F2CE672BB00768026 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0562319E2CE1325F00104F3B /* Server.cpp */; };
+		058A43102CE672BB00768026 /* Client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0562317A2CE0A2E700104F3B /* Client.cpp */; };
+		058A43112CE672BB00768026 /* Integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DCC2CDFD40300001415 /* Integer.cpp */; };
+		058A43122CE672BB00768026 /* Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 056231622CDFE4B900104F3B /* Base.cpp */; };
+		058A43132CE672BB00768026 /* SHA384.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD32CDFD40300001415 /* SHA384.cpp */; };
+		058A43142CE672BB00768026 /* SHA512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD42CDFD40300001415 /* SHA512.cpp */; };
+		058A43152CE672BB00768026 /* Base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05ECBB682CE1FF10007AF82F /* Base64.cpp */; };
+		058A43162CE672BB00768026 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05818DD52CDFD40300001415 /* String.cpp */; };
 		05D960032CE3B6CD0092F68E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05D960012CE3B6CD0092F68E /* main.cpp */; };
 		05D960052CE3B8010092F68E /* Arguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05D960042CE3B7FC0092F68E /* Arguments.cpp */; };
 		05D960072CE3BD140092F68E /* libSRPXX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 056C881218C8B85F006260B3 /* libSRPXX.a */; };
@@ -79,6 +98,13 @@
 			remoteGlobalIDString = 05D526E721A864BC0025CCEB;
 			remoteInfo = XSTest;
 		};
+		058A42FA2CE6726C00768026 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056C87C618C8B0F8006260B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 056C881118C8B85F006260B3;
+			remoteInfo = SRPXX;
+		};
 		05D960082CE3BD180092F68E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 056C87C618C8B0F8006260B3 /* Project object */;
@@ -89,6 +115,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		058A43002CE6726C00768026 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		05D95FF82CE3B6C80092F68E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,6 +239,7 @@
 		05818DF32CDFD85E00001415 /* HashAlgorithm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HashAlgorithm.hpp; sourceTree = "<group>"; };
 		0581C6922CE24C120024687F /* SRP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SRP.cpp; sourceTree = "<group>"; };
 		0581C6C32CE294C40024687F /* TestVectors.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestVectors.hpp; sourceTree = "<group>"; };
+		058A43042CE6726C00768026 /* SRPXX-Tests-Standalone */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SRPXX-Tests-Standalone"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D95FFA2CE3B6C80092F68E /* SRPXX-Debug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "SRPXX-Debug"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D960012CE3B6CD0092F68E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		05D960042CE3B7FC0092F68E /* Arguments.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Arguments.cpp; sourceTree = "<group>"; };
@@ -621,6 +657,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058A42FE2CE6726C00768026 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058A42FF2CE6726C00768026 /* libSRPXX.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05D95FF72CE3B6C80092F68E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -676,6 +720,7 @@
 				056C881218C8B85F006260B3 /* libSRPXX.a */,
 				056C58BF1B1898FF00C6214A /* SRPXX-Tests.xctest */,
 				05D95FFA2CE3B6C80092F68E /* SRPXX-Debug */,
+				058A43042CE6726C00768026 /* SRPXX-Tests-Standalone */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1694,6 +1739,26 @@
 			productReference = 056C881218C8B85F006260B3 /* libSRPXX.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		058A42F82CE6726C00768026 /* SRPXX-Tests-Standalone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 058A43012CE6726C00768026 /* Build configuration list for PBXNativeTarget "SRPXX-Tests-Standalone" */;
+			buildPhases = (
+				058A42FB2CE6726C00768026 /* Sources */,
+				058A42FE2CE6726C00768026 /* Frameworks */,
+				058A43002CE6726C00768026 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				058A42F92CE6726C00768026 /* PBXTargetDependency */,
+			);
+			name = "SRPXX-Tests-Standalone";
+			packageProductDependencies = (
+			);
+			productName = "SRPXX-Debug";
+			productReference = 058A43042CE6726C00768026 /* SRPXX-Tests-Standalone */;
+			productType = "com.apple.product-type.tool";
+		};
 		05D95FF92CE3B6C80092F68E /* SRPXX-Debug */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05D95FFE2CE3B6C80092F68E /* Build configuration list for PBXNativeTarget "SRPXX-Debug" */;
@@ -1760,6 +1825,7 @@
 			targets = (
 				056C881118C8B85F006260B3 /* SRPXX */,
 				056C58BE1B1898FF00C6214A /* SRPXX-Tests */,
+				058A42F82CE6726C00768026 /* SRPXX-Tests-Standalone */,
 				05D95FF92CE3B6C80092F68E /* SRPXX-Debug */,
 			);
 		};
@@ -1832,6 +1898,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		058A42FB2CE6726C00768026 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				058A43052CE672BB00768026 /* Platform.cpp in Sources */,
+				058A43062CE672BB00768026 /* PBKDF2.cpp in Sources */,
+				058A43072CE672BB00768026 /* BigNum.cpp in Sources */,
+				058A43082CE672BB00768026 /* TestVectors.cpp in Sources */,
+				058A43092CE672BB00768026 /* main.cpp in Sources */,
+				058A430A2CE672BB00768026 /* SHA1.cpp in Sources */,
+				058A430B2CE672BB00768026 /* SRP.cpp in Sources */,
+				058A430C2CE672BB00768026 /* SHA224.cpp in Sources */,
+				058A430D2CE672BB00768026 /* SHA256.cpp in Sources */,
+				058A430E2CE672BB00768026 /* Random.cpp in Sources */,
+				058A430F2CE672BB00768026 /* Server.cpp in Sources */,
+				058A43102CE672BB00768026 /* Client.cpp in Sources */,
+				058A43112CE672BB00768026 /* Integer.cpp in Sources */,
+				058A43122CE672BB00768026 /* Base.cpp in Sources */,
+				058A43132CE672BB00768026 /* SHA384.cpp in Sources */,
+				058A43142CE672BB00768026 /* SHA512.cpp in Sources */,
+				058A43152CE672BB00768026 /* Base64.cpp in Sources */,
+				058A43162CE672BB00768026 /* String.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05D95FF62CE3B6C80092F68E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1848,6 +1939,11 @@
 			isa = PBXTargetDependency;
 			target = 056C881118C8B85F006260B3 /* SRPXX */;
 			targetProxy = 056C58C61B1898FF00C6214A /* PBXContainerItemProxy */;
+		};
+		058A42F92CE6726C00768026 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 056C881118C8B85F006260B3 /* SRPXX */;
+			targetProxy = 058A42FA2CE6726C00768026 /* PBXContainerItemProxy */;
 		};
 		05D960092CE3BD180092F68E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1976,6 +2072,48 @@
 			};
 			name = Release;
 		};
+		058A43022CE6726C00768026 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					Submodules/XSTest/XSTest/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					Submodules/BoringSSL/lib/macOS/,
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lcrypto",
+					"-lssl",
+					"-ldecrepit",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		058A43032CE6726C00768026 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					Submodules/XSTest/XSTest/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					Submodules/BoringSSL/lib/macOS/,
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lcrypto",
+					"-lssl",
+					"-ldecrepit",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05D95FFF2CE3B6C80092F68E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2036,6 +2174,15 @@
 			buildConfigurations = (
 				056C881418C8B85F006260B3 /* Debug */,
 				056C881518C8B85F006260B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		058A43012CE6726C00768026 /* Build configuration list for PBXNativeTarget "SRPXX-Tests-Standalone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058A43022CE6726C00768026 /* Debug */,
+				058A43032CE6726C00768026 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
